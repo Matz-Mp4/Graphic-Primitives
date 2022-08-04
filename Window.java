@@ -1,10 +1,14 @@
-import java.swing.JFrame;
+import javax.swing.*;
 import java.awt.*;
 
 public class Window extends JFrame {
   
   private final static Color BACKGROUND = Color.white;
   private final static Color FOREGROUND = Color.black;
+
+  public Window(){
+    initialize();
+  }
 
   private void initialize() {
 
@@ -18,8 +22,4 @@ public class Window extends JFrame {
 
   }
   
-  public Window(){
-    initialize();
-  }
-
 }
