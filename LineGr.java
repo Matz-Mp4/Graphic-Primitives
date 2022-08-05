@@ -27,6 +27,13 @@ public class LineGr extends Line {
     setLineColor(corReta);
     setNameLineColor(corNome);
     setNameLine(nome);
+  }
+
+  public LineGr(DotGr x, DotGr y) {
+    super(x, y);
+    setLineColor(this.lineColor);
+    setNameLineColor(this.nameLineColor);
+    setNameLine("Generic Name");
 
   }
 
@@ -37,7 +44,7 @@ public class LineGr extends Line {
     setNameLine(nome);
   }
 
-  private void swapCord(double cord1, double cord2){
+  private void swapCord(double cord1, double cord2) {
     double swap = cord1;
     cord1 = cord2;
     cord2 = swap;
@@ -67,7 +74,7 @@ public class LineGr extends Line {
 
       for (x = begin; x <= end; x++) {
         y = x;
-        DotGr ponto = new DotGr((int)begin, (int)y, lineColor);
+        DotGr ponto = new DotGr((int) begin, (int) y, lineColor);
         ponto.drawDot(g);
       }
 
@@ -76,7 +83,7 @@ public class LineGr extends Line {
 
       for (x = begin; x <= end; x++) {
         y = getP1().getY();
-        DotGr ponto = new DotGr((int)x, (int)y, lineColor);
+        DotGr ponto = new DotGr((int) x, (int) y, lineColor);
         ponto.drawDot(g);
       }
 
@@ -85,7 +92,7 @@ public class LineGr extends Line {
       b = calculateB();
       for (x = begin; x <= end; x++) {
         y = a * x + b;
-        DotGr ponto = new DotGr((int)x,(int) y, lineColor);
+        DotGr ponto = new DotGr((int) x, (int) y, lineColor);
         ponto.drawDot(g);
       }
     }
