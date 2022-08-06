@@ -18,9 +18,15 @@ public class DrawPanel extends JPanel {
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    // g.drawLine(13, 2, 117, 456);
-    LineGr line = new LineGr(13 , 2, 117, 456);
+    // Comparing funcitons
+    g.drawLine(20, 1, 110, 400);
+    LineGr line = new LineGr(30, 1, 120, 400);
     line.drawLine(g);
+
+    LineGr line1 = new LineGr(300, 555, 500, 555);
+    line1.drawLine(g);
+
+    g.drawLine(300, 655, 500, 655);
 
   }
 }

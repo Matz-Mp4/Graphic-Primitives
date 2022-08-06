@@ -68,33 +68,37 @@ public class LineGr extends Line {
     begin = getP1().getX();
     end = getP2().getX();
 
-    // Reta na vertical
+    // Vertical Line
     if (getP1().getX() == getP2().getX()) {
       a = 0;
 
       for (x = begin; x <= end; x++) {
         y = x;
-        DotGr ponto = new DotGr(begin, y, lineColor);
+        DotGr ponto = new DotGr((int) begin, (int) y, lineColor);
         ponto.drawDot(g);
       }
 
-      // Reta na Horizontal
+      // Horizontal Line
     } else if (getP1().getY() == getP2().getY()) {
 
       for (x = begin; x <= end; x++) {
         y = getP1().getY();
-        DotGr ponto = new DotGr(x, y, lineColor);
+        DotGr ponto = new DotGr((int) x, (int) y, lineColor);
         ponto.drawDot(g);
       }
 
     } else {
       a = calculateInclination();
       b = calculateB();
-      for (x = begin; x <= end; x++) {
-        y = a * x + b;
-        DotGr ponto = new DotGr(x, y, lineColor);
+      begin = getP1().getY();
+      end = getP2().getY();
+      for (y = begin; y <= end; y++) {
+        // y = a * x + b
+        x = (y - b) / a;
+        DotGr ponto = new DotGr((int) x, (int) y, lineColor);
         ponto.drawDot(g);
       }
+
     }
   }
 
