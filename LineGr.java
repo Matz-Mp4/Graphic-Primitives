@@ -74,7 +74,7 @@ public class LineGr extends Line {
 
       for (x = begin; x <= end; x++) {
         y = x;
-        DotGr ponto = new DotGr((int) begin, (int) y, lineColor);
+        DotGr ponto = new DotGr(begin, y, lineColor);
         ponto.drawDot(g);
       }
 
@@ -83,7 +83,7 @@ public class LineGr extends Line {
 
       for (x = begin; x <= end; x++) {
         y = getP1().getY();
-        DotGr ponto = new DotGr((int) x, (int) y, lineColor);
+        DotGr ponto = new DotGr(x, y, lineColor);
         ponto.drawDot(g);
       }
 
@@ -92,7 +92,7 @@ public class LineGr extends Line {
       b = calculateB();
       for (x = begin; x <= end; x++) {
         y = a * x + b;
-        DotGr ponto = new DotGr((int) x, (int) y, lineColor);
+        DotGr ponto = new DotGr(x, y, lineColor);
         ponto.drawDot(g);
       }
     }

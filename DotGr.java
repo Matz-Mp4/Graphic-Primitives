@@ -65,8 +65,8 @@ public class DotGr extends Dot {
     g.fillOval((int) getX() - (getDiameter() / 2), (int) getY() - (getDiameter() / 2), getDiameter(), getDiameter());
 
     // desenha nome do ponto
-    g.setColor(getDotNameColor());
-    g.drawString(getDotName(), (int) getX() + getDiameter(), (int) getY());
+    // g.setColor(getDotNameColor());
+    // g.drawString(getDotName(), (int) getX() + getDiameter(), (int) getY());
   }
 
   public Color getDotColor() {

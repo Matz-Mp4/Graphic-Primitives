@@ -9,25 +9,18 @@ public class DrawPanel extends JPanel {
   private void initialize() {
     setBackground(BACKGROUND);
     setForeground(FOREGROUND);
-    add(new JLabel("Ola"));
   }
 
   public DrawPanel() {
     initialize();
   }
-@Override
+
+  @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    LineGr line = new LineGr(5, 5, 100, 100);
+    // g.drawLine(13, 2, 117, 456);
+    LineGr line = new LineGr(13 , 2, 117, 456);
     line.drawLine(g);
-    LineGr line2 = new LineGr(300, 200, 500, 200);
-    line2.drawLine(g);
-    LineGr line3 = new LineGr(300, 200, 500, 150);
-    line3.drawLine(g);
- 
-    LineGr line4 = new LineGr(300, 200, 500, 250);
-    line4.drawLine(g);
-
 
   }
 }
