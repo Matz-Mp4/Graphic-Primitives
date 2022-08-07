@@ -9,6 +9,8 @@ public class Window extends JFrame {
 
   public Window() {
     initialize();
+    Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+    System.out.println("\nwidth = " + dim.getWidth() + "\nheight =" + dim.getHeight());
   }
 
   private void initialize() {
@@ -28,7 +30,7 @@ public class Window extends JFrame {
     if (drawP == null) {
       drawP = new DrawPanel();
     }
-   return drawP;
+    return drawP;
 
   }
 
