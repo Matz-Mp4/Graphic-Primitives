@@ -6,7 +6,6 @@ public class LineGr extends Line {
   Color lineColor = Color.BLACK; // cor do ponto
   String nameLine = ""; // nome do ponto
   Color nameLineColor = Color.BLACK; // cor do nome (string) do ponto
-  // public final int DIAMETRO = 1; // diametro do ponto, default = 1
 
   public LineGr(int x1, int y1, int x2, int y2) {
     super((double) x1, (double) y1, (double) x2, (double) y2);
@@ -44,11 +43,16 @@ public class LineGr extends Line {
     setNameLine(nome);
   }
 
-  private void swapCord(double cord1, double cord2) {
-    double swap = cord1;
-    cord1 = cord2;
-    cord2 = swap;
-  }
+  // private void swapCord() {
+  // double swap;
+  // swap = getP1().getX();
+  // getP1().setX(getP2().getX());
+  // getP2().setX(swap);
+  // swap = getP1().getY();
+  // getP1().setY(getP2().getY());
+  // getP2().setY(swap);
+  //
+  // }
 
   /**
    * @param g
@@ -56,33 +60,39 @@ public class LineGr extends Line {
   public void drawLine(Graphics g) {
     // y = a * x + b, a = inclinação da reta
     double b, a, x, y;
-    double begin, end;
+    double beginX, endX, beginY, endY;
+
+    beginX = getP1().getX();
+    endX = getP2().getX();
+    beginY = getP1().getY();
+    endY = getP2().getY();
 
     if (getP1().getX() > getP2().getX()) {
-      swapCord(getP1().getX(), getP2().getX());
+      beginX = getP2().getX();
+      endX = getP1().getX();
 
-    } else if (getP1().getY() > getP2().getY()) {
-      swapCord(getP1().getY(), getP2().getY());
     }
+    if (getP1().getY() > getP2().getY()) {
 
-    begin = getP1().getX();
-    end = getP2().getX();
+      beginY = getP2().getY();
+      endY = getP1().getY();
+
+    }
 
     // Vertical Line
     if (getP1().getX() == getP2().getX()) {
       a = 0;
 
-      for (x = begin; x <= end; x++) {
-        y = x;
-        DotGr ponto = new DotGr((int) begin, (int) y, lineColor);
+      for (y = beginY; y <= endY; y++) {
+        DotGr ponto = new DotGr((int) beginX, (int) y, lineColor);
         ponto.drawDot(g);
       }
 
       // Horizontal Line
     } else if (getP1().getY() == getP2().getY()) {
 
-      for (x = begin; x <= end; x++) {
-        y = getP1().getY();
+      y = beginY;
+      for (x = beginX; x <= endY; x++) {
         DotGr ponto = new DotGr((int) x, (int) y, lineColor);
         ponto.drawDot(g);
       }
@@ -90,11 +100,10 @@ public class LineGr extends Line {
     } else {
       a = calculateInclination();
       b = calculateB();
-      begin = getP1().getY();
-      end = getP2().getY();
-      for (y = begin; y <= end; y++) {
+      for (y = beginY; y <= endY; y++) {
         // y = a * x + b
         x = (y - b) / a;
+        x = Math.round(x);
         DotGr ponto = new DotGr((int) x, (int) y, lineColor);
         ponto.drawDot(g);
       }

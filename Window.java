@@ -13,7 +13,7 @@ public class Window extends JFrame {
 
   private void initialize() {
 
-    setSize(800, 600);
+    getContentPane().setSize(800, 600);
     setLayout(new BorderLayout());
 
     // getContentPane().setBackground(BACKGROUND);

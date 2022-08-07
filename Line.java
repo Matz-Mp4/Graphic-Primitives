@@ -62,7 +62,7 @@ public class Line {
     return b;
   }
 
- //
+  //
   /**
    * Method toString
    *
@@ -70,7 +70,8 @@ public class Line {
    */
   public String toString() {
     String s = "P1: " + getP1().toString() + " P2: " + getP2().toString();
-    s = s + "\nEq. da reta: y = " + calculateInclination() + "*x + " + calculateB();
+    s = s + "\nEq. da reta: y = " + calculateInclination() + "*x + " +
+        calculateB();
     return s;
   }
 
