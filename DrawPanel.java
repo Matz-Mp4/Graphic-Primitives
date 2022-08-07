@@ -17,6 +17,8 @@ public class DrawPanel extends JPanel {
 
   @Override
   public void paintComponent(Graphics g) {
+    LineGr l1 = new LineGr(0, 300, 800, 300);
+    l1.drawLine(g);
 
     LineGr l2 = new LineGr(800, 600, 0, 0);
     l2.drawLine(g);

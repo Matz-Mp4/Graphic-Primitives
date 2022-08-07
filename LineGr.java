@@ -92,7 +92,7 @@ public class LineGr extends Line {
     } else if (getP1().getY() == getP2().getY()) {
 
       y = beginY;
-      for (x = beginX; x <= endY; x++) {
+      for (x = beginX; x <= endX; x++) {
         DotGr ponto = new DotGr((int) x, (int) y, lineColor);
         ponto.drawDot(g);
       }
