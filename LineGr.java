@@ -43,16 +43,6 @@ public class LineGr extends Line {
     setNameLine(nome);
   }
 
-  // private void swapCord() {
-  // double swap;
-  // swap = getP1().getX();
-  // getP1().setX(getP2().getX());
-  // getP2().setX(swap);
-  // swap = getP1().getY();
-  // getP1().setY(getP2().getY());
-  // getP2().setY(swap);
-  //
-  // }
 
   /**
    * @param g
@@ -79,6 +69,8 @@ public class LineGr extends Line {
 
     }
 
+    double dy = endY - endY;
+    double dx = endX - endX;
     // Vertical Line
     if (getP1().getX() == getP2().getX()) {
       a = 0;
@@ -100,14 +92,24 @@ public class LineGr extends Line {
     } else {
       a = calculateInclination();
       b = calculateB();
-      for (y = beginY; y <= endY; y++) {
-        // y = a * x + b
-        x = (y - b) / a;
-        x = Math.round(x);
-        DotGr ponto = new DotGr((int) x, (int) y, lineColor);
-        ponto.drawDot(g);
-      }
+      if (dy > dx) {
+        for (y = beginY; y <= endY; y++) {
+          // y = a * x + b
+          x = (y - b) / a;
+          x = Math.round(x);
+          DotGr ponto = new DotGr((int) x, (int) y, lineColor);
+          ponto.drawDot(g);
+        }
+      } else {
+        for (x = beginX; x <= endX; x++) {
+          y = a * x + b;
+          y = Math.round(y);
+          DotGr ponto = new DotGr((int) x, (int) y, lineColor);
+          ponto.drawDot(g);
 
+        }
+
+      }
     }
   }
 

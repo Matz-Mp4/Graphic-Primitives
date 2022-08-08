@@ -41,7 +41,9 @@ public class DrawPanel extends JPanel {
     // g.drawOval(300, 250, 300, 100);
     CircleGr circle2 = new CircleGr(300, 250, 300);
     circle2.drawCircle(g);
-    //
+
+    LineGr l5 = new LineGr(200, 300, 600, 303);
+    l5.drawLine(g);
 
   }
 }
