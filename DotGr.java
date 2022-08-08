@@ -5,7 +5,7 @@ public class DotGr extends Dot {
   Color dotColor = Color.BLACK; // cor do ponto
   String dotName = ""; // nome do ponto
   Color dotNameColor = Color.BLACK; // cor do nome (string) do ponto
-  public   int diameter= 2; // diametro do ponto, default = 1
+  public int diameter = 2; // diametro do ponto, default = 1
 
   DotGr(int x, int y) {
     super((double) x, (double) y);
