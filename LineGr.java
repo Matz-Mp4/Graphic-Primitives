@@ -3,9 +3,9 @@ import java.awt.Graphics;
 
 public class LineGr extends Line {
 
-  Color lineColor = Color.BLACK; // cor do ponto
-  String nameLine = ""; // nome do ponto
-  Color nameLineColor = Color.BLACK; // cor do nome (string) do ponto
+  private Color lineColor = Color.BLACK; // cor do ponto
+  private String nameLine = ""; // nome do ponto
+  private Color nameLineColor = Color.BLACK; // cor do nome (string) do ponto
 
   public LineGr(int x1, int y1, int x2, int y2) {
     super((double) x1, (double) y1, (double) x2, (double) y2);
@@ -103,7 +103,8 @@ public class LineGr extends Line {
       for (y = beginY; y <= endY; y++) {
         // y = a * x + b
         x = (y - b) / a;
-        DotGr ponto = new DotGr(Math.round(x), (int) y, lineColor);
+        x = Math.round(x);
+        DotGr ponto = new DotGr((int) x, (int) y, lineColor);
         ponto.drawDot(g);
       }
 

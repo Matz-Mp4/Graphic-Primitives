@@ -9,13 +9,12 @@ public class Window extends JFrame {
 
   public Window() {
     initialize();
-    Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-    System.out.println("\nwidth = " + dim.getWidth() + "\nheight =" + dim.getHeight());
+    System.out.println("\nwidth = " + GuiUtils.getWidthScreen() + "\nheight =" + GuiUtils.getHeightScreen());
   }
 
   private void initialize() {
 
-    getContentPane().setSize(800, 600);
+    setSize(GuiUtils.getWidthScreen() / 2, GuiUtils.getHeightScreen() / 2);
     setLayout(new BorderLayout());
 
     // getContentPane().setBackground(BACKGROUND);
