@@ -14,8 +14,10 @@ public class Window extends JFrame {
 
   private void initialize() {
 
-    setSize(GuiUtils.getWidthScreen() / 2, GuiUtils.getHeightScreen() / 2);
+    setSize(800, 600);
+    // setSize(GuiUtils.getWidthScreen() / 2, GuiUtils.getHeightScreen() / 2);
     setLayout(new BorderLayout());
+
 
     // getContentPane().setBackground(BACKGROUND);
     // getContentPane().setForeground(FOREGROUND);

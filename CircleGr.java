@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Graphics;
 
 public class CircleGr extends Circle {
 
@@ -18,17 +19,17 @@ public class CircleGr extends Circle {
 
   public CircleGr(int x, int y, int radius, String name) {
     super((double) x, (double) y, (double) radius);
-    this.nameCircle = name;
+    this.circleName = name;
   }
 
   public CircleGr(int x, int y, int radius, Color circleColor, String name) {
     super((double) x, (double) y, (double) radius);
     this.circleColor = circleColor;
-    this.nameCircle = name;
+    this.circleName = name;
   }
 
   public double convertToRadian(double radius) {
-    return radius * Math.PI / 180;
+    return radius * (Math.PI / 180);
   }
 
   public Color getCircleColor() {
@@ -53,6 +54,25 @@ public class CircleGr extends Circle {
 
   public void setCircleNameColor(Color circleNameColor) {
     this.circleNameColor = circleNameColor;
+  }
+
+  public void drawCircle(Graphics g) {
+    double cordX, cordY;
+    double row, rowEnd;
+    double rowRadian;
+    rowEnd = Math.round(2 * Math.PI * getRadius());
+
+    for (row = 1; row <= rowEnd ; row++) {
+      rowRadian = convertToRadian(row);
+      cordX = Math.cos(rowRadian) * getRadius() + getX();
+      cordY = Math.sin(rowRadian) * getRadius() + getY();
+      cordX = Math.round(cordX);
+      cordY = Math.round(cordY);
+
+      DotGr ponto = new DotGr((int) cordX, (int) cordY, circleColor);
+      ponto.drawDot(g);
+
+    }
   }
 
 }
