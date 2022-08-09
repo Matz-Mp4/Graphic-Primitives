@@ -3,9 +3,9 @@ import java.awt.Graphics;
 
 public class LineGr extends Line {
 
-  private Color lineColor = Color.BLACK; // cor do ponto
-  private String nameLine = ""; // nome do ponto
-  private Color nameLineColor = Color.BLACK; // cor do nome (string) do ponto
+  private Color lineColor = Color.BLACK; 
+  private String nameLine = ""; 
+  private Color nameLineColor = Color.BLACK; 
 
   public LineGr(int x1, int y1, int x2, int y2) {
     super((double) x1, (double) y1, (double) x2, (double) y2);
@@ -45,10 +45,10 @@ public class LineGr extends Line {
 
 
   /**
-   * @param g
+   * @param g 
    */
   public void drawLine(Graphics g) {
-    // y = a * x + b, a = inclinação da reta
+    // y = a * x + b, a = line inclination
     double b, a, x, y;
     double beginX, endX, beginY, endY;
 
@@ -58,19 +58,20 @@ public class LineGr extends Line {
     endY = getP2().getY();
 
     if (getP1().getX() > getP2().getX()) {
+      //Swap the coordinates
       beginX = getP2().getX();
       endX = getP1().getX();
 
     }
     if (getP1().getY() > getP2().getY()) {
-
+      //Swap the coordinates
       beginY = getP2().getY();
       endY = getP1().getY();
 
     }
 
-    double dy = endY - endY;
-    double dx = endX - endX;
+    double dy = endY - beginY;
+    double dx = endX - beginX;
     // Vertical Line
     if (getP1().getX() == getP2().getX()) {
       a = 0;
@@ -91,7 +92,9 @@ public class LineGr extends Line {
 
     } else {
       a = calculateInclination();
+      //Calculate the linear term of the line 
       b = calculateB();
+      
       if (dy > dx) {
         for (y = beginY; y <= endY; y++) {
           // y = a * x + b

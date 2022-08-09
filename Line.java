@@ -49,7 +49,7 @@ public class Line {
     return this.p2;
   }
 
-  // Inclinação da reta
+  // Line inclination
   public double calculateInclination() {
     // m = (y2-y1)/(x2-x1)
     double m = (getP2().getY() - getP1().getY()) / (getP2().getX() - getP1().getX());

@@ -1,10 +1,13 @@
 public class Circle {
   private double radius;
   private double x, y;
-
+/**
+ * Class that deals with  circle with mathematics parameters
+ */
   public Circle(double x, double y){
     this.x = x;
     this.y = y;
+    //Default radius
     this.radius = 10; 
   }
 
