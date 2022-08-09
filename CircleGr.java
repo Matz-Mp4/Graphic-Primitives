@@ -115,19 +115,18 @@ public class CircleGr extends Circle {
    * Draw a circle based on it parameters (radius, x and y)
    * @param g
    */
-   //TODO: need to fix the precision of x and y
   public void drawCircle(Graphics g) {
     double cordX, cordY;
     double row, rowEnd;
     double rowRadian;
     rowEnd = 2 * Math.PI * getRadius(); //length of circle
 
-    for (row = 1; row <= rowEnd ; row++) {
+    for (row = 0; row <= rowEnd   ; row += 0.1) {
       rowRadian = convertToRadian(row);
-      cordX = Math.cos(rowRadian) * getRadius() + getX();
+      cordX =  Math.cos(rowRadian) * getRadius() + getX();
       cordY = Math.sin(rowRadian) * getRadius() + getY();
-      //cordX = Math.round(cordX);
-      //cordY = Math.round(cordY);
+      cordX = Math.round(cordX);
+      cordY = Math.round(cordY);
 
       DotGr ponto = new DotGr(cordX, cordY, circleColor);
       ponto.drawDot(g);
