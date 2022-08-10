@@ -28,7 +28,7 @@ public class LineGr extends Line {
     setNameLine(nome);
   }
 
-  public LineGr(DotGr x, DotGr y) {
+  public LineGr(PointGr x, PointGr y) {
     super(x, y);
     setLineColor(this.lineColor);
     setNameLineColor(this.nameLineColor);
@@ -77,8 +77,8 @@ public class LineGr extends Line {
       a = 0;
 
       for (y = beginY; y <= endY; y++) {
-        DotGr ponto = new DotGr((int) beginX, (int) y, lineColor);
-        ponto.drawDot(g);
+        PointGr ponto = new PointGr((int) beginX, (int) y, lineColor);
+        ponto.drawPoint(g);
       }
 
       // Horizontal Line
@@ -86,8 +86,8 @@ public class LineGr extends Line {
 
       y = beginY;
       for (x = beginX; x <= endX; x++) {
-        DotGr ponto = new DotGr((int) x, (int) y, lineColor);
-        ponto.drawDot(g);
+        PointGr ponto = new PointGr((int) x, (int) y, lineColor);
+        ponto.drawPoint(g);
       }
 
     } else {
@@ -100,15 +100,15 @@ public class LineGr extends Line {
           // y = a * x + b
           x = (y - b) / a;
           x = Math.round(x);
-          DotGr ponto = new DotGr((int) x, (int) y, lineColor);
-          ponto.drawDot(g);
+          PointGr ponto = new PointGr((int) x, (int) y, lineColor);
+          ponto.drawPoint(g);
         }
       } else {
         for (x = beginX; x <= endX; x++) {
           y = a * x + b;
           y = Math.round(y);
-          DotGr ponto = new DotGr((int) x, (int) y, lineColor);
-          ponto.drawDot(g);
+          PointGr ponto = new PointGr((int) x, (int) y, lineColor);
+          ponto.drawPoint(g);
 
         }
 

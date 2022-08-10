@@ -128,8 +128,8 @@ public class CircleGr extends Circle {
       cordX = Math.round(cordX);
       cordY = Math.round(cordY);
 
-      DotGr ponto = new DotGr(cordX, cordY, circleColor);
-      ponto.drawDot(g);
+      PointGr ponto = new PointGr(cordX, cordY, circleColor);
+      ponto.drawPoint(g);
 
     }
   }

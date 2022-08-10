@@ -8,22 +8,22 @@
 public class Line {
 
   // Atributos da reta
-  private Dot p1, p2;
+  private Point p1, p2;
 
   /**
    * Constructor for objects of class Reta
    */
   public Line(int x1, int y1, int x2, int y2) {
-    setP1(new Dot(x1, y1));
-    setP2(new Dot(x2, y2));
+    setP1(new Point(x1, y1));
+    setP2(new Point(x2, y2));
   }
 
   public Line(double x1, double y1, double x2, double y2) {
-    setP1(new Dot(x1, y1));
-    setP2(new Dot(x2, y2));
+    setP1(new Point(x1, y1));
+    setP2(new Point(x2, y2));
   }
 
-  public Line(Dot p1, Dot p2) {
+  public Line(Point p1, Point p2) {
     setP1(p1);
     setP2(p2);
   }
@@ -33,19 +33,19 @@ public class Line {
     setP2(r.getP2());
   }
 
-  public void setP1(Dot p) {
+  public void setP1(Point p) {
     this.p1 = p;
   }
 
-  public void setP2(Dot p) {
+  public void setP2(Point p) {
     this.p2 = p;
   }
 
-  public Dot getP1() {
+  public Point getP1() {
     return this.p1;
   }
 
-  public Dot getP2() {
+  public Point getP2() {
     return this.p2;
   }
 
