@@ -6,43 +6,43 @@ import java.awt.Graphics;
  */
 public class CircleGr extends Circle {
 
-  private Color circleColor = Color.BLACK; //Default color
-  private String circleName = "Generic Name"; 
-  private Color circleNameColor = Color.BLACK; 
+  private Color circleColor = Color.BLACK; // Default color
+  private String circleName = "Generic Name";
+  private Color circleNameColor = Color.BLACK;
 
-    /**
-     * Constructs a circle at position x, y and with attributes
-     * 
-     * @param x coordenate x
-     * @param y coordenate y
-     * @param radius radius of circle
-     */
-    public CircleGr(int x, int y, int radius) {
-      super((double) x, (double) y, (double) radius);
+  /**
+   * Constructs a circle at position x, y and with attributes
+   * 
+   * @param x      coordenate x
+   * @param y      coordenate y
+   * @param radius radius of circle
+   */
+  public CircleGr(int x, int y, int radius) {
+    super((double) x, (double) y, (double) radius);
 
   }
 
-    /**
-     * Constructs a circle at position x, y and with attributes
-     * 
-     * @param x coordenate x
-     * @param y coordenate y
-     * @param circleColor circleColor from the circle to be built
-     * @param radius radius of circle
-     */
-    public CircleGr(int x, int y, int radius, Color circleColor) {
-      super((double) x, (double) y, (double) radius);
-      this.circleColor = circleColor;
+  /**
+   * Constructs a circle at position x, y and with attributes
+   * 
+   * @param x           coordenate x
+   * @param y           coordenate y
+   * @param circleColor circleColor from the circle to be built
+   * @param radius      radius of circle
+   */
+  public CircleGr(int x, int y, int radius, Color circleColor) {
+    super((double) x, (double) y, (double) radius);
+    this.circleColor = circleColor;
   }
 
-    /**
-     * Constructs a circle at position x, y and with attributes
-     * 
-     * @param x coordenate x
-     * @param y coordenate y
-     * @param name name from the circle to be built
-     * @param radius radius of circle
-     */
+  /**
+   * Constructs a circle at position x, y and with attributes
+   * 
+   * @param x      coordenate x
+   * @param y      coordenate y
+   * @param name   name from the circle to be built
+   * @param radius radius of circle
+   */
   public CircleGr(int x, int y, int radius, String name) {
     super((double) x, (double) y, (double) radius);
     this.circleName = name;
@@ -56,6 +56,7 @@ public class CircleGr extends Circle {
 
   /**
    * Take the radius of the circle and convert it to radian
+   * 
    * @param radius
    * @return
    */
@@ -65,6 +66,7 @@ public class CircleGr extends Circle {
 
   /**
    * Gets the circle's color
+   * 
    * @return
    */
   public Color getCircleColor() {
@@ -73,6 +75,7 @@ public class CircleGr extends Circle {
 
   /**
    * Sets the circle's color
+   * 
    * @param circleColor
    */
   public void setCircleColor(Color circleColor) {
@@ -81,6 +84,7 @@ public class CircleGr extends Circle {
 
   /**
    * Gets the circle's name
+   * 
    * @return
    */
   public String getCircleName() {
@@ -89,6 +93,7 @@ public class CircleGr extends Circle {
 
   /**
    * Sets the circle's name
+   * 
    * @param circleName
    */
   public void setCircleName(String circleName) {
@@ -97,6 +102,7 @@ public class CircleGr extends Circle {
 
   /**
    * Gets the circle color
+   * 
    * @return
    */
   public Color getCircleNameColor() {
@@ -105,31 +111,72 @@ public class CircleGr extends Circle {
 
   /**
    * Sets the color of the border of circle
+   * 
    * @param circleNameColor
    */
   public void setCircleNameColor(Color circleNameColor) {
     this.circleNameColor = circleNameColor;
   }
 
+  public void plotPoint(double angule, PointGr point, Graphics g) {
+    double radian = convertToRadian(angule);
+    double cos = Math.cos(radian);
+    double sin = Math.sin(radian);
+    double cordX, cordY;
+
+    // 1 quadrant
+    cordX = cos * getRadius() + getX();
+    cordY = sin * getRadius() + getY();
+    cordX = Math.round(cordX);
+    cordY = Math.round(cordY);
+    point.setX(cordX);
+    point.setY(cordY);
+    point.drawPoint(g);
+
+    // 2 quadrant
+    cordX = getX() - (cos * getRadius());
+    cordY = sin * getRadius() + getY();
+    cordX = Math.round(cordX);
+    cordY = Math.round(cordY);
+    point.setX(cordX);
+    point.setY(cordY);
+    point.drawPoint(g);
+
+    // 3 quadrant
+    cordX = getX() - (cos * getRadius());
+    cordY = getY() - (sin * getRadius());
+    cordX = Math.round(cordX);
+    cordY = Math.round(cordY);
+    point.setX(cordX);
+    point.setY(cordY);
+    point.drawPoint(g);
+
+    // 4 quadrant
+    cordX = cos * getRadius() + getX();
+    cordY = getY() - (sin * getRadius());
+    cordX = Math.round(cordX);
+    cordY = Math.round(cordY);
+    point.setX(cordX);
+    point.setY(cordY);
+    point.drawPoint(g);
+
+  }
+
   /**
    * Draw a circle based on it parameters (radius, x and y)
+   * 
    * @param g
    */
   public void drawCircle(Graphics g) {
-    double cordX, cordY;
     double row, rowEnd;
-    double rowRadian;
-    rowEnd = 2 * Math.PI * getRadius(); //length of circle
 
-    for (row = 0; row <= rowEnd   ; row += 0.1) {
-      rowRadian = convertToRadian(row);
-      cordX =  Math.cos(rowRadian) * getRadius() + getX();
-      cordY = Math.sin(rowRadian) * getRadius() + getY();
-      cordX = Math.round(cordX);
-      cordY = Math.round(cordY);
+    PointGr point = new PointGr();
+    rowEnd = 2 * Math.PI * getRadius(); // length of circle
+    rowEnd = rowEnd / 4;
 
-      PointGr ponto = new PointGr(cordX, cordY, circleColor);
-      ponto.drawPoint(g);
+    for (row = 0; row <= rowEnd; row += 0.1) {
+
+      plotPoint(row, point, g);
 
     }
   }
