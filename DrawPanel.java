@@ -11,7 +11,8 @@ import javax.swing.JPanel;
 
 /**
  * Class that handles the drawings panel and is where they are made
-Temporarily adjust events and use state machine to set circle and line buttons
+ * Temporarily adjust events and use state machine to set circle and line
+ * buttons
  */
 public class DrawPanel extends JPanel implements MouseListener, MouseMotionListener {
 
@@ -41,85 +42,84 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
    */
   public void paintComponent(Graphics g) {
     /*
-     LineGr l1 = new LineGr(0, 300, 800, 300);
-     l1.setLineColor(GuiUtils.generateRandomColor());
-     l1.drawLine(g);
-    
-     LineGr l2 = new LineGr(800, 600, 0, 0);
-     l2.setLineColor(GuiUtils.generateRandomColor());
-     l2.drawLine(g);
-    
-     LineGr l3 = new LineGr(400, 0, 400, 600);
-     l3.setLineColor(GuiUtils.generateRandomColor());
-     l3.drawLine(g);
-    
-     LineGr l4 = new LineGr(800, 0, 0, 600);
-     l4.setLineColor(GuiUtils.generateRandomColor());
-     l4.drawLine(g);
-*/    
+     * LineGr l1 = new LineGr(0, 300, 800, 300);
+     * l1.setLineColor(GuiUtils.generateRandomColor());
+     * l1.drawLine(g);
+     * 
+     * LineGr l2 = new LineGr(800, 600, 0, 0);
+     * l2.setLineColor(GuiUtils.generateRandomColor());
+     * l2.drawLine(g);
+     * 
+     * LineGr l3 = new LineGr(400, 0, 400, 600);
+     * l3.setLineColor(GuiUtils.generateRandomColor());
+     * l3.drawLine(g);
+     * 
+     * LineGr l4 = new LineGr(800, 0, 0, 600);
+     * l4.setLineColor(GuiUtils.generateRandomColor());
+     * l4.drawLine(g);
+     */
     CircleGr circle1 = new CircleGr(100, 100, 80);
     circle1.drawCircle(g);
 
-   
     CircleGr circle2 = new CircleGr(300, 250, 300);
     circle2.drawCircle(g);
-  
 
   }
 
   /**
    * Sets the circle
+   * 
    * @param button
    */
-  public void setCircle(JButton button){
+  public void setCircle(JButton button) {
     circle = button;
   }
 
   /**
    * Sets the line
+   * 
    * @param button
    */
-  public void setLine(JButton button){
+  public void setLine(JButton button) {
     line = button;
   }
 
   /**
    * Sets the events of both line and circle
    */
-  public void setEvents(){
+  public void setEvents() {
 
     circle.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         circleOrNot = true;
       }
-  });
+    });
 
     line.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         circleOrNot = false;
       }
-  });
+    });
   }
-
-  
 
   @Override
   public void mouseDragged(MouseEvent e) {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void mouseMoved(MouseEvent e) {
     // TODO Auto-generated method stub
-    
+
   }
 
   /**
    * If the circle button was pressed, draw a circle of radius 70
-if the line button was pressed, it draws a semi-line given the two points clicked
+   * if the line button was pressed, it draws a semi-line given the two points
+   * clicked
    */
   @Override
   public void mouseClicked(MouseEvent e) {
@@ -127,25 +127,28 @@ if the line button was pressed, it draws a semi-line given the two points clicke
     int y = e.getY();
     Graphics g = getGraphics();
 
-    if(circleOrNot){
+    if (circleOrNot) {
       CircleGr circle1 = new CircleGr(x, y, 70);
       circle1.drawCircle(g);
-    }else if(!circleOrNot){
-      if(changeLineState()){
+    } else if (!circleOrNot) {
+      if (changeLineState()) {
         xLine = x;
         yLine = y;
         needLine = true;
       }
       LineGr l4 = new LineGr(xLine, yLine, x, y);
       l4.drawLine(g);
-      
+
     }
   }
-/**
- * Change the state of line button. It's necessary because to draw a line it requires that the user press the mouse 2 times
- * @return boolean
- */
-  public boolean changeLineState(){
+
+  /**
+   * Change the state of line button. It's necessary because to draw a line it
+   * requires that the user press the mouse 2 times
+   * 
+   * @return boolean
+   */
+  public boolean changeLineState() {
     needLine = !needLine;
     return needLine;
   }
@@ -153,7 +156,7 @@ if the line button was pressed, it draws a semi-line given the two points clicke
   @Override
   public void mousePressed(MouseEvent e) {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
@@ -164,12 +167,12 @@ if the line button was pressed, it draws a semi-line given the two points clicke
   @Override
   public void mouseEntered(MouseEvent e) {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void mouseExited(MouseEvent e) {
     // TODO Auto-generated method stub
-    
+
   }
 }

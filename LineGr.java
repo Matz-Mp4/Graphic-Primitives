@@ -3,9 +3,9 @@ import java.awt.Graphics;
 
 public class LineGr extends Line {
 
-  private Color lineColor = Color.BLACK; 
-  private String nameLine = ""; 
-  private Color nameLineColor = Color.BLACK; 
+  private Color lineColor = Color.BLACK;
+  private String nameLine = "";
+  private Color nameLineColor = Color.BLACK;
 
   public LineGr(int x1, int y1, int x2, int y2) {
     super((double) x1, (double) y1, (double) x2, (double) y2);
@@ -43,14 +43,14 @@ public class LineGr extends Line {
     setNameLine(nome);
   }
 
-
   /**
-   * @param g 
+   * @param g
    */
   public void drawLine(Graphics g) {
     // y = a * x + b, a = line inclination
     double b, a, x, y;
     double beginX, endX, beginY, endY;
+    PointGr point = new PointGr();
 
     beginX = getP1().getX();
     endX = getP2().getX();
@@ -58,13 +58,13 @@ public class LineGr extends Line {
     endY = getP2().getY();
 
     if (getP1().getX() > getP2().getX()) {
-      //Swap the coordinates
+      // Swap the coordinates
       beginX = getP2().getX();
       endX = getP1().getX();
 
     }
     if (getP1().getY() > getP2().getY()) {
-      //Swap the coordinates
+      // Swap the coordinates
       beginY = getP2().getY();
       endY = getP1().getY();
 
@@ -77,8 +77,10 @@ public class LineGr extends Line {
       a = 0;
 
       for (y = beginY; y <= endY; y++) {
-        PointGr ponto = new PointGr((int) beginX, (int) y, lineColor);
-        ponto.drawPoint(g);
+        point.setX((int) beginX);
+        point.setY((int) y);
+        point.setPointColor(lineColor);
+        point.drawPoint(g);
       }
 
       // Horizontal Line
@@ -86,29 +88,34 @@ public class LineGr extends Line {
 
       y = beginY;
       for (x = beginX; x <= endX; x++) {
-        PointGr ponto = new PointGr((int) x, (int) y, lineColor);
-        ponto.drawPoint(g);
+        point.setX((int) x);
+        point.setY((int) y);
+        point.setPointColor(lineColor);
+        point.drawPoint(g);
       }
 
     } else {
       a = calculateInclination();
-      //Calculate the linear term of the line 
+      // Calculate the linear term of the line
       b = calculateB();
-      
+
       if (dy > dx) {
         for (y = beginY; y <= endY; y++) {
-          // y = a * x + b
           x = (y - b) / a;
           x = Math.round(x);
-          PointGr ponto = new PointGr((int) x, (int) y, lineColor);
-          ponto.drawPoint(g);
+          point.setX((int) x);
+          point.setY((int) y);
+          point.setPointColor(lineColor);
+          point.drawPoint(g);
         }
       } else {
         for (x = beginX; x <= endX; x++) {
           y = a * x + b;
           y = Math.round(y);
-          PointGr ponto = new PointGr((int) x, (int) y, lineColor);
-          ponto.drawPoint(g);
+          point.setX((int) x);
+          point.setY((int) y);
+          point.setPointColor(lineColor);
+          point.drawPoint(g);
 
         }
 
