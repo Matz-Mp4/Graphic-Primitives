@@ -58,11 +58,22 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
      * l4.setLineColor(GuiUtils.generateRandomColor());
      * l4.drawLine(g);
      */
-    CircleGr circle1 = new CircleGr(100, 100, 80);
-    circle1.drawCircle(g);
+    // CircleGr circle1 = new CircleGr(100, 100, 80);
+    // circle1.drawCircle(g);
+    //
+    // CircleGr circle2 = new CircleGr(300, 250, 300);
+    // circle2.drawCircle(g);
 
-    CircleGr circle2 = new CircleGr(300, 250, 300);
-    circle2.drawCircle(g);
+    CircleGr circle3 = new CircleGr(200, 170, 30);
+    circle3.drawCircle(g);
+
+    // CircleGr circle4 = new CircleGr(0, 400, 1000);
+    // circle4.drawCircle(g);
+
+    CircleGr circle5 = new CircleGr(400, 100, 10);
+    circle5.drawCircle(g);
+
+
 
   }
 

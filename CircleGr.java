@@ -10,7 +10,8 @@ public class CircleGr extends Circle {
   private String circleName = "Generic Name";
   private Color circleNameColor = Color.BLACK;
 
-  /**
+
+/**
    * Constructs a circle at position x, y and with attributes
    * 
    * @param x      coordenate x
@@ -122,44 +123,41 @@ public class CircleGr extends Circle {
     double radian = convertToRadian(angule);
     double cos = Math.cos(radian);
     double sin = Math.sin(radian);
-    double cordX, cordY;
+    double cordX = 0, cordY = 0;
 
-    // 1 quadrant
-    cordX = cos * getRadius() + getX();
-    cordY = sin * getRadius() + getY();
-    cordX = Math.round(cordX);
-    cordY = Math.round(cordY);
-    point.setX(cordX);
-    point.setY(cordY);
-    point.drawPoint(g);
+    for (int i = 1; i <= 4; i++) {
+      switch (i) {
+        // 1 quadrant
+        case 1:
+          cordX = getX() + (cos * getRadius());
+          cordY = getY() + (sin * getRadius());
+          break;
 
-    // 2 quadrant
-    cordX = getX() - (cos * getRadius());
-    cordY = sin * getRadius() + getY();
-    cordX = Math.round(cordX);
-    cordY = Math.round(cordY);
-    point.setX(cordX);
-    point.setY(cordY);
-    point.drawPoint(g);
+        // 2 quadrant
+        case 2:
+          cordX = getX() - (cos * getRadius());
+          cordY = getY() + (sin * getRadius());
+          break;
 
-    // 3 quadrant
-    cordX = getX() - (cos * getRadius());
-    cordY = getY() - (sin * getRadius());
-    cordX = Math.round(cordX);
-    cordY = Math.round(cordY);
-    point.setX(cordX);
-    point.setY(cordY);
-    point.drawPoint(g);
+        // 3 quadrant
+        case 3:
+          cordX = getX() - (cos * getRadius());
+          cordY = getY() - (sin * getRadius());
+          break;
 
-    // 4 quadrant
-    cordX = cos * getRadius() + getX();
-    cordY = getY() - (sin * getRadius());
-    cordX = Math.round(cordX);
-    cordY = Math.round(cordY);
-    point.setX(cordX);
-    point.setY(cordY);
-    point.drawPoint(g);
+        // 4 quadrant
+        case 4:
+          cordX = getX() + (cos * getRadius());
+          cordY = getY() - (sin * getRadius());
+          break;
+      }
 
+      // cordX = Math.round(cordX);
+      // cordY = Math.round(cordY);
+      point.setX(cordX);
+      point.setY(cordY);
+      point.drawPoint(g);
+    }
   }
 
   /**
@@ -168,16 +166,14 @@ public class CircleGr extends Circle {
    * @param g
    */
   public void drawCircle(Graphics g) {
-    double row, rowEnd;
+    double angule, rowEnd;
 
     PointGr point = new PointGr();
-    rowEnd = 2 * Math.PI * getRadius(); // length of circle
-    rowEnd = rowEnd / 4;
+    //A constant to find the amount needs to loop
+    double inc = 0.18 / (getRadius() / 300);
 
-    for (row = 0; row <= rowEnd; row += 0.1) {
-
+    for (angule = 0; angule <= 90; angule += inc) {
       plotPoint(row, point, g);
-
     }
   }
 
