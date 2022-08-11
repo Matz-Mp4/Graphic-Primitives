@@ -1,3 +1,5 @@
+import containers.Window;
+
 /**
  * Main class that inicializes the app
  * @author Luis Felipe

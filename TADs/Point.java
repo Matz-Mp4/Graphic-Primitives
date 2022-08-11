@@ -6,19 +6,19 @@ package TADs;
  *
  */
 
-public class Dot {
+public class Point {
   private double x;
   private double y;
 
   /**
    * 
    */
-  public Dot() {
+  public Point() {
     setX(0);
     setY(0);
   }
 
-  public Dot(Dot p) {
+  public Point(Point p) {
     setX(p.getX());
     setY(p.getY());
   }
@@ -27,7 +27,7 @@ public class Dot {
    * @param x
    * @param y
    */
-  public Dot(double x, double y) {
+  public Point(double x, double y) {
     setX(x);
     setY(y);
   }
@@ -60,7 +60,7 @@ public class Dot {
     this.y = y;
   }
 
-  public double calculateDistance(Dot p) {
+  public double calculateDistance(Point p) {
 
     double d = Math.sqrt(Math.pow(p.getY() - getY(), 2) + Math.pow(p.getX() - getX(), 2));
 
