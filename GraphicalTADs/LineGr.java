@@ -1,5 +1,8 @@
+package GraphicalTADs;
 import java.awt.Color;
 import java.awt.Graphics;
+
+import TADs.Line;
 
 public class LineGr extends Line {
 
