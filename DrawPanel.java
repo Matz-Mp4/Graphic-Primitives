@@ -9,6 +9,9 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import Circle2D.CircleGr;
+import Line2D.LineGr;
+
 /**
  * Class that handles the drawings panel and is where they are made
  * Temporarily adjust events and use state machine to set circle and line

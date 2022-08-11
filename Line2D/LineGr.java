@@ -1,6 +1,8 @@
+package Line2D;
+
 import java.awt.Color;
 import java.awt.Graphics;
-
+import Point2D.PointGr;
 public class LineGr extends Line {
 
   private Color lineColor = Color.BLACK;

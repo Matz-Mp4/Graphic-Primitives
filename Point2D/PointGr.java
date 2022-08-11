@@ -1,3 +1,5 @@
+
+package Point2D;
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -49,7 +51,7 @@ public class PointGr extends Point {
     setPointName("");
   }
 
-  PointGr() {
+  public PointGr() {
     super();
     setPointColor(Color.black);
     setPointNameColor(Color.black);

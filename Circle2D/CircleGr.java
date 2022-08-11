@@ -1,5 +1,9 @@
+package Circle2D;
 import java.awt.Color;
 import java.awt.Graphics;
+
+import Point2D.PointGr;
+
 
 /**
  * Class that deals with the graphic design of a circle. Inherit from circle
@@ -173,7 +177,7 @@ public class CircleGr extends Circle {
     double inc = 0.18 / (getRadius() / 300);
 
     for (angule = 0; angule <= 90; angule += inc) {
-      plotPoint(row, point, g);
+      plotPoint(angule, point, g);
     }
   }
 

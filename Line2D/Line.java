@@ -1,4 +1,5 @@
-
+package Line2D;
+import Point2D.Point;
 /**
  * REta matematica.
  *
