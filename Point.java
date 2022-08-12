@@ -5,7 +5,6 @@
  *
  */
 
-package Point2D;
 
 public class Point {
   private double x;

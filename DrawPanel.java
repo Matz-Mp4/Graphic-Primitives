@@ -9,8 +9,8 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import Circle2D.CircleGr;
-import Line2D.LineGr;
+
+
 
 /**
  * Class that handles the drawings panel and is where they are made
@@ -67,16 +67,14 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     // CircleGr circle2 = new CircleGr(300, 250, 300);
     // circle2.drawCircle(g);
 
-    CircleGr circle3 = new CircleGr(200, 170, 30);
-    circle3.drawCircle(g);
+    GraphicPrimitive circle3 = new CircleGr(200, 170, 30);
+    circle3.draw(g);
 
     // CircleGr circle4 = new CircleGr(0, 400, 1000);
     // circle4.drawCircle(g);
 
-    CircleGr circle5 = new CircleGr(400, 100, 10);
-    circle5.drawCircle(g);
-
-
+    GraphicPrimitive circle5 = new CircleGr(400, 100, 10);
+    circle5.draw(g);
 
   }
 
@@ -142,16 +140,16 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     Graphics g = getGraphics();
 
     if (circleOrNot) {
-      CircleGr circle1 = new CircleGr(x, y, 70);
-      circle1.drawCircle(g);
+      GraphicPrimitive circle1 = new CircleGr(new SuperCircleGr(x, y, 70));
+      circle1.draw(g);
     } else if (!circleOrNot) {
       if (changeLineState()) {
         xLine = x;
         yLine = y;
         needLine = true;
       }
-      LineGr l4 = new LineGr(xLine, yLine, x, y);
-      l4.drawLine(g);
+      GraphicPrimitive l4 = new LineGr(new SuperLineGr(xLine, yLine, x, y));
+      l4.draw(g);
 
     }
   }

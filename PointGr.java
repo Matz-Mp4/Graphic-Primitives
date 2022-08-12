@@ -1,5 +1,5 @@
 
-package Point2D;
+
 import java.awt.Color;
 import java.awt.Graphics;
 

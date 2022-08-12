@@ -1,28 +1,24 @@
-package Circle2D;
+
 import java.awt.Color;
 import java.awt.Graphics;
-
-import Point2D.PointGr;
-
 
 /**
  * Class that deals with the graphic design of a circle. Inherit from circle
  */
-public class CircleGr extends Circle {
+public class SuperCircleGr extends Circle {
 
   private Color circleColor = Color.BLACK; // Default color
   private String circleName = "Generic Name";
   private Color circleNameColor = Color.BLACK;
 
-
-/**
+  /**
    * Constructs a circle at position x, y and with attributes
    * 
    * @param x      coordenate x
    * @param y      coordenate y
    * @param radius radius of circle
    */
-  public CircleGr(int x, int y, int radius) {
+  public SuperCircleGr(int x, int y, int radius) {
     super((double) x, (double) y, (double) radius);
 
   }
@@ -35,7 +31,7 @@ public class CircleGr extends Circle {
    * @param circleColor circleColor from the circle to be built
    * @param radius      radius of circle
    */
-  public CircleGr(int x, int y, int radius, Color circleColor) {
+  public SuperCircleGr(int x, int y, int radius, Color circleColor) {
     super((double) x, (double) y, (double) radius);
     this.circleColor = circleColor;
   }
@@ -48,15 +44,20 @@ public class CircleGr extends Circle {
    * @param name   name from the circle to be built
    * @param radius radius of circle
    */
-  public CircleGr(int x, int y, int radius, String name) {
+  public SuperCircleGr(int x, int y, int radius, String name) {
     super((double) x, (double) y, (double) radius);
     this.circleName = name;
   }
 
-  public CircleGr(int x, int y, int radius, Color circleColor, String name) {
+  public SuperCircleGr(int x, int y, int radius, Color circleColor, String name) {
     super((double) x, (double) y, (double) radius);
     this.circleColor = circleColor;
     this.circleName = name;
+  }
+
+  public SuperCircleGr(SuperCircleGr circle) {
+
+    super(circle);
   }
 
   /**
@@ -161,23 +162,6 @@ public class CircleGr extends Circle {
       point.setX(cordX);
       point.setY(cordY);
       point.drawPoint(g);
-    }
-  }
-
-  /**
-   * Draw a circle based on it parameters (radius, x and y)
-   * 
-   * @param g
-   */
-  public void drawCircle(Graphics g) {
-    double angule, rowEnd;
-
-    PointGr point = new PointGr();
-    //A constant to find the amount needs to loop
-    double inc = 0.18 / (getRadius() / 300);
-
-    for (angule = 0; angule <= 90; angule += inc) {
-      plotPoint(angule, point, g);
     }
   }
 
