@@ -1,11 +1,23 @@
+<<<<<<<< HEAD:GraphicalTADs/LineGr.java
+package GraphicalTADs;
+
 import java.awt.Color;
 import java.awt.Graphics;
 
+import TADs.Line;
+
+========
+package Line2D;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import Point2D.PointGr;
+>>>>>>>> 3e2d58bc23e4ed32d675d19467b253669bdff50f:Line2D/LineGr.java
 public class LineGr extends Line {
 
-  Color lineColor = Color.BLACK; // cor do ponto
-  String nameLine = ""; // nome do ponto
-  Color nameLineColor = Color.BLACK; // cor do nome (string) do ponto
+  private Color lineColor = Color.BLACK;
+  private String nameLine = "";
+  private Color nameLineColor = Color.BLACK;
 
   public LineGr(int x1, int y1, int x2, int y2) {
     super((double) x1, (double) y1, (double) x2, (double) y2);
@@ -28,7 +40,7 @@ public class LineGr extends Line {
     setNameLine(nome);
   }
 
-  public LineGr(DotGr x, DotGr y) {
+  public LineGr(PointGr x, PointGr y) {
     super(x, y);
     setLineColor(this.lineColor);
     setNameLineColor(this.nameLineColor);
@@ -43,24 +55,14 @@ public class LineGr extends Line {
     setNameLine(nome);
   }
 
-  // private void swapCord() {
-  // double swap;
-  // swap = getP1().getX();
-  // getP1().setX(getP2().getX());
-  // getP2().setX(swap);
-  // swap = getP1().getY();
-  // getP1().setY(getP2().getY());
-  // getP2().setY(swap);
-  //
-  // }
-
   /**
    * @param g
    */
   public void drawLine(Graphics g) {
-    // y = a * x + b, a = inclinação da reta
+    // y = a * x + b, a = line inclination
     double b, a, x, y;
     double beginX, endX, beginY, endY;
+    PointGr point = new PointGr();
 
     beginX = getP1().getX();
     endX = getP2().getX();
@@ -68,24 +70,29 @@ public class LineGr extends Line {
     endY = getP2().getY();
 
     if (getP1().getX() > getP2().getX()) {
+      // Swap the coordinates
       beginX = getP2().getX();
       endX = getP1().getX();
 
     }
     if (getP1().getY() > getP2().getY()) {
-
+      // Swap the coordinates
       beginY = getP2().getY();
       endY = getP1().getY();
 
     }
 
+    double dy = endY - beginY;
+    double dx = endX - beginX;
     // Vertical Line
     if (getP1().getX() == getP2().getX()) {
       a = 0;
 
       for (y = beginY; y <= endY; y++) {
-        DotGr ponto = new DotGr((int) beginX, (int) y, lineColor);
-        ponto.drawDot(g);
+        point.setX((int) beginX);
+        point.setY((int) y);
+        point.setPointColor(lineColor);
+        point.drawPoint(g);
       }
 
       // Horizontal Line
@@ -93,20 +100,38 @@ public class LineGr extends Line {
 
       y = beginY;
       for (x = beginX; x <= endX; x++) {
-        DotGr ponto = new DotGr((int) x, (int) y, lineColor);
-        ponto.drawDot(g);
+        point.setX((int) x);
+        point.setY((int) y);
+        point.setPointColor(lineColor);
+        point.drawPoint(g);
       }
 
     } else {
       a = calculateInclination();
+      // Calculate the linear term of the line
       b = calculateB();
-      for (y = beginY; y <= endY; y++) {
-        // y = a * x + b
-        x = (y - b) / a;
-        DotGr ponto = new DotGr(Math.round(x), (int) y, lineColor);
-        ponto.drawDot(g);
-      }
 
+      if (dy > dx) {
+        for (y = beginY; y <= endY; y++) {
+          x = (y - b) / a;
+          x = Math.round(x);
+          point.setX((int) x);
+          point.setY((int) y);
+          point.setPointColor(lineColor);
+          point.drawPoint(g);
+        }
+      } else {
+        for (x = beginX; x <= endX; x++) {
+          y = a * x + b;
+          y = Math.round(y);
+          point.setX((int) x);
+          point.setY((int) y);
+          point.setPointColor(lineColor);
+          point.drawPoint(g);
+
+        }
+
+      }
     }
   }
 

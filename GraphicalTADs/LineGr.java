@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:GraphicalTADs/LineGr.java
 package GraphicalTADs;
 
 import java.awt.Color;
@@ -5,6 +6,13 @@ import java.awt.Graphics;
 
 import TADs.Line;
 
+========
+package Line2D;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import Point2D.PointGr;
+>>>>>>>> 3e2d58bc23e4ed32d675d19467b253669bdff50f:Line2D/LineGr.java
 public class LineGr extends Line {
 
   private Color lineColor = Color.BLACK;
