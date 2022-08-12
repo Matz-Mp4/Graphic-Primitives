@@ -1,10 +1,7 @@
-<<<<<<<< HEAD:TADs/Line.java
-package TADs;
 
-========
 package Line2D;
 import Point2D.Point;
->>>>>>>> 3e2d58bc23e4ed32d675d19467b253669bdff50f:Line2D/Line.java
+
 /**
  * REta matematica.
  *

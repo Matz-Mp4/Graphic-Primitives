@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:TADs/Point.java
-package TADs;
-========
 package Point2D;
->>>>>>>> 3e2d58bc23e4ed32d675d19467b253669bdff50f:Point2D/Point.java
 /**
  * Representacao de ponto matematico
  * 

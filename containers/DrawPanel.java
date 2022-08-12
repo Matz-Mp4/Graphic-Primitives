@@ -10,9 +10,9 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import GraphicalTADs.CircleGr;
-import GraphicalTADs.LineGr;
-import TADs.Point;
+import Circle2D.CircleGr;
+import Line2D.LineGr;
+import Point2D.Point;
 
 /**
  * Class that handles the drawings panel and is where they are made
