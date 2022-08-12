@@ -1,10 +1,11 @@
-package Point2D;
 /**
  * Representacao de ponto matematico
  * 
  * @author julio
  *
  */
+
+package Point2D;
 
 public class Point {
   private double x;
