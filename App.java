@@ -1,3 +1,5 @@
+import containers.Window;
+
 /**
  * Main class that inicializes the app
  * @author Luis Felipe
@@ -8,5 +10,6 @@ public class App{
 
   public static void main(String agrs[]){
     Window win = new Window();
+
   }
 }

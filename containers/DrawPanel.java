@@ -1,3 +1,4 @@
+package containers;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -11,6 +12,7 @@ import javax.swing.JPanel;
 
 import Circle2D.CircleGr;
 import Line2D.LineGr;
+import Point2D.Point;
 
 /**
  * Class that handles the drawings panel and is where they are made
@@ -21,12 +23,12 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
   private final static Color BACKGROUND = Color.white;
   private final static Color FOREGROUND = Color.black;
-  private JButton circle;
-  private JButton line;
-  private boolean circleOrNot = false;
-  private boolean needLine = false;
+  private final CircleGr circleGr = new CircleGr(0,0,70);
+  private final LineGr lineGr = new LineGr(0,0,0,0);
+  private boolean needPoint;
   private int xLine;
   private int yLine;
+  private Type type = new Type();
 
   private void initialize() {
     setBackground(BACKGROUND);
@@ -44,79 +46,9 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
    * Paint lines and circles when the window opens
    */
   public void paintComponent(Graphics g) {
-    /*
-     * LineGr l1 = new LineGr(0, 300, 800, 300);
-     * l1.setLineColor(GuiUtils.generateRandomColor());
-     * l1.drawLine(g);
-     * 
-     * LineGr l2 = new LineGr(800, 600, 0, 0);
-     * l2.setLineColor(GuiUtils.generateRandomColor());
-     * l2.drawLine(g);
-     * 
-     * LineGr l3 = new LineGr(400, 0, 400, 600);
-     * l3.setLineColor(GuiUtils.generateRandomColor());
-     * l3.drawLine(g);
-     * 
-     * LineGr l4 = new LineGr(800, 0, 0, 600);
-     * l4.setLineColor(GuiUtils.generateRandomColor());
-     * l4.drawLine(g);
-     */
-    // CircleGr circle1 = new CircleGr(100, 100, 80);
-    // circle1.drawCircle(g);
-    //
-    // CircleGr circle2 = new CircleGr(300, 250, 300);
-    // circle2.drawCircle(g);
-
-    CircleGr circle3 = new CircleGr(200, 170, 30);
-    circle3.drawCircle(g);
-
-    // CircleGr circle4 = new CircleGr(0, 400, 1000);
-    // circle4.drawCircle(g);
-
-    CircleGr circle5 = new CircleGr(400, 100, 10);
-    circle5.drawCircle(g);
-
-
 
   }
 
-  /**
-   * Sets the circle
-   * 
-   * @param button
-   */
-  public void setCircle(JButton button) {
-    circle = button;
-  }
-
-  /**
-   * Sets the line
-   * 
-   * @param button
-   */
-  public void setLine(JButton button) {
-    line = button;
-  }
-
-  /**
-   * Sets the events of both line and circle
-   */
-  public void setEvents() {
-
-    circle.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        circleOrNot = true;
-      }
-    });
-
-    line.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        circleOrNot = false;
-      }
-    });
-  }
 
   @Override
   public void mouseDragged(MouseEvent e) {
@@ -141,18 +73,30 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     int y = e.getY();
     Graphics g = getGraphics();
 
-    if (circleOrNot) {
-      CircleGr circle1 = new CircleGr(x, y, 70);
-      circle1.drawCircle(g);
-    } else if (!circleOrNot) {
-      if (changeLineState()) {
-        xLine = x;
-        yLine = y;
-        needLine = true;
-      }
-      LineGr l4 = new LineGr(xLine, yLine, x, y);
-      l4.drawLine(g);
+    draw(x, y, g);
 
+}
+
+  private void draw(int x, int y, Graphics g) {
+    switch(type.getTypeButton()){
+      case CIRCLE: 
+        circleGr.setX(x); circleGr.setY(y); 
+        circleGr.drawCircle(g);
+        break;
+      case LINE:
+        if(changeLineState()){
+          xLine = x;
+          yLine = y;
+          needPoint = true;
+          lineGr.setP1(new Point(xLine, yLine));
+        }
+        lineGr.setP2(new Point(x, y));
+        lineGr.drawLine(g);
+        break;
+      case FREE:
+        break;
+      default:
+        break;
     }
   }
 
@@ -163,8 +107,8 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
    * @return boolean
    */
   public boolean changeLineState() {
-    needLine = !needLine;
-    return needLine;
+    needPoint = !needPoint;
+    return needPoint;
   }
 
   @Override
@@ -189,4 +133,26 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     // TODO Auto-generated method stub
 
   }
+
+  public Type getTypeButton(){
+    return type;
+  }
+}
+
+class Type{
+  private TypeButton type = TypeButton.LINE;
+
+  public TypeButton getTypeButton(){
+    return type;
+  }
+
+  public void setType(TypeButton value){
+    type = value;
+  }
+}
+
+enum TypeButton {
+  LINE,
+  CIRCLE,
+  FREE
 }
