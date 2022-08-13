@@ -1,3 +1,5 @@
+package DataStruct.LinkedList;
+
 public class Node {
 
   private Object item;
@@ -10,7 +12,7 @@ public class Node {
 
   private void inicializar(Object item) {
     setItem(item);
-    setnext(null);
+    setNext(null);
     setPrev(null);
   }
 
