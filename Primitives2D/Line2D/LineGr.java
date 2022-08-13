@@ -1,10 +1,14 @@
+package Primitives2D.Line2D;
 
 
 import java.awt.Graphics;
 
-public class LineGr extends SuperLineGr implements GraphicPrimitive {
+import Primitives2D.GraphicPrimitive2D;
+import Primitives2D.Point.PointGr;
 
-  LineGr(SuperLineGr line) {
+public class LineGr extends SuperLineGr implements GraphicPrimitive2D {
+
+  public LineGr(SuperLineGr line) {
     super(line);
   }
 

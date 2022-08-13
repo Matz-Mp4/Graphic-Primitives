@@ -1,3 +1,4 @@
+package Primitives2D.Point;
 /**
  * Representacao de ponto matematico
  * 

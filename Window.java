@@ -1,4 +1,7 @@
 import javax.swing.*;
+
+import Panels.DrawPanel;
+
 import java.awt.*;
 
 public class Window extends JFrame {

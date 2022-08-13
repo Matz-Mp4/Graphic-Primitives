@@ -1,3 +1,4 @@
+package Panels;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -8,6 +9,12 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import Primitives2D.GraphicPrimitive2D;
+import Primitives2D.Circle2D.CircleGr;
+import Primitives2D.Circle2D.SuperCircleGr;
+import Primitives2D.Line2D.LineGr;
+import Primitives2D.Line2D.SuperLineGr;
 
 
 
@@ -67,13 +74,13 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     // CircleGr circle2 = new CircleGr(300, 250, 300);
     // circle2.drawCircle(g);
 
-    GraphicPrimitive circle3 = new CircleGr(200, 170, 30);
+    GraphicPrimitive2D circle3 = new CircleGr(200, 170, 30);
     circle3.draw(g);
 
     // CircleGr circle4 = new CircleGr(0, 400, 1000);
     // circle4.drawCircle(g);
 
-    GraphicPrimitive circle5 = new CircleGr(400, 100, 10);
+    GraphicPrimitive2D circle5 = new CircleGr(0, 300, 750);
     circle5.draw(g);
 
   }
@@ -140,7 +147,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     Graphics g = getGraphics();
 
     if (circleOrNot) {
-      GraphicPrimitive circle1 = new CircleGr(new SuperCircleGr(x, y, 70));
+      GraphicPrimitive2D circle1 = new CircleGr(new SuperCircleGr(x, y, 70));
       circle1.draw(g);
     } else if (!circleOrNot) {
       if (changeLineState()) {
@@ -148,7 +155,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         yLine = y;
         needLine = true;
       }
-      GraphicPrimitive l4 = new LineGr(new SuperLineGr(xLine, yLine, x, y));
+      GraphicPrimitive2D l4 = new LineGr(new SuperLineGr(xLine, yLine, x, y));
       l4.draw(g);
 
     }
