@@ -2,7 +2,7 @@ package Primitives2D.Circle2D;
 import java.awt.Graphics;
 
 import Primitives2D.GraphicPrimitive2D;
-import Primitives2D.Point.PointGr;
+import Primitives2D.Point2D.PointGr;
 
 public class CircleGr extends SuperCircleGr implements GraphicPrimitive2D {
   public CircleGr(SuperCircleGr circle) {

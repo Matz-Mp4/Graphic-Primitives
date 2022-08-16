@@ -3,7 +3,7 @@ package Primitives2D.Circle2D;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import Primitives2D.Point.PointGr;
+import Primitives2D.Point2D.PointGr;
 
 /**
  * Class that deals with the graphic design of a circle. Inherit from circle

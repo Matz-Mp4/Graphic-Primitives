@@ -4,7 +4,7 @@ package Primitives2D.Line2D;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import Primitives2D.Point.PointGr;
+import Primitives2D.Point2D.PointGr;
 public class SuperLineGr extends Line {
 
   private Color lineColor = Color.BLACK;

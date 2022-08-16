@@ -1,6 +1,6 @@
 package Primitives2D.Line2D;
 
-import Primitives2D.Point.Point;
+import Primitives2D.Point2D.Point;
 
 /**
  * REta matematica.

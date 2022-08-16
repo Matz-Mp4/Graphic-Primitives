@@ -1,4 +1,4 @@
-package Primitives2D.Point;
+package Primitives2D.Point2D;
 
 
 import java.awt.Color;
