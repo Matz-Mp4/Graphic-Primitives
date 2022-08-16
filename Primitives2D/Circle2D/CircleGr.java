@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import Primitives2D.GraphicPrimitive2D;
 import Primitives2D.Point2D.PointGr;
 
-public class CircleGr extends SuperCircleGr implements GraphicPrimitive2D {
+public class CircleGr extends SuperCircleGr {
   public CircleGr(SuperCircleGr circle) {
     super(circle);
   }

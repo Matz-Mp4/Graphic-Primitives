@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import Primitives2D.GraphicPrimitive2D;
 import Primitives2D.Point2D.PointGr;
 
-public class LineGr extends SuperLineGr implements GraphicPrimitive2D {
+public class LineGr extends SuperLineGr {
 
   public LineGr(SuperLineGr line) {
     super(line);

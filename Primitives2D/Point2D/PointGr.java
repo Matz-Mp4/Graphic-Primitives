@@ -14,14 +14,14 @@ public class PointGr extends Point {
   public int diameter = 2; //Default diameter
 
   //Constructors
-  PointGr(int x, int y) {
+  public PointGr(int x, int y) {
     super((double) x, (double) y);
     setPointColor(Color.black);
     setPointNameColor(Color.black);
     setPointName("");
   }
 
-  PointGr(double x, double y, Color cor) {
+  public PointGr(double x, double y, Color cor) {
     super(x, y);
     setPointColor(cor);
     setPointNameColor(Color.black);
@@ -38,14 +38,14 @@ public class PointGr extends Point {
     setPointName(PointName);
   }
 
-  PointGr(int x, int y, Color cor, String str) {
+  public PointGr(int x, int y, Color cor, String str) {
     super((double) x, (double) y);
     setPointColor(cor);
     setPointNameColor(Color.black);
     setPointName(str);
   }
 
-  PointGr(PointGr p2d, Color cor) {
+  public PointGr(PointGr p2d, Color cor) {
     super(p2d);
     setPointColor(cor);
     setPointNameColor(Color.black);

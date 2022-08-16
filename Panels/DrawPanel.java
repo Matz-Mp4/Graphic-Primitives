@@ -1,23 +1,16 @@
 package Panels;
+
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import Primitives2D.GraphicPrimitive2D;
 import Primitives2D.Circle2D.CircleGr;
-import Primitives2D.Circle2D.SuperCircleGr;
 import Primitives2D.Line2D.LineGr;
-import Primitives2D.Line2D.SuperLineGr;
-
-
-
+import Primitives2D.Point2D.PointGr;
 
 /**
  * Class that handles the drawings panel and is where they are made
@@ -28,18 +21,20 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
   private final static Color BACKGROUND = Color.white;
   private final static Color FOREGROUND = Color.black;
-  private JButton circle;
-  private JButton line;
-  private boolean circleOrNot = false;
-  private boolean needLine = false;
+  private CircleGr circleGr;
+  private LineGr lineGr;
+  private boolean needPoint;
   private int xLine;
   private int yLine;
+  private Type type = new Type();
 
   private void initialize() {
     setBackground(BACKGROUND);
     setForeground(FOREGROUND);
     addMouseListener(this);
     addMouseMotionListener(this);
+    circleGr = new CircleGr(0, 0, 70);
+    lineGr = new LineGr(0, 0, 0, 0);
   }
 
   public DrawPanel() {
@@ -51,76 +46,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
    * Paint lines and circles when the window opens
    */
   public void paintComponent(Graphics g) {
-    /*
-     * LineGr l1 = new LineGr(0, 300, 800, 300);
-     * l1.setLineColor(GuiUtils.generateRandomColor());
-     * l1.drawLine(g);
-     * 
-     * LineGr l2 = new LineGr(800, 600, 0, 0);
-     * l2.setLineColor(GuiUtils.generateRandomColor());
-     * l2.drawLine(g);
-     * 
-     * LineGr l3 = new LineGr(400, 0, 400, 600);
-     * l3.setLineColor(GuiUtils.generateRandomColor());
-     * l3.drawLine(g);
-     * 
-     * LineGr l4 = new LineGr(800, 0, 0, 600);
-     * l4.setLineColor(GuiUtils.generateRandomColor());
-     * l4.drawLine(g);
-     */
-    // CircleGr circle1 = new CircleGr(100, 100, 80);
-    // circle1.drawCircle(g);
-    //
-    // CircleGr circle2 = new CircleGr(300, 250, 300);
-    // circle2.drawCircle(g);
 
-    GraphicPrimitive2D circle3 = new CircleGr(200, 170, 30);
-    circle3.draw(g);
-
-    // CircleGr circle4 = new CircleGr(0, 400, 1000);
-    // circle4.drawCircle(g);
-
-    GraphicPrimitive2D circle5 = new CircleGr(0, 300, 750);
-    circle5.draw(g);
-
-  }
-
-  /**
-   * Sets the circle
-   * 
-   * @param button
-   */
-  public void setCircle(JButton button) {
-    circle = button;
-  }
-
-  /**
-   * Sets the line
-   * 
-   * @param button
-   */
-  public void setLine(JButton button) {
-    line = button;
-  }
-
-  /**
-   * Sets the events of both line and circle
-   */
-  public void setEvents() {
-
-    circle.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        circleOrNot = true;
-      }
-    });
-
-    line.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        circleOrNot = false;
-      }
-    });
   }
 
   @Override
@@ -146,18 +72,31 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     int y = e.getY();
     Graphics g = getGraphics();
 
-    if (circleOrNot) {
-      GraphicPrimitive2D circle1 = new CircleGr(new SuperCircleGr(x, y, 70));
-      circle1.draw(g);
-    } else if (!circleOrNot) {
-      if (changeLineState()) {
-        xLine = x;
-        yLine = y;
-        needLine = true;
-      }
-      GraphicPrimitive2D l4 = new LineGr(new SuperLineGr(xLine, yLine, x, y));
-      l4.draw(g);
+    draw(x, y, g);
 
+  }
+
+  private void draw(int x, int y, Graphics g) {
+    switch (type.getTypeButton()) {
+      case CIRCLE:
+        circleGr.setX(x);
+        circleGr.setY(y);
+        circleGr.draw(g);
+        break;
+      case LINE:
+        if (changeLineState()) {
+          xLine = x;
+          yLine = y;
+          needPoint = true;
+          lineGr.setP1(new PointGr(xLine, yLine));
+        }
+        lineGr.setP2(new PointGr(x, y));
+        lineGr.draw(g);
+        break;
+      case FREE:
+        break;
+      default:
+        break;
     }
   }
 
@@ -168,8 +107,8 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
    * @return boolean
    */
   public boolean changeLineState() {
-    needLine = !needLine;
-    return needLine;
+    needPoint = !needPoint;
+    return needPoint;
   }
 
   @Override
@@ -194,4 +133,26 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     // TODO Auto-generated method stub
 
   }
+
+  public Type getTypeButton() {
+    return type;
+  }
+}
+
+class Type {
+  private TypeButton type = TypeButton.LINE;
+
+  public TypeButton getTypeButton() {
+    return type;
+  }
+
+  public void setType(TypeButton value) {
+    type = value;
+  }
+}
+
+enum TypeButton {
+  LINE,
+  CIRCLE,
+  FREE
 }
