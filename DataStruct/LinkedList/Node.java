@@ -5,15 +5,31 @@ public class Node {
   private Object item;
   private Node next;
   private Node prev;
+  private long id;
 
   public Node(Object item) {
-    inicializar(item);
+    initialize(item);
+    setId(0);
   }
 
-  private void inicializar(Object item) {
+   public Node(Object item, long id) {
+    initialize(item);
+    setId(id);
+  }
+
+  private void initialize(Object item) {
     setItem(item);
     setNext(null);
     setPrev(null);
+
+  }
+
+  public long getId() {
+    return id;
+  }
+
+  public void setId(long id) {
+    this.id = id;
   }
 
   public Object getItem() {

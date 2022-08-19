@@ -35,7 +35,6 @@ public class Window extends JFrame {
     add(getDrawP(), BorderLayout.CENTER);
     add(getButtonP(), BorderLayout.PAGE_END);
 
-
     setVisible(true);
   }
 
