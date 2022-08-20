@@ -1,5 +1,7 @@
 package DataStruct.LinkedList;
 
+import java.util.Random;
+
 public class DoublyLinkedList {
   private int length;
   private Node begin, end;
@@ -22,6 +24,7 @@ public class DoublyLinkedList {
     } else {
       pre.setNext(temp);
     }
+    setEnd(temp);
     setLength(getLength() + 1);
   }
 
@@ -46,6 +49,23 @@ public class DoublyLinkedList {
     }
 
     return empty;
+  }
+
+  public void show() {
+    Node apont;
+    int i;
+    if (getLength() == 0) {
+      System.out.println("List is Empty!");
+
+    } else {
+      apont = getBegin();
+      i = 1;
+      do {
+        System.out.println("Node#" + i + " ->Id: " + apont.getId());
+        apont = apont.getNext();
+        i++;
+      } while (apont != null);
+    }
   }
 
   public Node find(long id) {
@@ -82,7 +102,7 @@ public class DoublyLinkedList {
   }
 
   public void removeEnd() {
-    No end = getEnd(), pre;
+    Node end = getEnd(), pre;
     if (getLength() != 0) {
 
       setLength(getLength() - 1);

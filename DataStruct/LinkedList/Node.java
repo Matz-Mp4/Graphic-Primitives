@@ -4,7 +4,7 @@ public class Node {
 
   private Object item;
   private Node next;
-  private Node prev;
+  private Node pre;
   private long id;
 
   public Node(Object item) {
@@ -12,7 +12,7 @@ public class Node {
     setId(0);
   }
 
-   public Node(Object item, long id) {
+  public Node(Object item, long id) {
     initialize(item);
     setId(id);
   }
@@ -20,7 +20,7 @@ public class Node {
   private void initialize(Object item) {
     setItem(item);
     setNext(null);
-    setPrev(null);
+    setPre(null);
 
   }
 
@@ -48,11 +48,11 @@ public class Node {
     this.next = next;
   }
 
-  public Node getPrev() {
-    return prev;
+  public Node getPre() {
+    return pre;
   }
 
-  public void setPrev(Node prev) {
-    this.prev = prev;
+  public void setPre(Node pre) {
+    this.pre = pre;
   }
 }
