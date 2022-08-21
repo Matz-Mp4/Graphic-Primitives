@@ -54,7 +54,7 @@ public class DoublyLinkedList {
   @Override
   public String toString() {
     Node apont;
-    String s = "\n{\n";
+    String s = "\nList = {";
     int i;
     if (getLength() == 0) {
       s += "List is Empty!";
@@ -67,7 +67,7 @@ public class DoublyLinkedList {
         apont = apont.getNext();
       } while (apont != null);
     }
-    s += "}\n";
+    s += " }";
 
     return s;
   }
