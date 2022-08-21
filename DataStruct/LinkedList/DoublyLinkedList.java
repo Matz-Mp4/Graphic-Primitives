@@ -51,21 +51,25 @@ public class DoublyLinkedList {
     return empty;
   }
 
-  public void show() {
+  @Override
+  public String toString() {
     Node apont;
+    String s = "\n{\n";
     int i;
     if (getLength() == 0) {
-      System.out.println("List is Empty!");
+      s += "List is Empty!";
 
     } else {
       apont = getBegin();
       i = 1;
       do {
-        System.out.println("Node#" + i + " ->Id: " + apont.getId());
+        s += String.valueOf(apont.getItem()) + " => ID: " + apont.getId() + "\n";
         apont = apont.getNext();
-        i++;
       } while (apont != null);
     }
+    s += "}\n";
+
+    return s;
   }
 
   public Node find(long id) {

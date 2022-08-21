@@ -55,4 +55,5 @@ public class Node {
   public void setPre(Node pre) {
     this.pre = pre;
   }
+
 }

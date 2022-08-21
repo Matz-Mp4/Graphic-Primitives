@@ -6,7 +6,7 @@ public class Test {
     DoublyLinkedList list = new DoublyLinkedList();
     list.add(1);
     list.add(2);
-
-    list.show();
+    
+    System.out.println(list);
   }
 }
