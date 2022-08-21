@@ -3,14 +3,15 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 
-import Panels.*;
+import Gui.GuiUtils;
+import Gui.Panels.*;
 
 public class Window extends JFrame {
 
   private final static Color BACKGROUND = Color.white;
   private final static Color FOREGROUND = Color.black;
   private DrawPanel drawP;
-  private ButtonPanel buttonP;
+  private SelectorPanel buttonP;
 
   /**
    * Constructor for objects of class Window
@@ -29,8 +30,8 @@ public class Window extends JFrame {
     // setSize(GuiUtils.getWidthScreen() / 2, GuiUtils.getHeightScreen() / 2);
     setLayout(new BorderLayout());
 
-    // getContentPane().setBackground(BACKGROUND);
-    // getContentPane().setForeground(FOREGROUND);
+     getContentPane().setBackground(GuiUtils.getBackground());
+     getContentPane().setForeground(GuiUtils.getForeground()); 
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     add(getDrawP(), BorderLayout.CENTER);
     add(getButtonP(), BorderLayout.PAGE_END);
@@ -46,9 +47,9 @@ public class Window extends JFrame {
     return drawP;
   }
 
-  public ButtonPanel getButtonP() {
+  public SelectorPanel getButtonP() {
     if (buttonP == null) {
-      buttonP = new ButtonPanel();
+      buttonP = new SelectorPanel();
 
     }
     return buttonP;

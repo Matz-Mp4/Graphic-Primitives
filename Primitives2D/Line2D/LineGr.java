@@ -1,8 +1,7 @@
 package Primitives2D.Line2D;
-
-
 import java.awt.Graphics;
 
+import Gui.GuiUtils;
 import Primitives2D.Point2D.PointGr;
 
 public class LineGr extends SuperLineGr {
@@ -11,10 +10,10 @@ public class LineGr extends SuperLineGr {
     super(line);
   }
 
-
   public LineGr(int x1, int y1, int x2, int y2) {
-    super(x1,y1,x2,y2);
+    super(x1, y1, x2, y2);
   }
+
   /**
    * @param g
    */
@@ -96,6 +95,9 @@ public class LineGr extends SuperLineGr {
   }
 
   public void erase(Graphics g) {
+    setLineColor(GuiUtils.getBackground());
+    draw(g);
+    setLineColor(GuiUtils.getForeground());
 
   }
 

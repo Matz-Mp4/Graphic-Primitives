@@ -1,19 +1,19 @@
 package Primitives2D.Point2D;
 
-
 import java.awt.Color;
 import java.awt.Graphics;
 
 /**
- * Class that handles the graphic drawing of a point/pixel. To get started, it requires at least an x ​​and a y
+ * Class that handles the graphic drawing of a point/pixel. To get started, it
+ * requires at least an x ​​and a y
  */
 public class PointGr extends Point {
-  Color PointColor = Color.BLACK; //Default color 
-  String PointName = ""; 
-  Color PointNameColor = Color.BLACK; 
-  public int diameter = 2; //Default diameter
+  Color PointColor = Color.BLACK; // Default color
+  String PointName = "";
+  Color PointNameColor = Color.BLACK;
+  public int diameter = 2; // Default diameter
 
-  //Constructors
+  // Constructors
   public PointGr(int x, int y) {
     super((double) x, (double) y);
     setPointColor(Color.black);
@@ -69,7 +69,8 @@ public class PointGr extends Point {
     g.setColor(getPointColor());
 
     // Coordinates of the rectangle where the circle is inside it
-    g.fillOval((int) (getX() - (getDiameter() / 2)), (int) (getY() - (getDiameter() / 2)), getDiameter(), getDiameter());
+    g.fillOval((int) (getX() - (getDiameter() / 2)), (int) (getY() - (getDiameter() / 2)), getDiameter(),
+        getDiameter());
 
     // draw the spot name
     // g.setColor(getPointNameColor());
@@ -78,6 +79,7 @@ public class PointGr extends Point {
 
   /**
    * Gets the color of the Point/pixel
+   * 
    * @return Color
    */
   public Color getPointColor() {
@@ -86,6 +88,7 @@ public class PointGr extends Point {
 
   /**
    * Sets the color of the Point/pixel
+   * 
    * @param PointColor
    */
   public void setPointColor(Color PointColor) {
@@ -94,6 +97,7 @@ public class PointGr extends Point {
 
   /**
    * Gets the name of the Point/pixel
+   * 
    * @return String
    */
   public String getPointName() {
@@ -102,6 +106,7 @@ public class PointGr extends Point {
 
   /**
    * Sets the name of the Point/pixel
+   * 
    * @param PointName
    */
   public void setPointName(String PointName) {
@@ -110,14 +115,18 @@ public class PointGr extends Point {
 
   /**
    * Gets the name color of the Point/pixel
+   * 
    * @return Color
    */
   public Color getPointNameColor() {
     return PointNameColor;
   }
 
+ 
+
   /**
    * Sets the name color of the Point/pixel
+   * 
    * @param PointNameColor
    */
   public void setPointNameColor(Color PointNameColor) {
@@ -126,6 +135,7 @@ public class PointGr extends Point {
 
   /**
    * Gets the diameter of the Point/pixel
+   * 
    * @return
    */
   public int getDiameter() {
@@ -134,8 +144,9 @@ public class PointGr extends Point {
 
   /**
    * Sets the diameter of the Point/pixel
+   * 
    * @param diameter
-  */
+   */
   public void setDiameter(int diameter) {
     this.diameter = diameter;
   }

@@ -1,3 +1,5 @@
+package Gui;
+
 import java.awt.*;
 
 /**
@@ -9,10 +11,10 @@ public class GuiUtils {
   // Gets the screen size
  private static Dimension dimScreen = Toolkit.getDefaultToolkit().getScreenSize();
 
-  private Color background;
-  private Color foreground;
+  private static Color background =  Color.white;
+  private static Color foreground = Color.black ;
 
-  public Color getBackground() {
+  public static Color getBackground() {
     return background;
   }
 
@@ -28,7 +30,7 @@ public class GuiUtils {
     GuiUtils.dimScreen = dimScreen;
   }
 
-  public Color getForeground() {
+  public static Color getForeground() {
     return foreground;
   }
 

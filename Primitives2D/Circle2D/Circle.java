@@ -1,27 +1,26 @@
 package Primitives2D.Circle2D;
 
-
 public class Circle {
   private double radius;
   private double x, y;
-/**
- * Class that deals with  circle with mathematics parameters
- */
-  public Circle(double x, double y){
+
+  /**
+   * Class that deals with circle with mathematics parameters
+   */
+  public Circle(double x, double y) {
     this.x = x;
     this.y = y;
-    //Default radius
-    this.radius = 10; 
+    // Default radius
+    this.radius = 10;
   }
 
-
-  public Circle(double x, double y, double radius){
+  public Circle(double x, double y, double radius) {
     this.x = x;
     this.y = y;
-    this.radius = radius; 
+    this.radius = radius;
   }
 
-  public Circle(Circle circle){
+  public Circle(Circle circle) {
     this.x = circle.x;
     this.y = circle.y;
     this.radius = circle.radius;
@@ -50,5 +49,6 @@ public class Circle {
   public void setY(double y) {
     this.y = y;
   }
+
 
 }

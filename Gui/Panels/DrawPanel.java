@@ -1,4 +1,4 @@
-package Panels;
+package Gui.Panels;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -9,6 +9,7 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
+import Gui.GuiUtils;
 import Primitives2D.Circle2D.CircleGr;
 import Primitives2D.Line2D.LineGr;
 import Primitives2D.Point2D.PointGr;
@@ -20,19 +21,16 @@ import Primitives2D.Point2D.PointGr;
  */
 public class DrawPanel extends JPanel implements MouseListener, MouseMotionListener {
 
-  private final static Color BACKGROUND = Color.white;
-  private final static Color FOREGROUND = Color.black;
   private CircleGr circleGr;
   private LineGr lineGr;
   private boolean needPoint;
   private int xLine;
   private int yLine;
-  private JComboBox selector;
-
+  private JComboBox<String> selector;
 
   private void initialize() {
-    setBackground(BACKGROUND);
-    setForeground(FOREGROUND);
+    setBackground(GuiUtils.getBackground());
+    setForeground(GuiUtils.getForeground());
     addMouseListener(this);
     addMouseMotionListener(this);
     circleGr = new CircleGr(0, 0, 70);
@@ -43,11 +41,11 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     initialize();
   }
 
-  public JComboBox getSelector() {
+  public JComboBox<String> getSelector() {
     return selector;
   }
 
-  public void setSelector(JComboBox selector) {
+  public void setSelector(JComboBox<String> selector) {
     this.selector = selector;
   }
 
@@ -61,13 +59,10 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
   @Override
   public void mouseDragged(MouseEvent e) {
-    // TODO Auto-generated method stub
-
   }
 
   @Override
   public void mouseMoved(MouseEvent e) {
-    // TODO Auto-generated method stub
 
   }
 
@@ -90,6 +85,10 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     String option = selector.getSelectedItem() + "";
     switch (option) {
       case "Circle":
+        if (changeLineState()) {
+          circleGr.setRadiusByDistance(new PointGr(x, y), new PointGr(xLine, yLine));
+          needPoint = true;
+        }
         circleGr.setX(x);
         circleGr.setY(y);
         circleGr.draw(g);
@@ -144,6 +143,5 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     // TODO Auto-generated method stub
 
   }
-  
-}
 
+}
