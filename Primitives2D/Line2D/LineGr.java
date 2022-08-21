@@ -3,7 +3,6 @@ package Primitives2D.Line2D;
 
 import java.awt.Graphics;
 
-import Primitives2D.GraphicPrimitive2D;
 import Primitives2D.Point2D.PointGr;
 
 public class LineGr extends SuperLineGr {
