@@ -34,6 +34,7 @@ public class Window extends JFrame {
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     add(getDrawP(), BorderLayout.CENTER);
     add(getButtonP(), BorderLayout.PAGE_END);
+    drawP.setSelector(buttonP.getSelector());
 
     setVisible(true);
   }
@@ -47,7 +48,7 @@ public class Window extends JFrame {
 
   public ButtonPanel getButtonP() {
     if (buttonP == null) {
-      buttonP = new ButtonPanel((getDrawP().getTypeButton()));
+      buttonP = new ButtonPanel();
 
     }
     return buttonP;

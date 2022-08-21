@@ -1,50 +1,36 @@
 package Panels;
 
-import javax.swing.*;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.*;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
 
 public class ButtonPanel extends JPanel {
   private JButton circle;
   private JButton line;
-  private Type type;
+  private JComboBox selector;
 
-  public ButtonPanel(Type type) {
+  private String options[] = { "Circle", "Line", "None" };
+
+  public ButtonPanel() {
     initialize();
-    this.type = type;
-    setEvents();
   }
 
   void initialize() {
     setLayout(new FlowLayout());
-
-    // Creating Buttons
-    circle = new JButton("Circle");
-    line = new JButton("Line");
-
-    // Adding buttons
-    add(circle);
-    add(line);
+    selector = new JComboBox(options);
+    add(selector);
   }
 
-  /**
-   * Sets the events of both line and circle
-   */
-  public void setEvents() {
-
-    circle.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        type.setType(TypeButton.CIRCLE);
-      }
-    });
-
-    line.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        type.setType(TypeButton.LINE);
-      }
-    });
+  public JComboBox getSelector() {
+    return selector;
   }
+
+  public void setSelector(JComboBox selector) {
+    this.selector = selector;
+  }
+
 }

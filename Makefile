@@ -9,3 +9,16 @@ all:
 	$(RM) ./Primitives2D/Circle2D/*.class
 	$(RM) ./Panels/*.class
 
+clean:
+
+	$(RM) *.class
+	$(RM) ./Primitives2D/Point/*.class  
+	$(RM) ./Primitives2D/Line2D/*.class
+	$(RM) ./Primitives2D/Circle2D/*.class
+	$(RM) ./Panels/*.class
+	$(RM) ./DataStruct/LinkedList/*.class
+
+
+
+
+

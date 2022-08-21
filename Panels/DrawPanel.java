@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import Primitives2D.Circle2D.CircleGr;
@@ -26,7 +27,8 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
   private boolean needPoint;
   private int xLine;
   private int yLine;
-  private Type type = new Type();
+  private JComboBox selector;
+
 
   private void initialize() {
     setBackground(BACKGROUND);
@@ -39,6 +41,14 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
   public DrawPanel() {
     initialize();
+  }
+
+  public JComboBox getSelector() {
+    return selector;
+  }
+
+  public void setSelector(JComboBox selector) {
+    this.selector = selector;
   }
 
   @Override
@@ -77,13 +87,14 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
   }
 
   private void draw(int x, int y, Graphics g) {
-    switch (type.getTypeButton()) {
-      case CIRCLE:
+    String option = selector.getSelectedItem() + "";
+    switch (option) {
+      case "Circle":
         circleGr.setX(x);
         circleGr.setY(y);
         circleGr.draw(g);
         break;
-      case LINE:
+      case "Line":
         if (changeLineState()) {
           xLine = x;
           yLine = y;
@@ -93,7 +104,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         lineGr.setP2(new PointGr(x, y));
         lineGr.draw(g);
         break;
-      case FREE:
+      case "None":
         break;
       default:
         break;
@@ -133,26 +144,6 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     // TODO Auto-generated method stub
 
   }
-
-  public Type getTypeButton() {
-    return type;
-  }
+  
 }
 
-class Type {
-  private TypeButton type = TypeButton.LINE;
-
-  public TypeButton getTypeButton() {
-    return type;
-  }
-
-  public void setType(TypeButton value) {
-    type = value;
-  }
-}
-
-enum TypeButton {
-  LINE,
-  CIRCLE,
-  FREE
-}
