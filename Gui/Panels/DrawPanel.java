@@ -24,8 +24,8 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
   private CircleGr circleGr;
   private LineGr lineGr;
   private boolean needPoint;
-  private int xLine;
-  private int yLine;
+  private int xTemp;
+  private int yTemp;
   private JComboBox<String> selector;
 
   private void initialize() {
@@ -86,19 +86,22 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     switch (option) {
       case "Circle":
         if (changeLineState()) {
-          circleGr.setRadiusByDistance(new PointGr(x, y), new PointGr(xLine, yLine));
+          circleGr.setRadiusByDistance(new PointGr(xTemp, yTemp), new PointGr(x, y));
           needPoint = true;
+          circleGr.setX(xTemp);
+          circleGr.setY(yTemp);
+          circleGr.draw(g);
+        }else {
+          xTemp = x;
+          yTemp = y;
         }
-        circleGr.setX(x);
-        circleGr.setY(y);
-        circleGr.draw(g);
         break;
       case "Line":
         if (changeLineState()) {
-          xLine = x;
-          yLine = y;
+          xTemp = x;
+          yTemp = y;
           needPoint = true;
-          lineGr.setP1(new PointGr(xLine, yLine));
+          lineGr.setP1(new PointGr(xTemp, yTemp));
         }
         lineGr.setP2(new PointGr(x, y));
         lineGr.draw(g);

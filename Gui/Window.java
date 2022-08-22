@@ -1,15 +1,12 @@
+package Gui;
 import java.awt.BorderLayout;
-import java.awt.Color;
 
 import javax.swing.JFrame;
 
-import Gui.GuiUtils;
 import Gui.Panels.*;
 
 public class Window extends JFrame {
 
-  private final static Color BACKGROUND = Color.white;
-  private final static Color FOREGROUND = Color.black;
   private DrawPanel drawP;
   private SelectorPanel buttonP;
 
