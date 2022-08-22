@@ -13,6 +13,7 @@ import Gui.GuiUtils;
 import Primitives2D.Circle2D.CircleGr;
 import Primitives2D.Line2D.LineGr;
 import Primitives2D.Point2D.PointGr;
+import Primitives2D.Polygon2D.PolygonalLineGr;
 
 /**
  * Class that handles the drawings panel and is where they are made
@@ -23,7 +24,9 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
   private CircleGr circleGr;
   private LineGr lineGr;
-  private boolean needPoint;
+  private PolygonalLineGr polygonalLineGr;
+  private boolean needPoint = false;
+  private boolean firstTime = true;
   private int xTemp;
   private int yTemp;
   private JComboBox<String> selector;
@@ -35,10 +38,12 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     addMouseMotionListener(this);
     circleGr = new CircleGr(0, 0, 70);
     lineGr = new LineGr(0, 0, 0, 0);
+    polygonalLineGr = new PolygonalLineGr();
   }
 
   public DrawPanel() {
     initialize();
+
   }
 
   public JComboBox<String> getSelector() {
@@ -59,6 +64,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
   @Override
   public void mouseDragged(MouseEvent e) {
+
   }
 
   @Override
@@ -91,7 +97,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
           circleGr.setX(xTemp);
           circleGr.setY(yTemp);
           circleGr.draw(g);
-        }else {
+        } else {
           xTemp = x;
           yTemp = y;
         }
@@ -105,6 +111,14 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         }
         lineGr.setP2(new PointGr(x, y));
         lineGr.draw(g);
+        break;
+      case "Polygonal Line":
+        if (firstTime == true) {
+          polygonalLineGr.setPointA(x, y);
+          firstTime = false;
+        }
+        polygonalLineGr.setPointB(x, y);
+        polygonalLineGr.draw(g);
         break;
       case "None":
         break;

@@ -50,12 +50,14 @@ public class Line {
 
   public Point getP2() {
     return this.p2;
+    
   }
 
   // Line inclination
   public double calculateInclination() {
     // m = (y2-y1)/(x2-x1)
     double m = (getP2().getY() - getP1().getY()) / (getP2().getX() - getP1().getX());
+    double b = 23.2332;
     return m;
   }
 

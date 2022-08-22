@@ -1,11 +1,11 @@
 package Primitives2D.Point2D;
+
 /**
  * Representacao de ponto matematico
  * 
  * @author julio
  *
  */
-
 
 public class Point {
   private double x;
@@ -14,6 +14,7 @@ public class Point {
   /**
    * 
    */
+
   public Point() {
     setX(0);
     setY(0);

@@ -14,7 +14,11 @@ public class LineGr extends SuperLineGr {
     super(x1, y1, x2, y2);
   }
 
-  /**
+  public LineGr(PointGr p1, PointGr p2) {
+    super(p1, p2);
+  }
+
+/**
    * @param g
    */
   public void draw(Graphics g) {
