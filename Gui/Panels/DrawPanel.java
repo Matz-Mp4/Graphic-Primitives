@@ -84,7 +84,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     Graphics g = getGraphics();
 
     draw(x, y, g);
-
+    doubleClick(e.getClickCount());
   }
 
   private void draw(int x, int y, Graphics g) {
@@ -120,10 +120,29 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         polygonalLineGr.setPointB(x, y);
         polygonalLineGr.draw(g);
         break;
+      case "Rectangle":
+        break;
+      case "Square":
+
+      break;
       case "None":
         break;
       default:
         break;
+    }
+  }
+
+  private void doubleClick(int amountClicks){
+    if(amountClicks == 2){ 
+      String option = selector.getSelectedItem().toString();
+      switch(option){
+        case "Polygonal Line":
+        firstTime = true;
+        break;
+
+        case "Polygonal":
+        break;
+      }
     }
   }
 
@@ -133,7 +152,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
    * 
    * @return boolean
    */
-  public boolean changeLineState() {
+  private boolean changeLineState() {
     needPoint = !needPoint;
     return needPoint;
   }
