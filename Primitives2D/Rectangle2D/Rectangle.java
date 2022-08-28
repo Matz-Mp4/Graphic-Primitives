@@ -39,8 +39,15 @@ public class Rectangle {
         //Horizonal
         lines[2] = new Line(x1, y1, x2, y1);
         //Horizontal
-        lines[2] = new Line(x1, y2, x2, y2);
+        lines[3] = new Line(x1, y2, x2, y2);
     }
 
-    public setLine
+    public Line getL1(){ return lines[0]; }
+
+    public Line getL2(){ return lines[1]; }
+
+    public Line getL3(){ return lines[2]; }
+
+    public Line getL4(){ return lines[3]; }
+
 }

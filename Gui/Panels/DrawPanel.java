@@ -11,9 +11,12 @@ import javax.swing.JPanel;
 
 import Gui.GuiUtils;
 import Primitives2D.Circle2D.CircleGr;
+import Primitives2D.Line2D.Line;
 import Primitives2D.Line2D.LineGr;
+import Primitives2D.Point2D.Point;
 import Primitives2D.Point2D.PointGr;
 import Primitives2D.Polygon2D.PolygonalLineGr;
+import Primitives2D.Rectangle2D.RectangleGr;
 
 /**
  * Class that handles the drawings panel and is where they are made
@@ -22,9 +25,12 @@ import Primitives2D.Polygon2D.PolygonalLineGr;
  */
 public class DrawPanel extends JPanel implements MouseListener, MouseMotionListener {
 
+  private Point pTemp, pTemp2;
   private CircleGr circleGr;
+  private Line line;
   private LineGr lineGr;
   private PolygonalLineGr polygonalLineGr;
+  private RectangleGr rectangleGr;
   private boolean needPoint = false;
   private boolean firstTime = true;
   private int xTemp;
@@ -121,10 +127,14 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         polygonalLineGr.draw(g);
         break;
       case "Rectangle":
+        if(changeLineState()) {
+          pTemp = new Point(x, y);
+          needPoint = true;
+        }
+        pTemp2 = new Point(x, y);
+        rectangleGr = new RectangleGr(pTemp, pTemp2);
+        rectangleGr.draw(g);
         break;
-      case "Square":
-
-      break;
       case "None":
         break;
       default:
