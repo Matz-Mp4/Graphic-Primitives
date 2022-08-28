@@ -18,6 +18,10 @@ public class LineGr extends SuperLineGr {
     super(p1, p2);
   }
 
+  public LineGr(Line l) {
+    super(l.getP1(), l.getP2());
+  }
+
 /**
    * @param g
    */

@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 public class SelectorPanel extends JPanel {
   private JComboBox <String>selector;
 
-  private String options[] = { "None", "Circle", "Line", "Polygonal Line" };
+  private String options[] = { "None", "Circle", "Line", "Polygonal Line", "Rectangle" };
 
   public SelectorPanel() {
     initialize();

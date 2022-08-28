@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import Primitives2D.Point2D.PointGr;
+import Primitives2D.Point2D.Point;
+
 public class SuperLineGr extends Line {
 
   private Color lineColor = Color.BLACK;
@@ -38,6 +40,13 @@ public class SuperLineGr extends Line {
     setNameLineColor(this.nameLineColor);
     setNameLine("Generic Name");
 
+  }
+
+  public SuperLineGr(Point x, Point y) {
+    super(x, y);
+    setLineColor(this.lineColor);
+    setNameLineColor(this.nameLineColor);
+    setNameLine("Generic Name");
   }
 
   public SuperLineGr(Line reta) {
