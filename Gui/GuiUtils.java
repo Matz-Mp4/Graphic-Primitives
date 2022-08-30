@@ -1,6 +1,8 @@
 package Gui;
 
 import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.Border;
 
 /**
  * Class that handles data that is useful during the program and that is
@@ -64,6 +66,18 @@ public class GuiUtils {
    */
   public static int getHeightScreen() {
     return (int) dimScreen.getHeight();
+  }
+
+  public static void setShapeButton(Color colorB, Color colorF, JButton jbtn) {
+    Border buttonStyle;
+    Border levelAbove = BorderFactory.createRaisedBevelBorder();
+    Border levelBelow = BorderFactory.createLoweredBevelBorder();
+
+    jbtn.setBackground(colorB);
+    jbtn.setForeground(colorF);
+
+    buttonStyle = BorderFactory.createCompoundBorder(levelAbove, levelBelow);
+    jbtn.setBorder(buttonStyle);
   }
 
 }

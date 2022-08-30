@@ -6,7 +6,8 @@ public class DoublyLinkedList {
   private int length;
   private Node begin, end;
   private Random randomId = new Random(System.currentTimeMillis());
-
+  private String type;
+  
   public DoublyLinkedList() {
     setBegin(null);
     setEnd(null);
@@ -150,6 +151,7 @@ public class DoublyLinkedList {
     return length;
   }
 
+
   public void setLength(int length) {
     this.length = length;
   }
@@ -168,6 +170,14 @@ public class DoublyLinkedList {
 
   public void setEnd(Node end) {
     this.end = end;
+  }
+
+  public String getType(){
+    return type;
+  }
+
+  public void SetType(String type){
+    this.type = type;
   }
 
 }

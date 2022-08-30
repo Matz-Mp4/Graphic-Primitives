@@ -1,9 +1,10 @@
 package Primitives2D.Circle2D;
-import java.awt.Graphics;
 
+import java.awt.Graphics;
 import Primitives2D.Point2D.PointGr;
 
 public class CircleGr extends SuperCircleGr {
+
   public CircleGr(SuperCircleGr circle) {
     super(circle);
   }

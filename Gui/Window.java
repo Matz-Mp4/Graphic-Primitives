@@ -1,14 +1,23 @@
 package Gui;
+
+import DataStruct.List.PrimitiveList;
+
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
-
+import javax.swing.JButton;
 import Gui.Panels.*;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Window extends JFrame {
 
   private DrawPanel drawP;
-  private SelectorPanel buttonP;
+
+  private SelectorPanel selectorP;
+
+  private PrimitiveList list;
 
   /**
    * Constructor for objects of class Window
@@ -27,14 +36,33 @@ public class Window extends JFrame {
     // setSize(GuiUtils.getWidthScreen() / 2, GuiUtils.getHeightScreen() / 2);
     setLayout(new BorderLayout());
 
-     getContentPane().setBackground(GuiUtils.getBackground());
-     getContentPane().setForeground(GuiUtils.getForeground()); 
+    getContentPane().setBackground(GuiUtils.getBackground());
+    getContentPane().setForeground(GuiUtils.getForeground());
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     add(getDrawP(), BorderLayout.CENTER);
-    add(getButtonP(), BorderLayout.PAGE_END);
-    drawP.setSelector(buttonP.getSelector());
+    add(getSelectorP(), BorderLayout.PAGE_END);
+    drawP.setSelector(selectorP.getSelector());
 
+    list = new PrimitiveList(getDrawP().getGraphics());
+
+    getDrawP().setList(list);
     setVisible(true);
+    setEvent();
+  }
+
+  public void setEvent() {
+    selectorP.getButtonR().addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        list.drawEverything();
+      }
+    });
+
+    /*
+     * private void setEventos(IArmazenagem cad, PainelMensagem mens) {
+     * guiRemover.getBotaoRemover().addActionListener(new ActionListener() {
+     * public void actionPerformed(ActionEvent e) {
+     */
+
   }
 
   public DrawPanel getDrawP() {
@@ -44,16 +72,15 @@ public class Window extends JFrame {
     return drawP;
   }
 
-  public SelectorPanel getButtonP() {
-    if (buttonP == null) {
-      buttonP = new SelectorPanel();
+  public SelectorPanel getSelectorP() {
+    if (selectorP == null) {
+      selectorP = new SelectorPanel();
 
     }
-    return buttonP;
+    return selectorP;
   }
 
   public void setDrawP(DrawPanel drawP) {
-
     this.drawP = drawP;
   }
 
