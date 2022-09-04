@@ -5,11 +5,7 @@ import DataStruct.List.PrimitiveList;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
-import javax.swing.JButton;
 import Gui.Panels.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Window extends JFrame {
 
@@ -39,35 +35,24 @@ public class Window extends JFrame {
     getContentPane().setBackground(GuiUtils.getBackground());
     getContentPane().setForeground(GuiUtils.getForeground());
     setDefaultCloseOperation(EXIT_ON_CLOSE);
-    add(getDrawP(), BorderLayout.CENTER);
     add(getSelectorP(), BorderLayout.PAGE_END);
+    add(getDrawP(), BorderLayout.CENTER);
     drawP.setSelector(selectorP.getSelector());
 
-    list = new PrimitiveList(getDrawP().getGraphics());
-
+    list = new PrimitiveList();
     getDrawP().setList(list);
     setVisible(true);
-    setEvent();
   }
 
-  public void setEvent() {
-    selectorP.getButtonR().addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        list.drawEverything();
-      }
-    });
-
-    /*
-     * private void setEventos(IArmazenagem cad, PainelMensagem mens) {
-     * guiRemover.getBotaoRemover().addActionListener(new ActionListener() {
-     * public void actionPerformed(ActionEvent e) {
-     */
-
-  }
+  /*
+   * private void setEventos(IArmazenagem cad, PainelMensagem mens) {
+   * guiRemover.getBotaoRemover().addActionListener(new ActionListener() {
+   * public void actionPerformed(ActionEvent e) {
+   */
 
   public DrawPanel getDrawP() {
     if (drawP == null) {
-      drawP = new DrawPanel();
+      drawP = new DrawPanel(selectorP);
     }
     return drawP;
   }

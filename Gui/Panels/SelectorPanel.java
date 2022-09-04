@@ -20,7 +20,7 @@ public class SelectorPanel extends JPanel {
   private JButton buttonR; /* redraw */
   private PrimitiveList primitiveList;
 
-  private String options[] = { "None", "Circle", "Line", "Polygonal Line", "Rectangle" };
+  private String options[] = { "None", "Circle", "Line", "Polygonal Line", "Rectangle", "Polygon" };
 
   public SelectorPanel() {
     initialize();
@@ -55,23 +55,6 @@ public class SelectorPanel extends JPanel {
 
   }
 
-  /*
-   * public void addEvent() {
-   * if (buttonR != null) {
-   * buttonR.addActionListener(
-   * (ActionEvent e) -> {
-   * primitiveList.drawEverything();
-   * });
-   * }
-   * }
-   * 
-   * public void actionPerformed(ActionEvent ev) {
-   * try {
-   * System.out.println(ev.getActionCommand());
-   * } catch (Exception e) {
-   * }
-   * }
-   */
   public void setPrimitiveList(PrimitiveList primitiveList) {
     this.primitiveList = primitiveList;
   }

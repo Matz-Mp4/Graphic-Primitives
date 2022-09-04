@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.*;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -17,7 +18,11 @@ import Primitives2D.Line2D.LineGr;
 import Primitives2D.Point2D.Point;
 import Primitives2D.Point2D.PointGr;
 import Primitives2D.Polygon2D.PolygonalLineGr;
+import Primitives2D.Polygon2D.Polygon;
 import Primitives2D.Rectangle2D.RectangleGr;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Class that handles the drawings panel and is where they are made
@@ -31,6 +36,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
   private Line line;
   private LineGr lineGr;
   private PolygonalLineGr polygonalLineGr;
+  private Polygon polygonGr;
   private RectangleGr rectangleGr;
   private boolean needPoint = true;
   private boolean firstTime = true;
@@ -38,10 +44,12 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
   private int yTemp;
   private JComboBox<String> selector;
   private PrimitiveList list;
+  private SelectorPanel selectorP;
 
-  public DrawPanel() {
+  public DrawPanel(SelectorPanel value) {
     initialize();
-
+    selectorP = value;
+    setEvent();
   }
 
   private void initialize() {
@@ -51,12 +59,16 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     addMouseMotionListener(this);
   }
 
-  public JComboBox<String> getSelector() {
-    return selector;
+  public SelectorPanel getSelector() {
+    return selectorP;
   }
 
   public void setSelector(JComboBox<String> selector) {
     this.selector = selector;
+  }
+
+  public void setSelector(SelectorPanel selectorP) {
+    this.selectorP = selectorP;
   }
 
   @Override
@@ -89,7 +101,9 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     Graphics g = getGraphics();
 
     draw(x, y, g);
-    doubleClick(e.getClickCount());
+    if (e.getClickCount() >= 2) {
+      doubleClick(e.getClickCount(), x, y);
+    }
   }
 
   private void draw(int x, int y, Graphics g) {
@@ -132,6 +146,16 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         polygonalLineGr.setPointB(x, y);
         polygonalLineGr.draw(g);
         break;
+      case "Polygon":
+        if (firstTime == true) {
+          polygonGr = new Polygon();
+          list.add(polygonGr, option);
+          polygonGr.setSP(new PointGr(x, y));
+          firstTime = false;
+        }
+        polygonGr.setEP(new PointGr(x, y));
+        polygonGr.draw(g);
+        break;
       case "Rectangle":
         if (!changeLineState()) {
           pTemp = new Point(x, y);
@@ -149,7 +173,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     }
   }
 
-  private void doubleClick(int amountClicks) {
+  private void doubleClick(int amountClicks, int x, int y) {
     if (amountClicks == 2) {
       String option = selector.getSelectedItem().toString();
       switch (option) {
@@ -157,7 +181,9 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
           firstTime = true;
           break;
 
-        case "Polygonal":
+        case "Polygon":
+          firstTime = true;
+          polygonGr.drawLastPoint(x, y, getGraphics());
           break;
       }
     }
@@ -176,6 +202,14 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
   public void setList(PrimitiveList list) {
     this.list = list;
+  }
+
+  public void setEvent() {
+    selectorP.getButtonR().addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        list.drawEverything(getGraphics());
+      }
+    });
   }
 
   @Override
