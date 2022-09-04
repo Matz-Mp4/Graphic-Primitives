@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import DataStruct.List.*;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 
@@ -18,7 +17,7 @@ import Gui.GuiUtils;
 public class MenuPanel extends JPanel {
   private JComboBox<String> selector;
   private JButton buttonR; /* redraw */
-  private PrimitiveList primitiveList;
+  private PrimitiveList list;
 
   private String options[] = { "None", "Circle", "Line", "Polygonal Line", "Rectangle", "Polygon" };
 
@@ -53,10 +52,6 @@ public class MenuPanel extends JPanel {
     }
     return buttonR;
 
-  }
-
-  public void setPrimitiveList(PrimitiveList primitiveList) {
-    this.primitiveList = primitiveList;
   }
 
 }

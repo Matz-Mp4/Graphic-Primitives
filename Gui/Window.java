@@ -41,6 +41,8 @@ public class Window extends JFrame {
     setVisible(true);
   }
 
+  
+
   public DrawPanel getDrawP() {
     if (drawP == null) {
       drawP = new DrawPanel(menuP);
