@@ -15,14 +15,14 @@ import javax.swing.border.Border;
 
 import Gui.GuiUtils;
 
-public class SelectorPanel extends JPanel {
+public class MenuPanel extends JPanel {
   private JComboBox<String> selector;
   private JButton buttonR; /* redraw */
   private PrimitiveList primitiveList;
 
   private String options[] = { "None", "Circle", "Line", "Polygonal Line", "Rectangle", "Polygon" };
 
-  public SelectorPanel() {
+  public MenuPanel() {
     initialize();
   }
 

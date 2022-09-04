@@ -10,9 +10,7 @@ import Gui.Panels.*;
 public class Window extends JFrame {
 
   private DrawPanel drawP;
-
-  private SelectorPanel selectorP;
-
+  private MenuPanel menuP;
   private PrimitiveList list;
 
   /**
@@ -20,7 +18,6 @@ public class Window extends JFrame {
    */
   public Window() {
     initialize();
-
   }
 
   /**
@@ -35,34 +32,28 @@ public class Window extends JFrame {
     getContentPane().setBackground(GuiUtils.getBackground());
     getContentPane().setForeground(GuiUtils.getForeground());
     setDefaultCloseOperation(EXIT_ON_CLOSE);
-    add(getSelectorP(), BorderLayout.PAGE_END);
+    add(getMenuP(), BorderLayout.PAGE_END);
     add(getDrawP(), BorderLayout.CENTER);
-    drawP.setSelector(selectorP.getSelector());
+    drawP.setSelector(menuP.getSelector());
 
     list = new PrimitiveList();
     getDrawP().setList(list);
     setVisible(true);
   }
 
-  /*
-   * private void setEventos(IArmazenagem cad, PainelMensagem mens) {
-   * guiRemover.getBotaoRemover().addActionListener(new ActionListener() {
-   * public void actionPerformed(ActionEvent e) {
-   */
-
   public DrawPanel getDrawP() {
     if (drawP == null) {
-      drawP = new DrawPanel(selectorP);
+      drawP = new DrawPanel(menuP);
     }
     return drawP;
   }
 
-  public SelectorPanel getSelectorP() {
-    if (selectorP == null) {
-      selectorP = new SelectorPanel();
+  public MenuPanel getMenuP() {
+    if (menuP == null) {
+      menuP = new MenuPanel();
 
     }
-    return selectorP;
+    return menuP;
   }
 
   public void setDrawP(DrawPanel drawP) {

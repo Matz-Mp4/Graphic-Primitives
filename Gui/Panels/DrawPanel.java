@@ -44,11 +44,11 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
   private int yTemp;
   private JComboBox<String> selector;
   private PrimitiveList list;
-  private SelectorPanel selectorP;
+  private MenuPanel menuP;
 
-  public DrawPanel(SelectorPanel value) {
+  public DrawPanel(MenuPanel menuP) {
     initialize();
-    selectorP = value;
+    this.menuP = menuP;
     setEvent();
   }
 
@@ -59,16 +59,16 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     addMouseMotionListener(this);
   }
 
-  public SelectorPanel getSelector() {
-    return selectorP;
+  public MenuPanel getSelector() {
+    return menuP;
   }
 
   public void setSelector(JComboBox<String> selector) {
     this.selector = selector;
   }
 
-  public void setSelector(SelectorPanel selectorP) {
-    this.selectorP = selectorP;
+  public void setSelector(MenuPanel menuP) {
+    this.menuP = menuP;
   }
 
   @Override
@@ -205,7 +205,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
   }
 
   public void setEvent() {
-    selectorP.getButtonR().addActionListener(new ActionListener() {
+    menuP.getButtonR().addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         list.drawEverything(getGraphics());
       }
