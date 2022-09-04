@@ -205,7 +205,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
   }
 
   public void setEvent() {
-    menuP.getButtonR().addActionListener(new ActionListener() {
+    menuP.getjbtnRedraw().addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         list.drawEverything(getGraphics());
       }

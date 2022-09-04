@@ -16,7 +16,7 @@ import Gui.GuiUtils;
 
 public class MenuPanel extends JPanel {
   private JComboBox<String> selector;
-  private JButton buttonR; /* redraw */
+  private JButton jbtnRedraw; /* redraw */
   private PrimitiveList list;
 
   private String options[] = { "None", "Circle", "Line", "Polygonal Line", "Rectangle", "Polygon" };
@@ -33,7 +33,7 @@ public class MenuPanel extends JPanel {
     setLayout(new FlowLayout());
     selector = new JComboBox<String>(options);
     add(selector);
-    add(getButtonR());
+    add(getjbtnRedraw());
     // addEvent();
   }
 
@@ -45,12 +45,12 @@ public class MenuPanel extends JPanel {
     this.selector = selector;
   }
 
-  public JButton getButtonR() {
-    if (buttonR == null) {
-      buttonR = new JButton("Redraw");
-      GuiUtils.setShapeButton(Color.black, Color.white, buttonR);
+  public JButton getjbtnRedraw() {
+    if (jbtnRedraw == null) {
+      jbtnRedraw = new JButton("Redraw");
+      GuiUtils.setShapeButton(Color.white, Color.black, jbtnRedraw);
     }
-    return buttonR;
+    return jbtnRedraw;
 
   }
 
