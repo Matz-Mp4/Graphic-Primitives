@@ -33,7 +33,6 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
   private Point pTemp, pTemp2;
   private CircleGr circleGr;
-  private Line line;
   private LineGr lineGr;
   private PolygonalLineGr polygonalLineGr;
   private Polygon polygonGr;
@@ -59,24 +58,12 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     addMouseMotionListener(this);
   }
 
-  public MenuPanel getSelector() {
-    return menuP;
-  }
-
-  public void setSelector(JComboBox<String> selector) {
-    this.selector = selector;
-  }
-
-  public void setSelector(MenuPanel menuP) {
-    this.menuP = menuP;
-  }
-
-  @Override
-  /**
-   * Paint lines and circles when the window opens
-   */
-  public void paintComponent(Graphics g) {
-
+  public void setEvent() {
+    menuP.getjbtnRedraw().addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        list.drawEverything(getGraphics());
+      }
+    });
   }
 
   @Override
@@ -106,11 +93,22 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     }
   }
 
+  /**
+   * Change the state of line button. It's necessary because to draw a line it
+   * requires that the user press the mouse 2 times
+   * 
+   * @return boolean
+   */
+  private boolean changePointState() {
+    needPoint = !needPoint;
+    return needPoint;
+  }
+
   private void draw(int x, int y, Graphics g) {
-    String option = selector.getSelectedItem() + "";
+    String option = menuP.getSelector().getSelectedItem() + "";
     switch (option) {
       case "Circle":
-        if (changeLineState()) {
+        if (changePointState()) {
           circleGr.setRadiusByDistance(new PointGr(xTemp, yTemp), new PointGr(x, y));
           needPoint = true;
           circleGr.setX(xTemp);
@@ -125,7 +123,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         }
         break;
       case "Line":
-        if (!changeLineState()) {
+        if (!changePointState()) {
           lineGr = new LineGr(1, 1, 1, 1);
           xTemp = x;
           yTemp = y;
@@ -157,7 +155,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         polygonGr.draw(g);
         break;
       case "Rectangle":
-        if (!changeLineState()) {
+        if (!changePointState()) {
           pTemp = new Point(x, y);
           // needPoint = true;
         }
@@ -175,7 +173,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
   private void doubleClick(int amountClicks, int x, int y) {
     if (amountClicks == 2) {
-      String option = selector.getSelectedItem().toString();
+      String option = menuP.getSelector().getSelectedItem().toString();
       switch (option) {
         case "Polygonal Line":
           firstTime = true;
@@ -189,27 +187,9 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     }
   }
 
-  /**
-   * Change the state of line button. It's necessary because to draw a line it
-   * requires that the user press the mouse 2 times
-   * 
-   * @return boolean
-   */
-  private boolean changeLineState() {
-    needPoint = !needPoint;
-    return needPoint;
-  }
 
   public void setList(PrimitiveList list) {
     this.list = list;
-  }
-
-  public void setEvent() {
-    menuP.getjbtnRedraw().addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        list.drawEverything(getGraphics());
-      }
-    });
   }
 
   @Override

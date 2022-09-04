@@ -34,7 +34,6 @@ public class MenuPanel extends JPanel {
     selector = new JComboBox<String>(options);
     add(selector);
     add(getjbtnRedraw());
-    // addEvent();
   }
 
   public JComboBox<String> getSelector() {
