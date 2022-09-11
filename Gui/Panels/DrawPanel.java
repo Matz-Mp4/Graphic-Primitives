@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.awt.*;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -13,10 +12,8 @@ import javax.swing.JPanel;
 import DataStruct.List.PrimitiveList;
 import Gui.GuiUtils;
 import Primitives2D.Circle2D.CircleGr;
-import Primitives2D.Line2D.Line;
 import Primitives2D.Line2D.LineGr;
-import Primitives2D.Point2D.Point;
-import Primitives2D.Point2D.PointGr;
+import Primitives2D.Point2D.Point; import Primitives2D.Point2D.PointGr;
 import Primitives2D.Polygon2D.PolygonalLineGr;
 import Primitives2D.Polygon2D.Polygon;
 import Primitives2D.Rectangle2D.RectangleGr;
@@ -129,6 +126,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
           yTemp = y;
           // needPoint = true;
           lineGr.setP1(new PointGr(xTemp, yTemp));
+          list.add(lineGr, option);
         }
         lineGr.setP2(new PointGr(x, y));
         lineGr.draw(g);

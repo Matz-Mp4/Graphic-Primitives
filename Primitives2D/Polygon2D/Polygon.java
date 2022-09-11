@@ -3,6 +3,7 @@ package Primitives2D.Polygon2D;
 import java.awt.Graphics;
 
 import DataStruct.LinkedList.DoublyLinkedList;
+import DataStruct.LinkedList.Node;
 import Primitives2D.Line2D.LineGr;
 import Primitives2D.Point2D.PointGr;
 import Primitives2D.Point2D.Point;
@@ -21,6 +22,11 @@ public class Polygon {
   }
 
   public Polygon() {
+    iniatilize();
+  }
+
+  private void iniatilize(){
+    data = new DoublyLinkedList();
   }
 
   public void draw(Graphics g) {
@@ -28,7 +34,7 @@ public class Polygon {
       LineGr lineGr = new LineGr(aux, ep);
       lineGr.draw(g);
       lastPoint();
-      // data.push(lineGr);
+      data.add(lineGr); 
     }
   }
 
@@ -36,6 +42,16 @@ public class Polygon {
     if (g != null) {
       LineGr line = new LineGr(sp, new PointGr(x, y));
       line.draw(g);
+      data.add(line);
+    }
+  }
+
+  public void drawEverything(Graphics g){
+    Node aux = data.getBegin();
+    while(aux != null){
+      LineGr line = (LineGr) aux.getItem();
+      line.draw(g);
+      aux = aux.getNext();
     }
   }
 

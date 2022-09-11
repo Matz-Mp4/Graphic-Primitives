@@ -4,12 +4,13 @@ import DataStruct.LinkedList.DoublyLinkedList;
 import DataStruct.LinkedList.Node;
 import Primitives2D.Circle2D.CircleGr;
 import Primitives2D.Line2D.LineGr;
+import Primitives2D.Polygon2D.Polygon;
 import Primitives2D.Polygon2D.PolygonalLineGr;
 import Primitives2D.Rectangle2D.RectangleGr;
 import java.awt.Graphics;
 
 public class PrimitiveList {
-  final int MAX = 5;
+  private final int MAX = 5;
   private DoublyLinkedList[] array;
 
   public PrimitiveList() {
@@ -40,13 +41,12 @@ public class PrimitiveList {
           break;
         case "Polygonal Line":
           PolygonalLineGr itemPolygonalLine = (PolygonalLineGr) item;
-          itemPolygonalLine.draw(g);
+          itemPolygonalLine.drawEverything(g);
           break;
-        /*
-         * case "Polygon":
-         * item = (Polygon) item;
-         * break;
-         */
+        case "Polygon":
+         Polygon itemPolygon = (Polygon) item;
+         itemPolygon.drawEverything(g);
+         break;
         case "Rectangle":
           RectangleGr itemRectangle = (RectangleGr) item;
           itemRectangle.draw(g);
