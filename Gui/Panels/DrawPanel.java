@@ -88,6 +88,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     if (e.getClickCount() >= 2) {
       doubleClick(e.getClickCount(), x, y);
     }
+
   }
 
   /**
@@ -162,6 +163,9 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         list.add(rectangleGr, option);
         rectangleGr.draw(g);
         break;
+      case "Select":
+      list.select(new Point(x,y));
+      break;
       case "None":
         break;
       default:

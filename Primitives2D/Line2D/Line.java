@@ -67,6 +67,23 @@ public class Line {
     return b;
   }
 
+  public boolean belongs(Point p){
+    boolean veri = false;
+    // y = a * x + b => a *x + b - y = 0
+    
+    double b = calculateB();
+    double a = calculateInclination();
+
+    double res = Math.round(a * p.getX() + b - p.getY());
+
+    if(res == 0.0){
+      veri = true;
+    }
+
+
+    return veri;
+  }
+
   //
   /**
    * Method toString
@@ -79,5 +96,6 @@ public class Line {
         calculateB();
     return s;
   }
+  
 
 }

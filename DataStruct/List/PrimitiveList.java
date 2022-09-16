@@ -4,6 +4,7 @@ import DataStruct.LinkedList.DoublyLinkedList;
 import DataStruct.LinkedList.Node;
 import Primitives2D.Circle2D.CircleGr;
 import Primitives2D.Line2D.LineGr;
+import Primitives2D.Point2D.Point;
 import Primitives2D.Polygon2D.Polygon;
 import Primitives2D.Polygon2D.PolygonalLineGr;
 import Primitives2D.Rectangle2D.RectangleGr;
@@ -74,5 +75,59 @@ public class PrimitiveList {
     }
     array[i].add(item);
   }
+
+  public Object select(Point p){
+
+    double i = -10, j = -10;
+    Object object = null;
+    while(i <= 10 && object == null){
+      while(j <= 10 && object == null){
+        p.setX(p.getX() + i);
+        p.setY(p.getY() + j);
+
+        object = findObject(p);
+        j++;
+      }
+      i++;
+    }
+    
+    return object;
+  }
+
+  public Object findObject(Point P){
+    Object object = null;
+
+    for(DoublyLinkedList typeList : array){
+        Node aux = typeList.getBegin();
+        boolean find = false;
+        while((aux != null) && (!find)){
+            switch(typeList.getType()){
+                case "Circle":
+                CircleGr itemCircle = (CircleGr) aux.getItem();
+                find = itemCircle.belongs(P);
+                object = itemCircle;
+                break;
+                case "Line":
+                LineGr itemLine = (LineGr) aux.getItem();
+                find = itemLine.belongs(P);
+                object = itemLine;
+                break;
+                case "Rectangle":
+                RectangleGr itemRect = (RectangleGr) aux.getItem();
+                itemRect.belongs(P);
+                object = itemRect;
+                break;
+            }
+            aux = aux.getNext();
+        }
+        if(find){
+            System.out.println("Achou" + P.getX() + P.getY());
+        }else{
+            object = null;
+        }
+    }
+
+    return object;
+}
 
 }

@@ -1,7 +1,8 @@
 package Primitives2D.Rectangle2D;
 
 import Primitives2D.Line2D.Line;
-import Primitives2D.Line2D.Line;
+import Primitives2D.Point2D.Point;
+
 
 /**
  * Retângulo matemático.
@@ -42,6 +43,18 @@ public class Rectangle {
         lines[3] = new Line(x1, y2, x2, y2);
     }
 
+
+    public boolean belongs (Point p){
+        boolean veri = false;
+        int i = 0;
+        while((veri == false) && (i < 4)){
+            veri = lines[i].belongs(p);
+            i++;
+        }
+
+        return veri;
+    }
+    
     public Line getL1(){ return lines[0]; }
 
     public Line getL2(){ return lines[1]; }

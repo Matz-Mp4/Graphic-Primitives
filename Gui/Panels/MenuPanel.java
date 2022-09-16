@@ -19,7 +19,7 @@ public class MenuPanel extends JPanel {
   private JButton jbtnRedraw; /* redraw */
   private PrimitiveList list;
 
-  private String options[] = { "None", "Circle", "Line", "Polygonal Line", "Rectangle", "Polygon" };
+  private String options[] = { "None", "Circle", "Line", "Polygonal Line", "Rectangle", "Polygon", "Select" };
 
   public MenuPanel() {
     initialize();

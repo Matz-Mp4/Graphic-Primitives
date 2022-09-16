@@ -1,5 +1,7 @@
 package Primitives2D.Circle2D;
 
+import Primitives2D.Point2D.Point;
+
 public class Circle {
   private double radius;
   private double x, y;
@@ -29,6 +31,7 @@ public class Circle {
   public double getRadius() {
     return radius;
   }
+  
 
   public void setRadius(double radius) {
     this.radius = radius;
@@ -50,5 +53,19 @@ public class Circle {
     this.y = y;
   }
 
+  public boolean belongs(Point p){
+    boolean veri = false;
+    // (x - x1)² + (y - y2)² = R²
+
+    double dx = (getX() - p.getX()) * (getX() - p.getX());
+    double dy = (getY() - p.getY()) * (getY() - p.getY());
+
+    double res = Math.round(dx + dy - (getRadius() * getRadius()));
+
+    if(res == 0.0){
+      veri = true;
+    }
+    return veri;
+  }
 
 }

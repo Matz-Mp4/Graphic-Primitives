@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import DataStruct.LinkedList.DoublyLinkedList;
 import DataStruct.LinkedList.Node;
 import Primitives2D.Line2D.LineGr;
+import Primitives2D.Point2D.Point;
 import Primitives2D.Point2D.PointGr;
 
 public class PolygonalLineGr {
@@ -54,6 +55,18 @@ public class PolygonalLineGr {
 
   private void lastPoint() {
     A = B;
+  }
+
+  public boolean belongs(Point p){
+    boolean veri = false;
+    Node aux = data.getBegin();
+    while(aux != null && veri == false){
+      LineGr line = (LineGr) aux.getItem();
+      veri = line.belongs(p);
+      aux = aux.getNext();
+    }
+
+    return veri;
   }
 
 }

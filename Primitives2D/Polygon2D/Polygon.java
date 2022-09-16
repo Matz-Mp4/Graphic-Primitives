@@ -25,6 +25,18 @@ public class Polygon {
     iniatilize();
   }
 
+  public boolean belongs(Point p){
+    boolean veri = false;
+    Node aux = data.getBegin();
+    while(aux != null && veri == false){
+      LineGr line = (LineGr) aux.getItem();
+      veri = line.belongs(p);
+      aux = aux.getNext();
+    }
+
+    return veri;
+  }
+
   private void iniatilize(){
     data = new DoublyLinkedList();
   }
