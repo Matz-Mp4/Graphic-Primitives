@@ -56,17 +56,13 @@ public class Circle {
 
   public boolean belongs(Point p){
     boolean veri = false;
-    // x1 e y2 referem-se ao centro
-    // (x - x1)² + (y - y2)² = R²
 
-    double dx = (p.getX() - getX()) * (p.getX() - getX());
-    double dy = (p.getY() - getY()) * (p.getY() - getY());
-    double dr = getRadius() * getRadius();
+    double dx = (p.getX() - getX()); 
+    double dy = (p.getY() - getY()); 
   
-    double res = Math.round(dx + dy - dr);
-
-
-    if(res == 0.0){
+    double d = Math.sqrt(Math.pow(dy, 2) + Math.pow(dx, 2));
+    
+    if(Math.round(d) == Math.round(getRadius())){
       veri = true;
     }
     return veri;

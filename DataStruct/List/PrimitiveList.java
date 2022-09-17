@@ -2,6 +2,7 @@ package DataStruct.List;
 
 import DataStruct.LinkedList.DoublyLinkedList;
 import DataStruct.LinkedList.Node;
+import Primitives2D.Drawable;
 import Primitives2D.Circle2D.CircleGr;
 import Primitives2D.Line2D.LineGr;
 import Primitives2D.Point2D.Point;
@@ -22,6 +23,24 @@ public class PrimitiveList {
   public void drawEverything(Graphics g) {
     for (int i = 0; i < MAX; i++) {
       drawLinkedList(array[i], array[i].getType(), g);
+    }
+  }
+
+  public void delete(Node item, Graphics g){
+    boolean find = false;
+    int i = 0;
+    DoublyLinkedList aux = null;
+    while(i < MAX && find == false){
+      if(array[i].getType().equals(item.getType())){
+        find = true;
+        aux = array[i];
+      }
+      i++;
+    }
+    if(find){
+      Drawable drawable = (Drawable) item.getItem();
+      drawable.erase(g);
+      aux.remove(item.getId());
     }
   }
 
@@ -73,63 +92,70 @@ public class PrimitiveList {
     while (i < MAX && type.equals(array[i].getType()) == false) {
       i++;
     }
-    array[i].add(item);
+    array[i].add(item, type);
   }
 
-  public Object select(Point p){
+  public Node select(Point p){
 
     double i = -2, j = -2;
-    Object object = null;
+    Node item = null;
     double x = p.getX() , y = p.getY();
-    while(i <= 2 && object == null){
+    while(i <= 2 && item == null){
        p.setX(x + i);
-      while(j <= 2 && object == null){
+      while(j <= 2 && item== null){
         p.setY(y + j);
 
-        object = findObject(p);
+        item = findObject(p);
         j++;
       }
       j = -2;
       i++;
     }
     
-    return object;
+    return item;
   }
 
-  public Object findObject(Point P){
-    Object object = null;
+  public Node findObject(Point P){
+   
+    int i = 0;
+    boolean find = false;
+    Node whatWeWant = null;
 
-    for(DoublyLinkedList typeList : array){
-        Node aux = typeList.getBegin();
-        boolean find = false;
+    while((i < MAX) && find == false){
+        Node aux = array[i].getBegin();
         while((aux != null) && (!find)){
-            switch(typeList.getType()){
+            switch(array[i].getType()){
                 case "Circle":
                 CircleGr itemCircle = (CircleGr) aux.getItem();
                 find = itemCircle.belongs(P);
-                object = itemCircle;
                 break;
                 case "Line":
                 LineGr itemLine = (LineGr) aux.getItem();
                 find = itemLine.belongs(P);
-                object = itemLine;
                 break;
                 case "Rectangle":
                 RectangleGr itemRect = (RectangleGr) aux.getItem();
                 find = itemRect.belongs(P);
-                object = itemRect;
                 break;
+                case "Polygonal Line":
+                PolygonalLineGr itemPolygonalLineGr = (PolygonalLineGr) aux.getItem();
+                find = itemPolygonalLineGr.belongs(P);
+                break;
+                case "Polygon":
+                Polygon itemPolygon = (Polygon) aux.getItem();
+                find = itemPolygon.belongs(P);
+                break;
+            }
+            if(find){
+              whatWeWant = aux;
+              System.out.println("Achou");
             }
             aux = aux.getNext();
         }
-        if(find){
-            System.out.println("Achou" + P.getX() + P.getY());
-        }else{
-            object = null;
-        }
+        i++;
     }
 
-    return object;
+    return whatWeWant;
 }
 
 }

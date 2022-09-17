@@ -14,8 +14,9 @@ public class DoublyLinkedList {
     setLength(0);
   }
 
-  public void add(Object item) {
+  public void add(Object item, String type) {
     Node temp = new Node(item, randomId.nextLong());
+    temp.setType(type);
     Node pre = getEnd();
     temp.setNext(null);
     temp.setPre(getEnd());
@@ -93,15 +94,14 @@ public class DoublyLinkedList {
   public void removeBegin() {
     Node begin = getBegin(), next;
     if (getLength() != 0) {
-
       setLength(getLength() - 1);
-      setBegin(begin.getNext());
       if (begin.getNext() == null) {
-        end = null;
+        setEnd(null);
       } else {
         next = begin.getNext();
         next.setPre(null);
       }
+      setBegin(begin.getNext());
       begin = null;
     }
   }
@@ -109,16 +109,16 @@ public class DoublyLinkedList {
   public void removeEnd() {
     Node end = getEnd(), pre;
     if (getLength() != 0) {
-
       setLength(getLength() - 1);
-      setEnd(end.getPre());
+      
       // Se tem apenas um elemento
-      if (end.getNext() == null) {
-        end = null;
+      if (end.getPre() == null) {
+        setBegin(null);
       } else {
         pre = end.getPre();
         pre.setNext(null);
       }
+      setEnd(end.getPre());
       end = null;
     }
   }

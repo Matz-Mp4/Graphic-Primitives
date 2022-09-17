@@ -1,9 +1,12 @@
 package Primitives2D.Circle2D;
 
 import java.awt.Graphics;
+
+import Gui.GuiUtils;
+import Primitives2D.Drawable;
 import Primitives2D.Point2D.PointGr;
 
-public class CircleGr extends SuperCircleGr {
+public class CircleGr extends SuperCircleGr implements Drawable {
 
   public CircleGr(SuperCircleGr circle) {
     super(circle);
@@ -25,12 +28,20 @@ public class CircleGr extends SuperCircleGr {
     double inc = 0.18 / (getRadius() / 300);
 
     for (angule = 0; angule <= 90; angule += inc) {
-      plotPoint(angule, point, g);
+      plotPoint(angule, point, g, getCircleColor());
     }
   }
 
   public void erase(Graphics g) {
+    double angule, rowEnd;
 
+    PointGr point = new PointGr();
+    // A constant to find the amount needs to loop
+    double inc = 0.18 / (getRadius() / 300);
+
+    for (angule = 0; angule <= 90; angule += inc) {
+      plotPoint(angule, point, g, GuiUtils.getBackground());
+    }
   }
 
 }

@@ -13,6 +13,17 @@ public class Line {
   // Atributos da reta
   private Point p1, p2;
 
+  private boolean isVertical(){
+    double res = p1.getX() - p2.getX();
+    boolean veri = false;
+    
+    if(res == 0){
+      veri = true;
+    }
+
+    return veri;
+  }
+
   /**
    * Constructor for objects of class Reta
    */
@@ -71,15 +82,27 @@ public class Line {
     boolean veri = false;
     // y = a * x + b => a *x + b - y = 0
     
-    double b = calculateB();
-    double a = calculateInclination();
+    if(isVertical() == false){
+      double b = calculateB();
+      double a = calculateInclination();
 
-    double res = Math.round(a * p.getX() + b - p.getY());
+      double res = Math.round(a * p.getX() + b - p.getY());
 
-    if(res == 0.0){
-      veri = true;
+      if(res == 0.0){
+        veri = true;
+      }
+    }else{
+      // x = k, where k is constant
+      //So p1.x = p2.x
+
+      if(p.getX() == getP1().getX()){
+        veri = true;
+      }
+
+      if(p.getY() == getP1().getY()){
+        veri = true;
+      }
     }
-
 
     return veri;
   }

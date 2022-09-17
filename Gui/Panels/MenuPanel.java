@@ -3,8 +3,10 @@ package Gui.Panels;
 import java.awt.FlowLayout;
 import java.awt.*;
 
+import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.channels.SelectableChannel;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -17,6 +19,7 @@ import Gui.GuiUtils;
 public class MenuPanel extends JPanel {
   private JComboBox<String> selector;
   private JButton jbtnRedraw; /* redraw */
+  private JButton jbtnDelete;
   private PrimitiveList list;
 
   private String options[] = { "None", "Circle", "Line", "Polygonal Line", "Rectangle", "Polygon", "Select" };
@@ -34,6 +37,7 @@ public class MenuPanel extends JPanel {
     selector = new JComboBox<String>(options);
     add(selector);
     add(getjbtnRedraw());
+    add(getjbtnDelete());
   }
 
   public JComboBox<String> getSelector() {
@@ -50,6 +54,15 @@ public class MenuPanel extends JPanel {
       GuiUtils.setShapeButton(Color.white, Color.black, jbtnRedraw);
     }
     return jbtnRedraw;
+
+  }
+
+  public JButton getjbtnDelete() {
+    if (jbtnDelete == null) {
+      jbtnDelete = new JButton("Delete");
+      GuiUtils.setShapeButton(Color.white, Color.black, jbtnRedraw);
+    }
+    return jbtnDelete;
 
   }
 

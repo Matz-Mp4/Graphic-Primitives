@@ -34,13 +34,13 @@ public class Rectangle {
 
     public void convertToRectangle(double x1, double y1, double x2, double y2){
         //Vertical
-        lines[0] = new Line(x1, y1, x1, y2);
+        lines[3] = new Line(x1, y1, x1, y2);
         //Vertical
-        lines[1] = new Line(x2, y1, x2, y2);
+        lines[2] = new Line(x2, y1, x2, y2);
         //Horizonal
-        lines[2] = new Line(x1, y1, x2, y1);
+        lines[1] = new Line(x1, y1, x2, y1);
         //Horizontal
-        lines[3] = new Line(x1, y2, x2, y2);
+        lines[0] = new Line(x1, y2, x2, y2);
     }
 
 
@@ -54,7 +54,7 @@ public class Rectangle {
 
         return veri;
     }
-    
+    /* 
     public Line getL1(){ return lines[0]; }
 
     public Line getL2(){ return lines[1]; }
@@ -62,5 +62,9 @@ public class Rectangle {
     public Line getL3(){ return lines[2]; }
 
     public Line getL4(){ return lines[3]; }
+*/
+    public Line getLine(int i){
+        return lines[i];
+    }
 
 }

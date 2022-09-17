@@ -4,11 +4,13 @@ import java.awt.Graphics;
 
 import DataStruct.LinkedList.DoublyLinkedList;
 import DataStruct.LinkedList.Node;
+import Gui.GuiUtils;
+import Primitives2D.Drawable;
 import Primitives2D.Line2D.LineGr;
 import Primitives2D.Point2D.PointGr;
 import Primitives2D.Point2D.Point;
 
-public class Polygon {
+public class Polygon implements Drawable{
   private DoublyLinkedList data;
 
   // Lines attributes
@@ -46,7 +48,17 @@ public class Polygon {
       LineGr lineGr = new LineGr(aux, ep);
       lineGr.draw(g);
       lastPoint();
-      data.add(lineGr); 
+      data.add(lineGr, "Polygon"); 
+    }
+  }
+
+  public void erase(Graphics g) {
+    Node aux = data.getBegin();
+    while(aux != null){
+      LineGr line = (LineGr) aux.getItem();
+      line.setLineColor(GuiUtils.getBackground());
+      line.draw(g);
+      aux = aux.getNext();
     }
   }
 
@@ -54,7 +66,7 @@ public class Polygon {
     if (g != null) {
       LineGr line = new LineGr(sp, new PointGr(x, y));
       line.draw(g);
-      data.add(line);
+      data.add(line,"Polygon");
     }
   }
 

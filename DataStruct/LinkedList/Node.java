@@ -6,6 +6,7 @@ public class Node {
   private Node next;
   private Node pre;
   private long id;
+  private String type;
 
   public Node(Object item) {
     initialize(item);
@@ -54,6 +55,14 @@ public class Node {
 
   public void setPre(Node pre) {
     this.pre = pre;
+  }
+
+  public void setType(String type){
+    this.type = type;
+  }
+
+  public String getType(){
+    return this.type;
   }
 
 }

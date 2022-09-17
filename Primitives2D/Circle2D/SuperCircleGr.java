@@ -127,7 +127,7 @@ public class SuperCircleGr extends Circle {
     this.circleNameColor = circleNameColor;
   }
 
-  public void plotPoint(double angule, PointGr point, Graphics g) {
+  public void plotPoint(double angule, PointGr point, Graphics g, Color color) {
     double radian = convertToRadian(angule);
     double cos = Math.cos(radian);
     double sin = Math.sin(radian);
@@ -164,6 +164,7 @@ public class SuperCircleGr extends Circle {
       // cordY = Math.round(cordY);
       point.setX(cordX);
       point.setY(cordY);
+      point.setPointColor(color);
       point.drawPoint(g);
     }
   }
