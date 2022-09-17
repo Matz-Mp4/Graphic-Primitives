@@ -1,5 +1,6 @@
 package Primitives2D.Circle2D;
 
+
 import Primitives2D.Point2D.Point;
 
 public class Circle {
@@ -55,12 +56,15 @@ public class Circle {
 
   public boolean belongs(Point p){
     boolean veri = false;
+    // x1 e y2 referem-se ao centro
     // (x - x1)² + (y - y2)² = R²
 
-    double dx = (getX() - p.getX()) * (getX() - p.getX());
-    double dy = (getY() - p.getY()) * (getY() - p.getY());
+    double dx = (p.getX() - getX()) * (p.getX() - getX());
+    double dy = (p.getY() - getY()) * (p.getY() - getY());
+    double dr = getRadius() * getRadius();
+  
+    double res = Math.round(dx + dy - dr);
 
-    double res = Math.round(dx + dy - (getRadius() * getRadius()));
 
     if(res == 0.0){
       veri = true;

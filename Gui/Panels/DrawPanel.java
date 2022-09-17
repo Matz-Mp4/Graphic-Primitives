@@ -70,7 +70,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
   @Override
   public void mouseMoved(MouseEvent e) {
-
+    System.out.println("X = " + e.getX() + "Y = " + e.getY());
   }
 
   /**
@@ -109,8 +109,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         if (changePointState()) {
           circleGr.setRadiusByDistance(new PointGr(xTemp, yTemp), new PointGr(x, y));
           needPoint = true;
-          circleGr.setX(xTemp);
-          circleGr.setY(yTemp);
+
           circleGr.draw(g);
         } else {
           xTemp = x;

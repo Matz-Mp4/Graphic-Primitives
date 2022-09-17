@@ -78,16 +78,18 @@ public class PrimitiveList {
 
   public Object select(Point p){
 
-    double i = -10, j = -10;
+    double i = -2, j = -2;
     Object object = null;
-    while(i <= 10 && object == null){
-      while(j <= 10 && object == null){
-        p.setX(p.getX() + i);
-        p.setY(p.getY() + j);
+    double x = p.getX() , y = p.getY();
+    while(i <= 2 && object == null){
+       p.setX(x + i);
+      while(j <= 2 && object == null){
+        p.setY(y + j);
 
         object = findObject(p);
         j++;
       }
+      j = -2;
       i++;
     }
     
@@ -114,7 +116,7 @@ public class PrimitiveList {
                 break;
                 case "Rectangle":
                 RectangleGr itemRect = (RectangleGr) aux.getItem();
-                itemRect.belongs(P);
+                find = itemRect.belongs(P);
                 object = itemRect;
                 break;
             }
