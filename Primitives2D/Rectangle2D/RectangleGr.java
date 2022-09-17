@@ -17,27 +17,25 @@ import Gui.GuiUtils;
  * @version 15/08/2021
  */
 
+public class RectangleGr extends Rectangle implements Drawable {
+  private LineGr[] lines = new LineGr[4];
+  private final int MAX = 4;
 
+  public RectangleGr(Point p1, Point p2) {
+    super((double) p1.getX(), (double) p1.getY(), (double) p2.getX(), (double) p2.getY());
+  }
 
-public class RectangleGr extends Rectangle implements Drawable{
-    private LineGr []lines = new LineGr [4];
-    private final int MAX = 4;
-
-    public RectangleGr(Point p1, Point p2){
-        super((double)p1.getX(), (double)p1.getY(), (double)p2.getX(),(double)p2.getY());
+  public void draw(Graphics g) {
+    for (int i = 0; i < MAX; i++) {
+      lines[i] = new LineGr(getLine(i));
+      lines[i].draw(g);
     }
+  }
 
-    public void draw(Graphics g){
-        for(int i = 0; i < MAX; i++){
-            lines[i] = new LineGr(getLine(i));
-            lines[i].draw(g);
-        }
+  public void erase(Graphics g) {
+    for (int i = 0; i < MAX; i++) {
+      lines[i].setLineColor(GuiUtils.getBackground());
+      lines[i].draw(g);
     }
-
-    public void erase(Graphics g) {    
-        for(int i = 0; i < MAX; i++){
-            lines[i].setLineColor(GuiUtils.getBackground());
-            lines[i].draw(g);
-        }
-     }
+  }
 }

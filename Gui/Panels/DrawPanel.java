@@ -15,7 +15,8 @@ import DataStruct.List.PrimitiveList;
 import Gui.GuiUtils;
 import Primitives2D.Circle2D.CircleGr;
 import Primitives2D.Line2D.LineGr;
-import Primitives2D.Point2D.Point; import Primitives2D.Point2D.PointGr;
+import Primitives2D.Point2D.Point;
+import Primitives2D.Point2D.PointGr;
 import Primitives2D.Polygon2D.PolygonalLineGr;
 import Primitives2D.Polygon2D.Polygon;
 import Primitives2D.Rectangle2D.RectangleGr;
@@ -56,14 +57,14 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     setForeground(GuiUtils.getForeground());
     addMouseListener(this);
     addMouseMotionListener(this);
-    menuP.getSelector().addItemListener(new ItemListener(){
-      public void itemStateChanged(ItemEvent itemEvent){
+    menuP.getSelector().addItemListener(new ItemListener() {
+      public void itemStateChanged(ItemEvent itemEvent) {
         resetVariables();
       }
     });
   }
 
-  private void resetVariables(){
+  private void resetVariables() {
     needPoint = true;
     firstTime = true;
   }
@@ -74,12 +75,12 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         list.drawEverything(getGraphics());
       }
     });
-    menuP.getjbtnDelete().addActionListener(new ActionListener(){
-      
-      public void actionPerformed(ActionEvent e){
-        if(menuP.getSelector().getSelectedItem().equals("Select")){
+    menuP.getjbtnDelete().addActionListener(new ActionListener() {
+
+      public void actionPerformed(ActionEvent e) {
+        if (menuP.getSelector().getSelectedItem().equals("Select")) {
           list.delete(nodeSelected, getGraphics());
-          //list.drawEverything(getGraphics());
+          // list.drawEverything(getGraphics());
         }
       }
     });
@@ -92,7 +93,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
   @Override
   public void mouseMoved(MouseEvent e) {
-    //System.out.println("X = " + e.getX() + "Y = " + e.getY());
+    // System.out.println("X = " + e.getX() + "Y = " + e.getY());
   }
 
   /**
@@ -126,7 +127,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
   private void draw(int x, int y, Graphics g) {
     String option = menuP.getSelector().getSelectedItem() + "";
-    
+
     switch (option) {
       case "Circle":
         if (changePointState()) {
@@ -179,23 +180,22 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         if (!changePointState()) {
           pTemp = new Point(x, y);
           // needPoint = true;
-        }else{
-        pTemp2 = new Point(x, y);
-        rectangleGr = new RectangleGr(pTemp, pTemp2);
-        list.add(rectangleGr, option);
-        rectangleGr.draw(g);
+        } else {
+          pTemp2 = new Point(x, y);
+          rectangleGr = new RectangleGr(pTemp, pTemp2);
+          list.add(rectangleGr, option);
+          rectangleGr.draw(g);
         }
         break;
       case "Select":
-      nodeSelected = list.select(new Point(x,y));
-      break;
+        nodeSelected = list.select(new Point(x, y));
+        break;
       case "None":
         break;
       default:
         break;
     }
   }
-
 
   private void doubleClick(int amountClicks, int x, int y) {
     if (amountClicks == 2) {
@@ -212,7 +212,6 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
       }
     }
   }
-
 
   public void setList(PrimitiveList list) {
     this.list = list;
