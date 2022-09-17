@@ -26,21 +26,24 @@ public class PrimitiveList {
     }
   }
 
-  public void delete(Node item, Graphics g){
+  public void delete(Node item, Graphics g) {
     boolean find = false;
     int i = 0;
     DoublyLinkedList aux = null;
-    while(i < MAX && find == false){
-      if(array[i].getType().equals(item.getType())){
-        find = true;
-        aux = array[i];
+
+    if (item != null) {
+      while (i < MAX && find == false) {
+        if (array[i].getType().equals(item.getType())) {
+          find = true;
+          aux = array[i];
+        }
+        i++;
       }
-      i++;
-    }
-    if(find){
-      Drawable drawable = (Drawable) item.getItem();
-      drawable.erase(g);
-      aux.remove(item.getId());
+      if (find == true) {
+        Drawable drawable = (Drawable) item.getItem();
+        drawable.erase(g);
+        aux.remove(item.getId());
+      }
     }
   }
 
@@ -64,9 +67,9 @@ public class PrimitiveList {
           itemPolygonalLine.drawEverything(g);
           break;
         case "Polygon":
-         Polygon itemPolygon = (Polygon) item;
-         itemPolygon.drawEverything(g);
-         break;
+          Polygon itemPolygon = (Polygon) item;
+          itemPolygon.drawEverything(g);
+          break;
         case "Rectangle":
           RectangleGr itemRectangle = (RectangleGr) item;
           itemRectangle.draw(g);
@@ -95,14 +98,14 @@ public class PrimitiveList {
     array[i].add(item, type);
   }
 
-  public Node select(Point p){
+  public Node select(Point p) {
 
     double i = -2, j = -2;
     Node item = null;
-    double x = p.getX() , y = p.getY();
-    while(i <= 2 && item == null){
-       p.setX(x + i);
-      while(j <= 2 && item== null){
+    double x = p.getX(), y = p.getY();
+    while (i <= 2 && item == null) {
+      p.setX(x + i);
+      while (j <= 2 && item == null) {
         p.setY(y + j);
 
         item = findObject(p);
@@ -111,51 +114,51 @@ public class PrimitiveList {
       j = -2;
       i++;
     }
-    
+
     return item;
   }
 
-  public Node findObject(Point P){
-   
+  public Node findObject(Point P) {
+
     int i = 0;
     boolean find = false;
     Node whatWeWant = null;
 
-    while((i < MAX) && find == false){
-        Node aux = array[i].getBegin();
-        while((aux != null) && (!find)){
-            switch(array[i].getType()){
-                case "Circle":
-                CircleGr itemCircle = (CircleGr) aux.getItem();
-                find = itemCircle.belongs(P);
-                break;
-                case "Line":
-                LineGr itemLine = (LineGr) aux.getItem();
-                find = itemLine.belongs(P);
-                break;
-                case "Rectangle":
-                RectangleGr itemRect = (RectangleGr) aux.getItem();
-                find = itemRect.belongs(P);
-                break;
-                case "Polygonal Line":
-                PolygonalLineGr itemPolygonalLineGr = (PolygonalLineGr) aux.getItem();
-                find = itemPolygonalLineGr.belongs(P);
-                break;
-                case "Polygon":
-                Polygon itemPolygon = (Polygon) aux.getItem();
-                find = itemPolygon.belongs(P);
-                break;
-            }
-            if(find){
-              whatWeWant = aux;
-              System.out.println("Achou");
-            }
-            aux = aux.getNext();
+    while ((i < MAX) && find == false) {
+      Node aux = array[i].getBegin();
+      while ((aux != null) && (!find)) {
+        switch (array[i].getType()) {
+          case "Circle":
+            CircleGr itemCircle = (CircleGr) aux.getItem();
+            find = itemCircle.belongs(P);
+            break;
+          case "Line":
+            LineGr itemLine = (LineGr) aux.getItem();
+            find = itemLine.belongs(P);
+            break;
+          case "Rectangle":
+            RectangleGr itemRect = (RectangleGr) aux.getItem();
+            find = itemRect.belongs(P);
+            break;
+          case "Polygonal Line":
+            PolygonalLineGr itemPolygonalLineGr = (PolygonalLineGr) aux.getItem();
+            find = itemPolygonalLineGr.belongs(P);
+            break;
+          case "Polygon":
+            Polygon itemPolygon = (Polygon) aux.getItem();
+            find = itemPolygon.belongs(P);
+            break;
         }
-        i++;
+        if (find) {
+          whatWeWant = aux;
+          System.out.println("Achou");
+        }
+        aux = aux.getNext();
+      }
+      i++;
     }
 
     return whatWeWant;
-}
+  }
 
 }
