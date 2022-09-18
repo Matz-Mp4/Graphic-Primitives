@@ -10,6 +10,7 @@ public class Window extends JFrame {
   private DrawPanel drawP;
   private MenuPanel menuP;
   private PrimitiveList list;
+  private TitlePanel titleP;
 
   /**
    * Constructor for objects of class Window
@@ -30,6 +31,7 @@ public class Window extends JFrame {
     getContentPane().setBackground(GuiUtils.getBackground());
     getContentPane().setForeground(GuiUtils.getForeground());
     setDefaultCloseOperation(EXIT_ON_CLOSE);
+    add(getTitleP(), BorderLayout.PAGE_START);
     add(getMenuP(), BorderLayout.PAGE_END);
     add(getDrawP(), BorderLayout.CENTER);
     list = new PrimitiveList();
@@ -44,6 +46,14 @@ public class Window extends JFrame {
       drawP = new DrawPanel(menuP);
     }
     return drawP;
+  }
+
+  public TitlePanel getTitleP(){
+    if(titleP == null){
+      titleP = new TitlePanel();
+    }
+
+    return titleP;
   }
 
   public MenuPanel getMenuP() {

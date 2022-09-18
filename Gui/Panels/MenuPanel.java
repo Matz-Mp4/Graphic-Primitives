@@ -60,7 +60,7 @@ public class MenuPanel extends JPanel {
   public JButton getjbtnDelete() {
     if (jbtnDelete == null) {
       jbtnDelete = new JButton("Delete");
-      GuiUtils.setShapeButton(Color.white, Color.black, jbtnRedraw);
+      GuiUtils.setShapeButton(Color.white, Color.black, jbtnDelete);
     }
     return jbtnDelete;
 
