@@ -3,10 +3,10 @@ package Primitives2D.Circle2D;
 import java.awt.Graphics;
 
 import Gui.GuiUtils;
-import Primitives2D.Drawable;
+import Primitives2D.PrimitiveGr2D;
 import Primitives2D.Point2D.PointGr;
 
-public class CircleGr extends SuperCircleGr implements Drawable {
+public class CircleGr extends SuperCircleGr implements PrimitiveGr2D {
 
   public CircleGr(SuperCircleGr circle) {
     super(circle);

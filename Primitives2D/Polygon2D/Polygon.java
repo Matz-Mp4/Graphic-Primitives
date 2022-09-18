@@ -5,12 +5,12 @@ import java.awt.Graphics;
 import DataStruct.LinkedList.DoublyLinkedList;
 import DataStruct.LinkedList.Node;
 import Gui.GuiUtils;
-import Primitives2D.Drawable;
+import Primitives2D.PrimitiveGr2D;
 import Primitives2D.Line2D.LineGr;
 import Primitives2D.Point2D.PointGr;
 import Primitives2D.Point2D.Point;
 
-public class Polygon implements Drawable{
+public class Polygon implements PrimitiveGr2D{
   private DoublyLinkedList data;
 
   // Lines attributes

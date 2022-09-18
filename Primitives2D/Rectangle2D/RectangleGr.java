@@ -1,7 +1,7 @@
 package Primitives2D.Rectangle2D;
 
 import Primitives2D.Rectangle2D.Rectangle;
-import Primitives2D.Drawable;
+import Primitives2D.PrimitiveGr2D;
 import Primitives2D.Line2D.Line;
 import Primitives2D.Line2D.LineGr;
 import Primitives2D.Point2D.Point;
@@ -17,7 +17,7 @@ import Gui.GuiUtils;
  * @version 15/08/2021
  */
 
-public class RectangleGr extends Rectangle implements Drawable {
+public class RectangleGr extends Rectangle implements PrimitiveGr2D {
   private LineGr[] lines = new LineGr[4];
   private final int MAX = 4;
 

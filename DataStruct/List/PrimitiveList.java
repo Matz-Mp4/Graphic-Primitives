@@ -2,7 +2,7 @@ package DataStruct.List;
 
 import DataStruct.LinkedList.DoublyLinkedList;
 import DataStruct.LinkedList.Node;
-import Primitives2D.Drawable;
+import Primitives2D.PrimitiveGr2D;
 import Primitives2D.Circle2D.CircleGr;
 import Primitives2D.Line2D.LineGr;
 import Primitives2D.Point2D.Point;
@@ -40,8 +40,8 @@ public class PrimitiveList {
         i++;
       }
       if (find == true) {
-        Drawable drawable = (Drawable) item.getItem();
-        drawable.erase(g);
+        PrimitiveGr2D PrimitiveGr2D = (PrimitiveGr2D) item.getItem();
+        PrimitiveGr2D.erase(g);
         aux.remove(item.getId());
       }
     }

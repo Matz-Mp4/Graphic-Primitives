@@ -2,10 +2,10 @@ package Primitives2D.Line2D;
 import java.awt.Graphics;
 
 import Gui.GuiUtils;
-import Primitives2D.Drawable;
+import Primitives2D.PrimitiveGr2D;
 import Primitives2D.Point2D.PointGr;
 
-public class LineGr extends SuperLineGr implements Drawable {
+public class LineGr extends SuperLineGr implements PrimitiveGr2D {
 
   public LineGr(SuperLineGr line) {
     super(line);
