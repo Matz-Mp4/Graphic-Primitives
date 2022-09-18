@@ -13,12 +13,21 @@ public class Rectangle {
   // Diagonal
   private Line diagonal;
   private Line[] lines = new Line[4];
+  private int thickness;
+
+  public int getThickness() {
+    return thickness;
+  }
+
+  public void setThickness(int thickness) {
+    this.thickness = thickness;
+  }
 
   public Rectangle(double x1, double y1, double x2, double y2) {
 
     setDiagonal(new Line(x1, y1, x2, y2));
     convertToRectangle(x1, y1, x2, y2);
-
+    thickness = 2;
   }
 
   public Rectangle(Line diagonal) {
@@ -26,6 +35,8 @@ public class Rectangle {
         diagonal.getP2().getY());
     setDiagonal(
         new Line(diagonal.getP1().getX(), diagonal.getP1().getY(), diagonal.getP2().getX(), diagonal.getP2().getY()));
+
+    thickness = 2;
   }
 
   public void setDiagonal(Line line) {

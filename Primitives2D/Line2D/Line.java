@@ -12,6 +12,17 @@ public class Line {
 
   // Atributos da reta
   private Point p1, p2;
+  private int thickness = 2;
+
+  public int getThickness() {
+    return thickness;
+  }
+
+  public void setThickness(int thickness) {
+    this.thickness = thickness;
+  }
+
+
 
   private boolean isVertical(){
     double res = p1.getX() - p2.getX();

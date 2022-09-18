@@ -21,6 +21,7 @@ public class MenuPanel extends JPanel {
   private JButton jbtnRedraw; /* redraw */
   private JButton jbtnDelete;
   private PrimitiveList list;
+  private JSlider jsliderThickness;
 
   private String options[] = { "None", "Circle", "Line", "Polygonal Line", "Rectangle", "Polygon", "Select" };
 
@@ -38,6 +39,7 @@ public class MenuPanel extends JPanel {
     add(selector);
     add(getjbtnRedraw());
     add(getjbtnDelete());
+    add(getJsliderThickness());
   }
 
   public JComboBox<String> getSelector() {
@@ -64,6 +66,18 @@ public class MenuPanel extends JPanel {
     }
     return jbtnDelete;
 
+  }
+
+  public JSlider getJsliderThickness() {
+    if(jsliderThickness == null){
+      jsliderThickness = new JSlider(JSlider.HORIZONTAL, 2, 20, 3);
+      GuiUtils.setSliderHorizontal(jsliderThickness, "Thickness");
+    }
+    return jsliderThickness;
+  }
+
+  public void setJsliderThickness(JSlider jsliderThickness) {
+    this.jsliderThickness = jsliderThickness;
   }
 
 }

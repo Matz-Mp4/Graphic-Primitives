@@ -7,6 +7,7 @@ import Primitives2D.Line2D.LineGr;
 import Primitives2D.Point2D.Point;
 
 import java.awt.Graphics;
+import java.awt.Color;
 
 import Gui.GuiUtils;
 
@@ -20,6 +21,15 @@ import Gui.GuiUtils;
 public class RectangleGr extends Rectangle implements PrimitiveGr2D {
   private LineGr[] lines = new LineGr[4];
   private final int MAX = 4;
+  private Color rectangelColor = Color.BLACK;
+
+  public Color getRectangelColor() {
+    return rectangelColor;
+  }
+
+  public void setRectangelColor(Color rectangelColor) {
+    this.rectangelColor = rectangelColor;
+  }
 
   public RectangleGr(Point p1, Point p2) {
     super((double) p1.getX(), (double) p1.getY(), (double) p2.getX(), (double) p2.getY());
@@ -28,6 +38,7 @@ public class RectangleGr extends Rectangle implements PrimitiveGr2D {
   public void draw(Graphics g) {
     for (int i = 0; i < MAX; i++) {
       lines[i] = new LineGr(getLine(i));
+      lines[i].setThickness(getThickness());
       lines[i].draw(g);
     }
   }
@@ -36,6 +47,11 @@ public class RectangleGr extends Rectangle implements PrimitiveGr2D {
     for (int i = 0; i < MAX; i++) {
       lines[i].setLineColor(GuiUtils.getBackground());
       lines[i].draw(g);
+      lines[i].setLineColor(GuiUtils.getForeground());
     }
+  }
+
+  public void changeThickness(int value) {
+    setThickness(value);
   }
 }

@@ -31,6 +31,7 @@ public class LineGr extends SuperLineGr implements PrimitiveGr2D {
     double b, a, x, y;
     double beginX, endX, beginY, endY;
     PointGr point = new PointGr();
+    point.setDiameter(getThickness());
 
     beginX = getP1().getX();
     endX = getP2().getX();
@@ -106,8 +107,14 @@ public class LineGr extends SuperLineGr implements PrimitiveGr2D {
   public void erase(Graphics g) {
     setLineColor(GuiUtils.getBackground());
     draw(g);
-    //setLineColor(GuiUtils.getForeground());
+    setLineColor(GuiUtils.getForeground());
 
   }
+
+  public void changeThickness(int value){
+    setThickness(value);
+  }
+
+
 
 }

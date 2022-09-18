@@ -9,6 +9,8 @@ import java.awt.event.*;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 import DataStruct.LinkedList.Node;
 import DataStruct.List.PrimitiveList;
@@ -20,6 +22,7 @@ import Primitives2D.Point2D.PointGr;
 import Primitives2D.Polygon2D.PolygonalLineGr;
 import Primitives2D.Polygon2D.Polygon;
 import Primitives2D.Rectangle2D.RectangleGr;
+import Primitives2D.PrimitiveGr2D;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -81,6 +84,20 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         if (menuP.getSelector().getSelectedItem().equals("Select")) {
           list.delete(nodeSelected, getGraphics());
           // list.drawEverything(getGraphics());
+        }
+      }
+    });
+
+    menuP.getJsliderThickness().addChangeListener(new ChangeListener() {
+      public void stateChanged(ChangeEvent e) {
+        if (menuP.getSelector().getSelectedItem().equals("Select") && nodeSelected != null) {
+          int thickness = menuP.getJsliderThickness().getValue();
+          PrimitiveGr2D itemGr = (PrimitiveGr2D) nodeSelected.getItem();
+          if (menuP.getJsliderThickness().getValueIsAdjusting() == true) {
+            itemGr.erase(getGraphics());
+            itemGr.changeThickness(thickness);
+            itemGr.draw(getGraphics());
+          }
         }
       }
     });

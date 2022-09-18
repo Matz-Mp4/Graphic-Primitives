@@ -10,13 +10,22 @@ import Primitives2D.Line2D.LineGr;
 import Primitives2D.Point2D.PointGr;
 import Primitives2D.Point2D.Point;
 
-public class Polygon implements PrimitiveGr2D{
+public class Polygon implements PrimitiveGr2D {
   private DoublyLinkedList data;
 
   // Lines attributes
   private PointGr sp, ep; // starting point and ending point
   private PointGr aux;
   private PointGr lp; // last point
+  private int thickness;
+
+  public int getThickness() {
+    return thickness;
+  }
+
+  public void setThickness(int thickness) {
+    this.thickness = thickness;
+  }
 
   public Polygon(int x, int y) {
     setSP(new PointGr(x, y));
@@ -27,11 +36,12 @@ public class Polygon implements PrimitiveGr2D{
     iniatilize();
   }
 
-  public boolean belongs(Point p){
+  public boolean belongs(Point p) {
     boolean veri = false;
     Node aux = data.getBegin();
-    while(aux != null && veri == false){
+    while (aux != null && veri == false) {
       LineGr line = (LineGr) aux.getItem();
+      line.setThickness(getThickness());
       veri = line.belongs(p);
       aux = aux.getNext();
     }
@@ -39,41 +49,50 @@ public class Polygon implements PrimitiveGr2D{
     return veri;
   }
 
-  private void iniatilize(){
+  private void iniatilize() {
     data = new DoublyLinkedList();
+    thickness = 2;
   }
 
   public void draw(Graphics g) {
     if (g != null) {
       LineGr lineGr = new LineGr(aux, ep);
+      lineGr.setThickness(getThickness());
       lineGr.draw(g);
       lastPoint();
-      data.add(lineGr, "Polygon"); 
+      data.add(lineGr, "Polygon");
     }
   }
 
   public void erase(Graphics g) {
     Node aux = data.getBegin();
-    while(aux != null){
+    while (aux != null) {
       LineGr line = (LineGr) aux.getItem();
       line.setLineColor(GuiUtils.getBackground());
       line.draw(g);
+      line.setLineColor(GuiUtils.getForeground());
       aux = aux.getNext();
     }
+  }
+
+  public void changeThickness(int value) {
+    setThickness(value);
   }
 
   public void drawLastPoint(int x, int y, Graphics g) {
     if (g != null) {
       LineGr line = new LineGr(sp, new PointGr(x, y));
       line.draw(g);
-      data.add(line,"Polygon");
+      line.setThickness(getThickness());
+      data.add(line, "Polygon");
     }
   }
 
-  public void drawEverything(Graphics g){
+  public void drawEverything(Graphics g) {
     Node aux = data.getBegin();
-    while(aux != null){
+    while (aux != null) {
       LineGr line = (LineGr) aux.getItem();
+      line.setThickness(getThickness());
       line.draw(g);
       aux = aux.getNext();
     }

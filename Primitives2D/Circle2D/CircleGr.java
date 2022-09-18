@@ -24,6 +24,7 @@ public class CircleGr extends SuperCircleGr implements PrimitiveGr2D {
     double angule, rowEnd;
 
     PointGr point = new PointGr();
+    point.setDiameter(getThickness());
     // A constant to find the amount needs to loop
     double inc = 0.18 / (getRadius() / 300);
 
@@ -33,15 +34,13 @@ public class CircleGr extends SuperCircleGr implements PrimitiveGr2D {
   }
 
   public void erase(Graphics g) {
-    double angule, rowEnd;
+    setCircleColor(GuiUtils.getBackground());
+    draw(g);
+    setCircleColor(GuiUtils.getForeground());
+  }
 
-    PointGr point = new PointGr();
-    // A constant to find the amount needs to loop
-    double inc = 0.18 / (getRadius() / 300);
-
-    for (angule = 0; angule <= 90; angule += inc) {
-      plotPoint(angule, point, g, GuiUtils.getBackground());
-    }
+  public void changeThickness(int value) {
+    setThickness(value);
   }
 
 }

@@ -3,7 +3,8 @@ package Gui;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
-
+import javax.swing.BorderFactory;
+import javax.swing.border.TitledBorder;
 /**
  * Class that handles data that is useful during the program and that is
  * frequently requested
@@ -78,6 +79,26 @@ public class GuiUtils {
 
     buttonStyle = BorderFactory.createCompoundBorder(levelAbove, levelBelow);
     jbtn.setBorder(buttonStyle);
+  }
+
+  /**
+   * Sets the color, numbers/tracks, titles and border of a JSlider
+   * 
+   * @param jslider JSlider
+   * @param name    String
+   */
+  public static void setSliderHorizontal(JSlider jslider, String name) {
+    jslider.setMajorTickSpacing(5);
+    jslider.setMinorTickSpacing(1);
+    jslider.setBackground(background);
+    jslider.setForeground(foreground);
+    jslider.setPaintTicks(true);
+    jslider.setPaintLabels(true);
+    Border Colorline = BorderFactory.createLineBorder(background);
+    TitledBorder title = new TitledBorder(Colorline, name);
+    title.setTitleColor(foreground);
+    title.setTitleFont(new Font("Arial", Font.BOLD | Font.ITALIC, 12));
+    jslider.setBorder(title);
   }
 
 }
