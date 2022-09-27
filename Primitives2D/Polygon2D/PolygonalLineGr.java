@@ -1,5 +1,6 @@
 package Primitives2D.Polygon2D;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import DataStruct.LinkedList.DoublyLinkedList;
@@ -14,6 +15,26 @@ public class PolygonalLineGr implements PrimitiveGr2D {
 
   private DoublyLinkedList data;
   private int thickness;
+  private Color colorPolygonalLine;
+
+  public Color getColorPolygonalLine() {
+    return colorPolygonalLine;
+  }
+
+  public void setColorPolygonalLine(Color colorPolygonalLine) {
+    this.colorPolygonalLine = colorPolygonalLine;
+    Node aux = data.getBegin();
+    while (aux != null) {
+      LineGr line = (LineGr) aux.getItem();
+      line.setLineColor(colorPolygonalLine);
+      aux = aux.getNext();
+    }
+  }
+
+
+  public void changeColor(Color newColor){
+    setColorPolygonalLine(newColor);
+  }
 
   public int getThickness() {
     return thickness;
@@ -34,19 +55,21 @@ public class PolygonalLineGr implements PrimitiveGr2D {
   private void initialize() {
     data = new DoublyLinkedList();
     thickness = 2;
+    colorPolygonalLine = Color.black;
   }
 
-  public void draw(Graphics g) {
+  public void drawByClick(Graphics g) {
     if (g != null) {
       lineGr = new LineGr(A, B);
       lineGr.setThickness(getThickness());
+      lineGr.setLineColor(colorPolygonalLine);
       lineGr.draw(g);
       lastPoint();
       data.add(lineGr, "Polygonal Line");
     }
   }
 
-  public void drawEverything(Graphics g) {
+  public void draw(Graphics g) {
     Node aux = data.getBegin();
     while (aux != null) {
       LineGr line = (LineGr) aux.getItem();

@@ -10,6 +10,8 @@ import Primitives2D.Line2D.LineGr;
 import Primitives2D.Point2D.PointGr;
 import Primitives2D.Point2D.Point;
 
+import java.awt.Color;
+
 public class Polygon implements PrimitiveGr2D {
   private DoublyLinkedList data;
 
@@ -18,6 +20,27 @@ public class Polygon implements PrimitiveGr2D {
   private PointGr aux;
   private PointGr lp; // last point
   private int thickness;
+  private Color colorPolygon;
+
+  public Color getColorPolygon() {
+    return colorPolygon;
+  }
+
+  public void setColorPolygon(Color colorPolygon) {
+    this.colorPolygon = colorPolygon;
+    LineGr line;
+    Node aux = data.getBegin();
+    while (aux != null) {
+      line = (LineGr) aux.getItem();
+      line.setLineColor(colorPolygon);
+      aux = aux.getNext();
+    }
+  }
+
+
+  public void changeColor(Color newColor){
+    setColorPolygon(newColor);
+  }
 
   public int getThickness() {
     return thickness;
@@ -52,9 +75,10 @@ public class Polygon implements PrimitiveGr2D {
   private void iniatilize() {
     data = new DoublyLinkedList();
     thickness = 2;
+    colorPolygon = Color.black;
   }
 
-  public void draw(Graphics g) {
+  public void drawByClick(Graphics g) {
     if (g != null) {
       LineGr lineGr = new LineGr(aux, ep);
       lineGr.setThickness(getThickness());
@@ -88,7 +112,7 @@ public class Polygon implements PrimitiveGr2D {
     }
   }
 
-  public void drawEverything(Graphics g) {
+  public void draw(Graphics g) {
     Node aux = data.getBegin();
     while (aux != null) {
       LineGr line = (LineGr) aux.getItem();

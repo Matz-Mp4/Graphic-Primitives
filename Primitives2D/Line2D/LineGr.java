@@ -1,5 +1,6 @@
 package Primitives2D.Line2D;
 import java.awt.Graphics;
+import java.awt.Color;
 
 import Gui.GuiUtils;
 import Primitives2D.PrimitiveGr2D;
@@ -115,6 +116,10 @@ public class LineGr extends SuperLineGr implements PrimitiveGr2D {
     setThickness(value);
   }
 
+
+  public void changeColor(Color newColor){
+    setLineColor(newColor);
+  }
 
 
 }

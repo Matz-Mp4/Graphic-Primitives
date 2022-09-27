@@ -1,6 +1,7 @@
 package Primitives2D.Circle2D;
 
 import java.awt.Graphics;
+import java.awt.Color;
 
 import Gui.GuiUtils;
 import Primitives2D.PrimitiveGr2D;
@@ -43,4 +44,8 @@ public class CircleGr extends SuperCircleGr implements PrimitiveGr2D {
     setThickness(value);
   }
 
+
+  public void changeColor(Color newColor){
+    setCircleColor(newColor);
+  }
 }

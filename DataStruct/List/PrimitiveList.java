@@ -64,11 +64,11 @@ public class PrimitiveList {
           break;
         case "Polygonal Line":
           PolygonalLineGr itemPolygonalLine = (PolygonalLineGr) item;
-          itemPolygonalLine.drawEverything(g);
+          itemPolygonalLine.draw(g);
           break;
         case "Polygon":
           Polygon itemPolygon = (Polygon) item;
-          itemPolygon.drawEverything(g);
+          itemPolygon.draw(g);
           break;
         case "Rectangle":
           RectangleGr itemRectangle = (RectangleGr) item;

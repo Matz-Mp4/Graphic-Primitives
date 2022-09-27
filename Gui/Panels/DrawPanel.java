@@ -49,7 +49,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
   private PrimitiveList list;
   private MenuPanel menuP;
   private Node nodeSelected;
-  private Color changeColor;
+  private Color newColor;
 
   public DrawPanel(MenuPanel menuP) {
     this.menuP = menuP;
@@ -93,10 +93,12 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     menuP.getjbtnColor().addActionListener(new ActionListener() {
 
       public void actionPerformed(ActionEvent e) {
-        if (menuP.getSelector().getSelectedItem().equals("Select")) {
-          changeColor = JColorChooser.showDialog(null, "Choose a color bangers", Color.black);
-          list.delete(nodeSelected, getGraphics());
-          
+        if (menuP.getSelector().getSelectedItem().equals("Select") && nodeSelected != null) {
+          newColor = JColorChooser.showDialog(null, "Choose a color", Color.black);
+
+          PrimitiveGr2D itemGr = (PrimitiveGr2D) nodeSelected.getItem();
+          itemGr.changeColor(newColor);
+          itemGr.draw(getGraphics());
         }
       }
     });
@@ -194,7 +196,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
           firstTime = false;
         }
         polygonalLineGr.setPointB(x, y);
-        polygonalLineGr.draw(g);
+        polygonalLineGr.drawByClick(g);
         break;
       case "Polygon":
         if (firstTime == true) {
@@ -204,7 +206,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
           firstTime = false;
         }
         polygonGr.setEP(new PointGr(x, y));
-        polygonGr.draw(g);
+        polygonGr.drawByClick(g);
         break;
       case "Rectangle":
         if (!changePointState()) {
