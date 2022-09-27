@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.*;
 
+import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeListener;
@@ -48,6 +49,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
   private PrimitiveList list;
   private MenuPanel menuP;
   private Node nodeSelected;
+  private Color changeColor;
 
   public DrawPanel(MenuPanel menuP) {
     this.menuP = menuP;
@@ -84,6 +86,17 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         if (menuP.getSelector().getSelectedItem().equals("Select")) {
           list.delete(nodeSelected, getGraphics());
           // list.drawEverything(getGraphics());
+        }
+      }
+    });
+
+    menuP.getjbtnColor().addActionListener(new ActionListener() {
+
+      public void actionPerformed(ActionEvent e) {
+        if (menuP.getSelector().getSelectedItem().equals("Select")) {
+          changeColor = JColorChooser.showDialog(null, "Choose a color bangers", Color.black);
+          list.delete(nodeSelected, getGraphics());
+          
         }
       }
     });
