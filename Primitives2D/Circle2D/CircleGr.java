@@ -5,7 +5,7 @@ import java.awt.Color;
 
 import Gui.GuiUtils;
 import Primitives2D.PrimitiveGr2D;
-import Primitives2D.Point2D.PointGr;
+import Primitives2D.Point2D.*;
 
 public class CircleGr extends SuperCircleGr implements PrimitiveGr2D {
 
@@ -44,8 +44,13 @@ public class CircleGr extends SuperCircleGr implements PrimitiveGr2D {
     setThickness(value);
   }
 
-
-  public void changeColor(Color newColor){
+  public void changeColor(Color newColor) {
     setCircleColor(newColor);
+  }
+
+  public void translation(Point p) {
+
+    setX(p.getX());
+    setY(p.getY());
   }
 }

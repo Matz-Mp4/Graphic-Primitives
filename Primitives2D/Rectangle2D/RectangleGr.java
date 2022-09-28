@@ -43,8 +43,24 @@ public class RectangleGr extends SuperRectangleGr implements PrimitiveGr2D {
     setThickness(value);
   }
 
-
-  public void changeColor(Color newColor){
+  public void changeColor(Color newColor) {
     setRectangelColor(newColor);
+  }
+
+  public void translation(Point p) {
+
+    int dx = (int)Math.abs(getDiagonal().getP1().getX() - getDiagonal().getP2().getX());
+    int dy = (int)Math.abs(getDiagonal().getP1().getY() - getDiagonal().getP2().getY());
+
+    getDiagonal().getP1().setX(p.getX() - dx / 2);
+    getDiagonal().getP1().setY(p.getY() - dy / 2);
+
+    getDiagonal().getP2().setX(p.getX() + dx / 2);
+    getDiagonal().getP2().setY(p.getY() + dy / 2);
+
+    convertToRectangle(getDiagonal().getP1().getX(),
+        getDiagonal().getP1().getY(),
+        getDiagonal().getP2().getX(),
+        getDiagonal().getP2().getY());
   }
 }

@@ -37,13 +37,27 @@ public class Polygon implements PrimitiveGr2D {
     }
   }
 
-
-  public void changeColor(Color newColor){
+  public void changeColor(Color newColor) {
     setColorPolygon(newColor);
   }
 
   public int getThickness() {
     return thickness;
+  }
+
+  public void translation(Point p) {
+    Node aux = data.getBegin();
+    LineGr line = (LineGr) aux.getItem();
+    //reference point
+    int dx = (int)(p.getX() - line.getP1().getX());
+    int dy = (int)(p.getY() - line.getP1().getY());
+
+    while (aux != null) {
+      line = (LineGr) aux.getItem();
+      line.setP1(new Point(line.getP1().getX() + dx, line.getP1().getY() + dy));
+      line.setP2(new Point(line.getP2().getX() + dx, line.getP2().getY() + dy));
+      aux = aux.getNext();
+    }
   }
 
   public void setThickness(int thickness) {

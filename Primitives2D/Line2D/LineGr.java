@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import Gui.GuiUtils;
 import Primitives2D.PrimitiveGr2D;
-import Primitives2D.Point2D.PointGr;
+import Primitives2D.Point2D.*;
 
 public class LineGr extends SuperLineGr implements PrimitiveGr2D {
 
@@ -119,6 +119,19 @@ public class LineGr extends SuperLineGr implements PrimitiveGr2D {
 
   public void changeColor(Color newColor){
     setLineColor(newColor);
+  }
+
+  public void translation(Point p){
+    
+    int dx = (int)Math.abs(getP1().getX() - getP2().getX());
+    int dy = (int)Math.abs(getP1().getY() - getP2().getY());
+    
+    getP1().setX(p.getX() - dx / 2);
+    getP1().setY(p.getY() - dy / 2);
+
+    getP2().setX(p.getX() + dx / 2);
+    getP2().setY(p.getY() + dy / 2);
+    
   }
 
 

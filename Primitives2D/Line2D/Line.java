@@ -22,8 +22,6 @@ public class Line {
     this.thickness = thickness;
   }
 
-
-
   private boolean isVertical(){
     double res = p1.getX() - p2.getX();
     boolean veri = false;
