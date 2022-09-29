@@ -48,19 +48,23 @@ public class RectangleGr extends SuperRectangleGr implements PrimitiveGr2D {
   }
 
   public void translation(Point p) {
+    int dx = (int) (getDiagonal().getP1().getX() - p.getX());
+    int dy = (int) (getDiagonal().getP1().getY() - p.getY());
 
-    int dx = (int)Math.abs(getDiagonal().getP1().getX() - getDiagonal().getP2().getX());
-    int dy = (int)Math.abs(getDiagonal().getP1().getY() - getDiagonal().getP2().getY());
+    getDiagonal().getP1().setX(getDiagonal().getP1().getX() + dx);
+    getDiagonal().getP1().setY(getDiagonal().getP1().getY() + dy);
 
-    getDiagonal().getP1().setX(p.getX() - dx / 2);
-    getDiagonal().getP1().setY(p.getY() - dy / 2);
-
-    getDiagonal().getP2().setX(p.getX() + dx / 2);
-    getDiagonal().getP2().setY(p.getY() + dy / 2);
+    getDiagonal().getP2().setX(getDiagonal().getP2().getX() + dx);
+    getDiagonal().getP2().setY(getDiagonal().getP2().getY() + dy);
 
     convertToRectangle(getDiagonal().getP1().getX(),
         getDiagonal().getP1().getY(),
         getDiagonal().getP2().getX(),
         getDiagonal().getP2().getY());
+
+    for (int i = 0; i < MAX; i++) {
+      lines[i] = new LineGr(getLine(i));
+      lines[i].setLineColor(rectangelColor);
+    }
   }
 }

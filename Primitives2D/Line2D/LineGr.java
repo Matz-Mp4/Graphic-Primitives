@@ -123,14 +123,12 @@ public class LineGr extends SuperLineGr implements PrimitiveGr2D {
 
   public void translation(Point p){
     
-    int dx = (int)Math.abs(getP1().getX() - getP2().getX());
-    int dy = (int)Math.abs(getP1().getY() - getP2().getY());
-    
-    getP1().setX(p.getX() - dx / 2);
-    getP1().setY(p.getY() - dy / 2);
+    int dx =(int)( p.getX() - getP1().getX());
+    int dy = (int)( p.getY() - getP1().getY());
 
-    getP2().setX(p.getX() + dx / 2);
-    getP2().setY(p.getY() + dy / 2);
+    setP1(new Point(getP1().getX() + dx, getP1().getY() + dy));
+    setP2(new Point(getP2().getX() + dx, getP2().getY() + dy));
+
     
   }
 
