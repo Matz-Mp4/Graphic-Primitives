@@ -87,7 +87,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
           break;
 
         case "Scale":
-          Scanner scanner = new Scanner(System.in);
+          /* Scanner scanner = new Scanner(System.in);
           String inputString = scanner.nextLine();
 
           double count = 1.0;
@@ -95,12 +95,11 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
           if (inputString.equals("w") || inputString.equals("W")) {
             count++;
           } else if (inputString.equals("s") || inputString.equals("S")) {
-            count = cont - 0.1;
+            count = count - 0.1;
           }
           
           /* itemGr.scale(count); */
-
-          break;
+          break; 
       }
 
       itemGr.draw(getGraphics());
