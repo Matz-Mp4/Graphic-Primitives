@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.*;
 import java.util.Scanner;
 
@@ -34,7 +36,7 @@ import java.awt.event.ActionListener;
  * Temporarily adjust events and use state machine to set circle and line
  * buttons
  */
-public class DrawPanel extends JPanel implements MouseListener, MouseMotionListener {
+public class DrawPanel extends JPanel implements MouseListener, MouseMotionListener, KeyListener {
 
   private Point pTemp, pTemp2;
   private CircleGr circleGr;
@@ -87,10 +89,8 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
           break;
 
         case "Scale":
+
           /*
-           * Scanner scanner = new Scanner(System.in);
-           * String inputString = scanner.nextLine();
-           * 
            * double count = 1.0;
            * 
            * if (inputString.equals("w") || inputString.equals("W")) {
@@ -297,6 +297,40 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
   public void setList(PrimitiveList list) {
     this.list = list;
+  }
+
+  @Override
+  public void keyTyped(KeyEvent e) {
+
+    if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+      System.out.println("Right key typed");
+    }
+    if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+      System.out.println("Left key typed");
+    }
+
+  }
+
+  @Override
+  public void keyPressed(KeyEvent e) {
+
+    if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+      System.out.println("Right key pressed");
+    }
+    if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+      System.out.println("Left key pressed");
+    }
+
+  }
+
+  @Override
+  public void keyReleased(KeyEvent e) {
+    if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+      System.out.println("Right key Released");
+    }
+    if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+      System.out.println("Left key Released");
+    }
   }
 
   @Override

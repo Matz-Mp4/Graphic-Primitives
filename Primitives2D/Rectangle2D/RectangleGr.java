@@ -48,8 +48,8 @@ public class RectangleGr extends SuperRectangleGr implements PrimitiveGr2D {
   }
 
   public void translation(Point p) {
-    int dx = (int) (getDiagonal().getP1().getX() - p.getX());
-    int dy = (int) (getDiagonal().getP1().getY() - p.getY());
+    int dx = (int) (p.getX() - getDiagonal().getP1().getX() );
+    int dy = (int) (p.getY() - getDiagonal().getP1().getY());
 
     getDiagonal().getP1().setX(getDiagonal().getP1().getX() + dx);
     getDiagonal().getP1().setY(getDiagonal().getP1().getY() + dy);
