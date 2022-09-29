@@ -72,7 +72,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     firstTime = true;
   }
 
-  private void setTransformations() {
+  private void setTransformations(int xMouse, int yMouse) {
     String optionTrans = menuP.getSelectTrans().getSelectedItem().toString();
     if (menuP.getSelector().getSelectedItem().equals("Select") && nodeSelected != null) {
       PrimitiveGr2D itemGr = (PrimitiveGr2D) nodeSelected.getItem();
@@ -87,19 +87,21 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
           break;
 
         case "Scale":
-          /* Scanner scanner = new Scanner(System.in);
-          String inputString = scanner.nextLine();
-
-          double count = 1.0;
-
-          if (inputString.equals("w") || inputString.equals("W")) {
-            count++;
-          } else if (inputString.equals("s") || inputString.equals("S")) {
-            count = count - 0.1;
-          }
-          
-          /* itemGr.scale(count); */
-          break; 
+          /*
+           * Scanner scanner = new Scanner(System.in);
+           * String inputString = scanner.nextLine();
+           * 
+           * double count = 1.0;
+           * 
+           * if (inputString.equals("w") || inputString.equals("W")) {
+           * count++;
+           * } else if (inputString.equals("s") || inputString.equals("S")) {
+           * count = count - 0.1;
+           * }
+           * 
+           * /* itemGr.scale(count);
+           */
+          break;
       }
 
       itemGr.draw(getGraphics());
@@ -115,7 +117,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
     menuP.getSelectTrans().addItemListener(new ItemListener() {
       public void itemStateChanged(ItemEvent itemEvent) {
-        setTransformations();
+        /* setTransformations(); */
       }
     });
     menuP.getjbtnRedraw().addActionListener(new ActionListener() {
@@ -181,12 +183,9 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
   public void mouseClicked(MouseEvent e) {
     int x = e.getX();
     int y = e.getY();
-    xMouse = e.getX();
-    yMouse = e.getY();
     Graphics g = getGraphics();
 
-    /* draw(x, y, g); */
-    draw(xMouse, yMouse, g);
+    draw(x, y, g);
     if (e.getClickCount() >= 2) {
       doubleClick(e.getClickCount(), x, y);
     }
@@ -269,6 +268,8 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
       case "Select":
         if (menuP.getSelectTrans().getSelectedItem().equals("None") == true) {
           nodeSelected = list.select(new Point(x, y));
+        } else {
+          setTransformations(x, y);
         }
         break;
       case "None":
