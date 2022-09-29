@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.*;
+import java.util.Scanner;
 
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
@@ -86,6 +87,19 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
           break;
 
         case "Scale":
+          Scanner scanner = new Scanner(System.in);
+          String inputString = scanner.nextLine();
+
+          double count = 1.0;
+
+          if (inputString.equals("w") || inputString.equals("W")) {
+            count++;
+          } else if (inputString.equals("s") || inputString.equals("S")) {
+            count = cont - 0.1;
+          }
+          
+          /* itemGr.scale(count); */
+
           break;
       }
 
