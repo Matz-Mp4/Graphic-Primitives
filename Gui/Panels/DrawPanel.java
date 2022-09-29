@@ -314,28 +314,14 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
   @Override
   public void keyPressed(KeyEvent e) {
 
-    if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-      System.out.println("Right key pressed");
-    }
-    if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-      System.out.println("Left key pressed");
-    }
-
   }
 
   @Override
   public void keyReleased(KeyEvent e) {
-    if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-      System.out.println("Right key Released");
-    }
-    if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-      System.out.println("Left key Released");
-    }
   }
 
   @Override
   public void mousePressed(MouseEvent e) {
-    // TODO Auto-generated method stub
 
   }
 
