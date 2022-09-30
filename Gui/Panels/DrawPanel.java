@@ -78,24 +78,25 @@ public class DrawPanel extends JPanel implements MouseListener {
     if (menuP.getSelector().getSelectedItem().equals("Select") && nodeSelected != null) {
       PrimitiveGr2D itemGr = (PrimitiveGr2D) nodeSelected.getItem();
       itemGr.erase(getGraphics());
+      Point p = new Point((double) xMouse, (double) yMouse);
       switch (optionTrans) {
 
         case "Translation":
-          itemGr.translation(new Point((double) xMouse, (double) yMouse));
+          itemGr.translation(p);
           break;
 
         case "Rotation":
-          itemGr.rotation(new Point((double) xMouse, (double) yMouse), 10.0);
+          itemGr.rotation(p, 10.0);
           break;
 
         case "Scale ++":
 
-          itemGr.scale(1.1, new Point((double) xMouse, (double) yMouse));
+          itemGr.scale(1.1, p);
           break;
 
         case "Scale --":
 
-          itemGr.scale(0.9, new Point((double) xMouse, (double) yMouse));
+          itemGr.scale(0.9, p);
           break;
 
       }

@@ -116,6 +116,39 @@ public class Line {
     return veri;
   }
 
+public void rotationLine(Point p, double angule){
+
+    double radian = angule * (Math.PI / 180);
+    double cos = Math.cos(radian);
+    double sin = Math.cos(radian);
+
+    double disX = (p.getX() - getP1().getX());
+    double disY = (p.getY() - getP1().getY());
+    setP1(new Point(disX * cos - disY * sin + getP1().getX(), disX * sin + disY * cos + getP1().getY()));
+
+    disX = (p.getX() - getP2().getX());
+    disY = (p.getY() - getP2().getY());
+ 
+    setP2(new Point(disX * cos - disY * sin + getP2().getX(), disX * sin + disY * cos + getP2().getY()));
+  }
+
+
+  public void translationLine(Point p){
+    
+    int dx =(int)( p.getX() - getP1().getX());
+    int dy = (int)( p.getY() - getP1().getY());
+
+    setP1(new Point(getP1().getX() + dx, getP1().getY() + dy));
+    setP2(new Point(getP2().getX() + dx, getP2().getY() + dy));
+
+    
+  }
+
+  public void scaleLine(double k, Point p) {
+    setP1(new Point(getP1().getX() * k + p.getX()*(1 - k), getP1().getY() * k + p.getY()*(1 - k)));
+    setP2(new Point(getP2().getX() * k + p.getX()*(1 - k), getP2().getY() * k+ p.getY()*(1 - k)));
+  }
+
   //
   /**
    * Method toString

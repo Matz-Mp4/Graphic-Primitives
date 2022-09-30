@@ -66,9 +66,7 @@ public class Polygon implements PrimitiveGr2D {
 
     while (aux != null) {
       line = (LineGr) aux.getItem();
-      line.setP1(new Point(line.getP1().getX() * k + p.getX() * (1 - k), line.getP1().getY() * k + p.getY() * (1 - k)));
-      line.setP2(new Point(line.getP2().getX() * k + p.getX() * (1 - k), line.getP2().getY() * k + p.getY() * (1 - k)));
-
+      line.scaleLine(k, p);
       aux = aux.getNext();
     }
 
@@ -77,18 +75,10 @@ public class Polygon implements PrimitiveGr2D {
   public void rotation(Point p, double angule) {
     Node aux = data.getBegin();
     LineGr line = (LineGr) aux.getItem();
-    double radian = angule * (Math.PI / 180);
-    double cos = Math.cos(radian);
-    double sin = Math.cos(radian);
 
     while (aux != null) {
       line = (LineGr) aux.getItem();
-      line.setP1(new Point(line.getP1().getX() * cos - line.getP1().getY() * sin,
-          line.getP1().getX() * sin + line.getP1().getY() * cos));
-
-      line.setP2(new Point(line.getP2().getX() * cos - line.getP2().getY() * sin,
-          line.getP2().getX() * sin + line.getP2().getY() * cos));
-
+      line.rotationLine(p, angule);
       aux = aux.getNext();
     }
 

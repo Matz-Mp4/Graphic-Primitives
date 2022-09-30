@@ -67,7 +67,7 @@ public class CircleGr extends SuperCircleGr implements PrimitiveGr2D {
     double cos = Math.cos(radian);
     double sin = Math.sin(radian);
 
-    setX(getX() * cos - getY() * sin + p.getX());
-    setY(getX() * sin + getY() * cos + p.getY());
+    setX((getX() - p.getX()) * cos - (getY() - p.getY()) * sin  + getX());
+    setY((getX() - p.getX())  * sin + (getY() - p.getY()) * cos + getY());
   }
 }

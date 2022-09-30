@@ -123,31 +123,17 @@ public class LineGr extends SuperLineGr implements PrimitiveGr2D {
   }
 
   public void translation(Point p){
-    
-    int dx =(int)( p.getX() - getP1().getX());
-    int dy = (int)( p.getY() - getP1().getY());
-
-    setP1(new Point(getP1().getX() + dx, getP1().getY() + dy));
-    setP2(new Point(getP2().getX() + dx, getP2().getY() + dy));
-
+    translationLine(p);
     
   }
 
   public void scale(double k, Point p) {
-    setP1(new Point(getP1().getX() * k + p.getX()*(1 - k), getP1().getY() * k + p.getY()*(1 - k)));
-    setP2(new Point(getP2().getX() * k + p.getX()*(1 - k), getP2().getY() * k+ p.getY()*(1 - k)));
+    scaleLine(k, p);
   }
 
 
   public void rotation(Point p, double angule){
-
-    double radian = angule * (Math.PI / 180);
-    double cos = Math.cos(radian);
-    double sin = Math.cos(radian);
-
-
-    setP1(new Point(getP1().getX() * cos - getP1().getY() * sin + p.getX(), getP1().getX() * sin + getP1().getY() * cos + p.getY()));
-    setP2(new Point(getP2().getX() * cos - getP2().getY() * sin + p.getX(), getP2().getX() * sin + getP2().getY() * cos + p.getY()));
+    rotationLine(p, angule);
   }
 
 
