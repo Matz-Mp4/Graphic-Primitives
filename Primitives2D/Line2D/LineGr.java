@@ -139,4 +139,16 @@ public class LineGr extends SuperLineGr implements PrimitiveGr2D {
   }
 
 
+  public void rotation(Point p, double angule){
+
+    double radian = angule * (Math.PI / 180);
+    double cos = Math.cos(radian);
+    double sin = Math.cos(radian);
+
+
+    setP1(new Point(getP1().getX() * cos - getP1().getY() * sin + p.getX(), getP1().getX() * sin + getP1().getY() * cos + p.getY()));
+    setP2(new Point(getP2().getX() * cos - getP2().getY() * sin + p.getX(), getP2().getX() * sin + getP2().getY() * cos + p.getY()));
+  }
+
+
 }

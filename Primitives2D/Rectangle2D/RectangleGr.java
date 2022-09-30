@@ -85,4 +85,28 @@ public class RectangleGr extends SuperRectangleGr implements PrimitiveGr2D {
       lines[i].setLineColor(rectangelColor);
     }
   }
+
+  public void rotation(Point p, double angule) {
+
+    double radian = angule * (Math.PI / 180);
+    double cos = Math.cos(radian);
+    double sin = Math.cos(radian);
+
+    getDiagonal().setP1(new Point(getDiagonal().getP1().getX() * cos - getDiagonal().getP1().getY() * sin,
+        getDiagonal().getP1().getX() * sin + getDiagonal().getP1().getY() * cos));
+
+    getDiagonal().setP2(new Point(getDiagonal().getP2().getX() * cos - getDiagonal().getP2().getY() * sin,
+        getDiagonal().getP2().getX() * sin + getDiagonal().getP2().getY() * cos));
+
+    convertToRectangle(getDiagonal().getP1().getX(),
+        getDiagonal().getP1().getY(),
+        getDiagonal().getP2().getX(),
+        getDiagonal().getP2().getY());
+
+    for (int i = 0; i < MAX; i++) {
+      lines[i] = new LineGr(getLine(i));
+      lines[i].setLineColor(rectangelColor);
+    }
+
+  }
 }

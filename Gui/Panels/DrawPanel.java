@@ -85,6 +85,7 @@ public class DrawPanel extends JPanel implements MouseListener {
           break;
 
         case "Rotation":
+          itemGr.rotation(new Point((double) xMouse, (double) yMouse), 10.0);
           break;
 
         case "Scale ++":

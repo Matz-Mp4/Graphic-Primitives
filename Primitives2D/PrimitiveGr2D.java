@@ -16,7 +16,7 @@ public interface PrimitiveGr2D {
 
   public void translation(Point p);
 
-  /* public void rotation(PointGr p, double angule); */
-
   public void scale(double k, Point p);
+   
+  public void rotation(Point p, double angule); 
 }
