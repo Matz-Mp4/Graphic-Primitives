@@ -48,7 +48,7 @@ public class RectangleGr extends SuperRectangleGr implements PrimitiveGr2D {
   }
 
   public void translation(Point p) {
-    int dx = (int) (p.getX() - getDiagonal().getP1().getX() );
+    int dx = (int) (p.getX() - getDiagonal().getP1().getX());
     int dy = (int) (p.getY() - getDiagonal().getP1().getY());
 
     getDiagonal().getP1().setX(getDiagonal().getP1().getX() + dx);
@@ -56,6 +56,24 @@ public class RectangleGr extends SuperRectangleGr implements PrimitiveGr2D {
 
     getDiagonal().getP2().setX(getDiagonal().getP2().getX() + dx);
     getDiagonal().getP2().setY(getDiagonal().getP2().getY() + dy);
+
+    convertToRectangle(getDiagonal().getP1().getX(),
+        getDiagonal().getP1().getY(),
+        getDiagonal().getP2().getX(),
+        getDiagonal().getP2().getY());
+
+    for (int i = 0; i < MAX; i++) {
+      lines[i] = new LineGr(getLine(i));
+      lines[i].setLineColor(rectangelColor);
+    }
+  }
+
+  public void scale(double k, Point p) {
+    getDiagonal().getP1().setX(getDiagonal().getP1().getX() * k + p.getX() * (1 - k));
+    getDiagonal().getP1().setY(getDiagonal().getP1().getY() * k + p.getY() * (1 - k));
+
+    getDiagonal().getP2().setX(getDiagonal().getP2().getX() * k + p.getX() * (1 - k));
+    getDiagonal().getP2().setY(getDiagonal().getP2().getY() * k + p.getY() * (1 - k));
 
     convertToRectangle(getDiagonal().getP1().getX(),
         getDiagonal().getP1().getY(),

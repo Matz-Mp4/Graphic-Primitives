@@ -4,7 +4,8 @@ import java.awt.Color;
 
 import Gui.GuiUtils;
 import Primitives2D.PrimitiveGr2D;
-import Primitives2D.Point2D.*;
+import Primitives2D.Point2D.Point;
+import Primitives2D.Point2D.PointGr;
 
 public class LineGr extends SuperLineGr implements PrimitiveGr2D {
 
@@ -130,6 +131,11 @@ public class LineGr extends SuperLineGr implements PrimitiveGr2D {
     setP2(new Point(getP2().getX() + dx, getP2().getY() + dy));
 
     
+  }
+
+  public void scale(double k, Point p) {
+    setP1(new Point(getP1().getX() * k + p.getX()*(1 - k), getP1().getY() * k + p.getY()*(1 - k)));
+    setP2(new Point(getP2().getX() * k + p.getX()*(1 - k), getP2().getY() * k+ p.getY()*(1 - k)));
   }
 
 

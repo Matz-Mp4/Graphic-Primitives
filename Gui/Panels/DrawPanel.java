@@ -36,7 +36,7 @@ import java.awt.event.ActionListener;
  * Temporarily adjust events and use state machine to set circle and line
  * buttons
  */
-public class DrawPanel extends JPanel implements MouseListener, MouseMotionListener, KeyListener {
+public class DrawPanel extends JPanel implements MouseListener {
 
   private Point pTemp, pTemp2;
   private CircleGr circleGr;
@@ -66,7 +66,6 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
     setBackground(GuiUtils.getBackground());
     setForeground(GuiUtils.getForeground());
     addMouseListener(this);
-    addMouseMotionListener(this);
   }
 
   private void resetVariables() {
@@ -88,20 +87,16 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         case "Rotation":
           break;
 
-        case "Scale":
+        case "Scale ++":
 
-          /*
-           * double count = 1.0;
-           * 
-           * if (inputString.equals("w") || inputString.equals("W")) {
-           * count++;
-           * } else if (inputString.equals("s") || inputString.equals("S")) {
-           * count = count - 0.1;
-           * }
-           * 
-           * /* itemGr.scale(count);
-           */
+          itemGr.scale(1.1, new Point((double) xMouse, (double) yMouse));
           break;
+
+        case "Scale --":
+
+          itemGr.scale(0.9, new Point((double) xMouse, (double) yMouse));
+          break;
+
       }
 
       itemGr.draw(getGraphics());
@@ -162,16 +157,6 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
         }
       }
     });
-  }
-
-  @Override
-  public void mouseDragged(MouseEvent e) {
-
-  }
-
-  @Override
-  public void mouseMoved(MouseEvent e) {
-    // System.out.println("X = " + e.getX() + "Y = " + e.getY());
   }
 
   /**
@@ -297,27 +282,6 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
 
   public void setList(PrimitiveList list) {
     this.list = list;
-  }
-
-  @Override
-  public void keyTyped(KeyEvent e) {
-
-    if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-      System.out.println("Right key typed");
-    }
-    if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-      System.out.println("Left key typed");
-    }
-
-  }
-
-  @Override
-  public void keyPressed(KeyEvent e) {
-
-  }
-
-  @Override
-  public void keyReleased(KeyEvent e) {
   }
 
   @Override
