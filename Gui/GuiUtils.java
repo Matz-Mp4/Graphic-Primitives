@@ -5,6 +5,8 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.BorderFactory;
 import javax.swing.border.TitledBorder;
+import Primitives2D.Point2D.Point;
+
 /**
  * Class that handles data that is useful during the program and that is
  * frequently requested
@@ -99,6 +101,15 @@ public class GuiUtils {
     title.setTitleColor(foreground);
     title.setTitleFont(new Font("Arial", Font.BOLD | Font.ITALIC, 12));
     jslider.setBorder(title);
+  }
+
+  public static double calculateDistance(Point p1, Point p2) {
+    double dY = p2.getY() - p1.getY();
+    double dX = p2.getX() - p1.getX();
+    double d = Math.sqrt(Math.pow(dY, 2) + Math.pow(dX, 2));
+
+    return d;
+
   }
 
 }

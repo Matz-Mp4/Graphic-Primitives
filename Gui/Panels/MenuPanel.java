@@ -20,7 +20,7 @@ public class MenuPanel extends JPanel {
   private JButton jbtnColor;
 
   private String options[] = { "None", "Circle", "Line", "Polygonal Line", "Rectangle", "Polygon", "Select" };
-  private String transformations[] = {"None", "Translation", "Rotation", "Scale" };
+  private String transformations[] = {"None", "Translation", "Rotation", "Scale ++", "Scale --" };
 
   public MenuPanel() {
     initialize();

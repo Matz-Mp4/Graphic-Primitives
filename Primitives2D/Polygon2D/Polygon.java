@@ -48,9 +48,9 @@ public class Polygon implements PrimitiveGr2D {
   public void translation(Point p) {
     Node aux = data.getBegin();
     LineGr line = (LineGr) aux.getItem();
-    //reference point
-    int dx = (int)(p.getX() - line.getP1().getX());
-    int dy = (int)(p.getY() - line.getP1().getY());
+    // reference point
+    int dx = (int) (p.getX() - line.getP1().getX());
+    int dy = (int) (p.getY() - line.getP1().getY());
 
     while (aux != null) {
       line = (LineGr) aux.getItem();
@@ -58,6 +58,40 @@ public class Polygon implements PrimitiveGr2D {
       line.setP2(new Point(line.getP2().getX() + dx, line.getP2().getY() + dy));
       aux = aux.getNext();
     }
+  }
+
+  public void scale(double k, Point p) {
+    Node aux = data.getBegin();
+    LineGr line = (LineGr) aux.getItem();
+
+    while (aux != null) {
+      line = (LineGr) aux.getItem();
+      line.setP1(new Point(line.getP1().getX() * k + p.getX() * (1 - k), line.getP1().getY() * k + p.getY() * (1 - k)));
+      line.setP2(new Point(line.getP2().getX() * k + p.getX() * (1 - k), line.getP2().getY() * k + p.getY() * (1 - k)));
+
+      aux = aux.getNext();
+    }
+
+  }
+
+  public void rotation(Point p, double angule) {
+    Node aux = data.getBegin();
+    LineGr line = (LineGr) aux.getItem();
+    double radian = angule * (Math.PI / 180);
+    double cos = Math.cos(radian);
+    double sin = Math.cos(radian);
+
+    while (aux != null) {
+      line = (LineGr) aux.getItem();
+      line.setP1(new Point(line.getP1().getX() * cos - line.getP1().getY() * sin,
+          line.getP1().getX() * sin + line.getP1().getY() * cos));
+
+      line.setP2(new Point(line.getP2().getX() * cos - line.getP2().getY() * sin,
+          line.getP2().getX() * sin + line.getP2().getY() * cos));
+
+      aux = aux.getNext();
+    }
+
   }
 
   public void setThickness(int thickness) {
