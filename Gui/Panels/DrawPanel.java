@@ -315,8 +315,6 @@ public class DrawPanel extends JPanel implements MouseListener {
       case "Select":
         if (menuP.getSelectTrans().getSelectedItem().equals("None") == true) {
           nodeSelected = list.select(new Point(x, y));
-          JsonFile data = new JsonFile(list);
-          data.createJSON("Helo");
         } else {
           setTransformations(x, y);
         }
