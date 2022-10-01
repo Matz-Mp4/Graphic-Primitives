@@ -173,6 +173,7 @@ public class DrawPanel extends JPanel implements MouseListener {
       public void actionPerformed(ActionEvent e){
         if(json != null){
           json.getJson("Teste.json", list);
+          list.drawEverything(getGraphics());
         }
       }
     });
