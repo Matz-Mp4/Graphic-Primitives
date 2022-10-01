@@ -19,7 +19,7 @@ public class Polygon implements PrimitiveGr2D {
   private PointGr sp, ep; // starting point and ending point
   private PointGr aux;
   private PointGr lp; // last point
-  private int thickness;
+  private int thickness = 1;
   private Color colorPolygon;
 
   public Color getColorPolygon() {
@@ -180,5 +180,9 @@ public class Polygon implements PrimitiveGr2D {
 
   public void setLP(PointGr p) {
     this.lp = p;
+  }
+
+  public DoublyLinkedList getList(){
+    return data;
   }
 }

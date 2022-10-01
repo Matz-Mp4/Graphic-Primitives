@@ -14,6 +14,7 @@ import java.awt.Graphics;
 public class PrimitiveList {
   private final int MAX = 5;
   private DoublyLinkedList[] array;
+  private String types[] = { "Circle", "Line", "Polygonal Line", "Rectangle", "Polygon" };
 
   public PrimitiveList() {
 
@@ -23,6 +24,13 @@ public class PrimitiveList {
   public void drawEverything(Graphics g) {
     for (int i = 0; i < MAX; i++) {
       drawLinkedList(array[i], array[i].getType(), g);
+    }
+  }
+
+  public void deleteAll(){
+    for (int i = 0; i < MAX; i++) {
+      array[i] = new DoublyLinkedList();
+      array[i].SetType(types[i]);
     }
   }
 
@@ -81,8 +89,15 @@ public class PrimitiveList {
 
   }
 
+  public String[] getTypes(){
+    return types;
+  }
+
+  public DoublyLinkedList[] getLinkedList(){
+    return array;
+  }
+
   private void initialize() {
-    String types[] = { "Circle", "Line", "Polygonal Line", "Rectangle", "Polygon" };
     array = new DoublyLinkedList[MAX];
     for (int i = 0; i < MAX; i++) {
       array[i] = new DoublyLinkedList();

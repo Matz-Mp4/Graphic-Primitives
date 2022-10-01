@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
+import DataStruct.JsonData.JsonFile;
 import DataStruct.LinkedList.Node;
 import DataStruct.List.PrimitiveList;
 import Gui.GuiUtils;
@@ -55,6 +56,7 @@ public class DrawPanel extends JPanel implements MouseListener {
   private MenuPanel menuP;
   private Node nodeSelected;
   private Color newColor;
+  private JsonFile json;
 
   public DrawPanel(MenuPanel menuP) {
     this.menuP = menuP;
@@ -159,6 +161,22 @@ public class DrawPanel extends JPanel implements MouseListener {
         }
       }
     });
+
+    menuP.getjbtnSave().addActionListener(new ActionListener(){
+      public void actionPerformed(ActionEvent e){
+        json = new JsonFile(list);
+        json.createJSON("Teste");
+      }
+    });
+
+    menuP.getjbtnLoad().addActionListener(new ActionListener(){
+      public void actionPerformed(ActionEvent e){
+        if(json != null){
+          json.getJson("Teste.json", list);
+        }
+      }
+    });
+    
   }
 
   /**
@@ -226,20 +244,24 @@ public class DrawPanel extends JPanel implements MouseListener {
           polygonalLineGr = new PolygonalLineGr();
           list.add(polygonalLineGr, option);
           polygonalLineGr.setPointA(x, y);
-          firstTime = false;
         }
         polygonalLineGr.setPointB(x, y);
-        polygonalLineGr.drawByClick(g);
+        if(firstTime == false){
+          polygonalLineGr.drawByClick(g);
+        }
+        firstTime = false;
         break;
       case "Polygon":
         if (firstTime == true) {
           polygonGr = new Polygon();
           list.add(polygonGr, option);
           polygonGr.setSP(new PointGr(x, y));
-          firstTime = false;
         }
         polygonGr.setEP(new PointGr(x, y));
-        polygonGr.drawByClick(g);
+        if(firstTime == false){
+          polygonGr.drawByClick(g);
+        }
+        firstTime = false;
         break;
       case "Rectangle":
         if (!changePointState()) {
@@ -255,6 +277,8 @@ public class DrawPanel extends JPanel implements MouseListener {
       case "Select":
         if (menuP.getSelectTrans().getSelectedItem().equals("None") == true) {
           nodeSelected = list.select(new Point(x, y));
+          JsonFile data = new JsonFile(list);
+          data.createJSON("Helo");
         } else {
           setTransformations(x, y);
         }

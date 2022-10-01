@@ -10,5 +10,6 @@ public class App{
 
   public static void main(String agrs[]){
     Window win = new Window();
+    //TODO Consertar data strucutre linha poligonal e poligono, pois adiciona o ultimo clique na lista deles
   }
 }

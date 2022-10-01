@@ -75,6 +75,13 @@ public class RectangleGr extends SuperRectangleGr implements PrimitiveGr2D {
     }
   }
 
+
+  /**
+   * p1 ja tenho
+   * p2 ja tenho
+   * p1.x p2.y
+   * p1.y p2.x
+   */
   public void rotation(Point p, double angule) {
 
     double radian = angule * (Math.PI / 180);

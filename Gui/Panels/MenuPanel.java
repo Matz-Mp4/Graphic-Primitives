@@ -18,6 +18,8 @@ public class MenuPanel extends JPanel {
   private JButton jbtnDelete;
   private JSlider jsliderThickness;
   private JButton jbtnColor;
+  private JButton jbtnSave;
+  private JButton jbtnLoad;
 
   private String options[] = { "None", "Circle", "Line", "Polygonal Line", "Rectangle", "Polygon", "Select" };
   private String transformations[] = {"None", "Translation", "Rotation", "Scale ++", "Scale --" };
@@ -39,6 +41,8 @@ public class MenuPanel extends JPanel {
     add(getjbtnRedraw());
     add(getjbtnDelete());
     add(getjbtnColor());
+    add(getjbtnSave());
+    add(getjbtnLoad());
     add(getJsliderThickness());
     add(selectTrans);
   }
@@ -65,6 +69,23 @@ public class MenuPanel extends JPanel {
       GuiUtils.setShapeButton(Color.white, Color.black, jbtnRedraw);
     }
     return jbtnRedraw;
+
+  }
+  public JButton getjbtnLoad() {
+    if (jbtnLoad == null) {
+      jbtnLoad = new JButton("Load");
+      GuiUtils.setShapeButton(Color.white, Color.black, jbtnLoad);
+    }
+    return jbtnLoad;
+
+  }
+
+  public JButton getjbtnSave() {
+    if (jbtnSave == null) {
+      jbtnSave = new JButton("Save");
+      GuiUtils.setShapeButton(Color.white, Color.black, jbtnSave);
+    }
+    return jbtnSave;
 
   }
 

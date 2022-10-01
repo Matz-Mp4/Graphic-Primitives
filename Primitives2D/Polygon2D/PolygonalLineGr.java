@@ -157,4 +157,8 @@ public class PolygonalLineGr implements PrimitiveGr2D {
     return veri;
   }
 
+  public DoublyLinkedList getList(){
+    return data;
+  }
+
 }

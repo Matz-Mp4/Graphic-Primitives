@@ -122,7 +122,18 @@ public void rotationLine(Point p, double angule){
     double cos = Math.cos(radian);
     double sin = Math.cos(radian);
 
-    double disX = (p.getX() - getP1().getX());
+    /*
+    Formula original
+    x’= xcos(angule) -ysen(angule)
+    y’= xsen(angule)+ ycos(angule)
+
+    x’= Rcos (+)=Rcos .cos -R sen .sen y’= Rsen (+)=Rsen .cos -R sen .cos 
+    
+ --------------------------------
+    Como a formula original se refere a um ponto, nós precisamos somar o ponto original que estamos
+    mudando. Também, multiplicamos o disX pois na formula original tem o 'R' que é o  raio
+    */
+    double disX = (p.getX() - getP1().getX()); //Raio da circuferencia
     double disY = (p.getY() - getP1().getY());
     setP1(new Point(disX * cos - disY * sin + getP1().getX(), disX * sin + disY * cos + getP1().getY()));
 

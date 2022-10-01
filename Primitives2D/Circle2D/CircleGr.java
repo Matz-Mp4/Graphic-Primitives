@@ -13,13 +13,14 @@ public class CircleGr extends SuperCircleGr implements PrimitiveGr2D {
     super(circle);
   }
 
+  public CircleGr(int x, int y, int radius){
+    super(x, y, radius);
+  }
+
   public CircleGr(int x, int y, int radius, String name) {
     super(x, y, radius, name);
   }
 
-  public CircleGr(int x, int y, int radius) {
-    super(x, y, radius);
-  }
 
   public void draw(Graphics g) {
     double angule, rowEnd;
