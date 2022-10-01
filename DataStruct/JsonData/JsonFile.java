@@ -76,13 +76,11 @@ public class JsonFile {
     createFile(fileName, mainJson);
   }
 
-  public void getJson(String fileName, PrimitiveList list) {
-    File file = null;
+  public void getJson(File file, PrimitiveList list) {
     BufferedReader br = null;
     FileReader fr = null;
 
     // caminho do arquivo
-    file = new File(PATH + fileName);
     if (!file.exists()) { // testa para ver se o arquivo existe
       JOptionPane.showInputDialog("File does not exist");
     }

@@ -10,11 +10,21 @@ import java.awt.event.KeyListener;
 import java.awt.event.*;
 import java.util.Scanner;
 
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.JOptionPane;
 
 import DataStruct.JsonData.JsonFile;
 import DataStruct.LinkedList.Node;
@@ -58,8 +68,9 @@ public class DrawPanel extends JPanel implements MouseListener {
   private Color newColor;
   private JsonFile json;
 
-  public DrawPanel(MenuPanel menuP) {
+  public DrawPanel(MenuPanel menuP, PrimitiveList list) {
     this.menuP = menuP;
+    this.list = list;
     initialize();
     setEvent();
   }
@@ -68,6 +79,7 @@ public class DrawPanel extends JPanel implements MouseListener {
     setBackground(GuiUtils.getBackground());
     setForeground(GuiUtils.getForeground());
     addMouseListener(this);
+    json = new JsonFile(list);
   }
 
   private void resetVariables() {
@@ -114,11 +126,6 @@ public class DrawPanel extends JPanel implements MouseListener {
       }
     });
 
-    menuP.getSelectTrans().addItemListener(new ItemListener() {
-      public void itemStateChanged(ItemEvent itemEvent) {
-        /* setTransformations(); */
-      }
-    });
     menuP.getjbtnRedraw().addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         list.drawEverything(getGraphics());
@@ -162,22 +169,52 @@ public class DrawPanel extends JPanel implements MouseListener {
       }
     });
 
-    menuP.getjbtnSave().addActionListener(new ActionListener(){
-      public void actionPerformed(ActionEvent e){
-        json = new JsonFile(list);
-        json.createJSON("Teste");
-      }
-    });
+    menuP.getjbtnSave().addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        boolean veri = false;
+        String fileName = "";
 
-    menuP.getjbtnLoad().addActionListener(new ActionListener(){
-      public void actionPerformed(ActionEvent e){
-        if(json != null){
-          json.getJson("Teste.json", list);
-          list.drawEverything(getGraphics());
+        try {
+          fileName = JOptionPane.showInputDialog("File name :");
+          if (fileName != null) {
+            veri = true;
+          }
+        } catch (Exception ae) {
+          veri = false;
+        }
+        if (veri == true) {
+          json = new JsonFile(list);
+          json.createJSON(fileName);
         }
       }
     });
-    
+
+    menuP.getjbtnLoad().addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        if (json != null) {
+
+          JFileChooser winFile = new JFileChooser();
+
+          FileNameExtensionFilter filter = new FileNameExtensionFilter("Only  json file", "json"); // txtFiltro = new
+          winFile.setAcceptAllFileFilterUsed(false);
+          winFile.addChoosableFileFilter(filter);
+
+          int answerFileChooser = winFile.showOpenDialog(null);
+
+          if (answerFileChooser == JFileChooser.APPROVE_OPTION) {
+
+            File fileSelected = winFile.getSelectedFile();
+            json.getJson(fileSelected, list);
+            list.drawEverything(getGraphics());
+
+          } else {
+            JOptionPane.showMessageDialog(null, "No file selected");
+          }
+
+        }
+      }
+    });
+
   }
 
   /**
@@ -247,7 +284,7 @@ public class DrawPanel extends JPanel implements MouseListener {
           polygonalLineGr.setPointA(x, y);
         }
         polygonalLineGr.setPointB(x, y);
-        if(firstTime == false){
+        if (firstTime == false) {
           polygonalLineGr.drawByClick(g);
         }
         firstTime = false;
@@ -259,7 +296,7 @@ public class DrawPanel extends JPanel implements MouseListener {
           polygonGr.setSP(new PointGr(x, y));
         }
         polygonGr.setEP(new PointGr(x, y));
-        if(firstTime == false){
+        if (firstTime == false) {
           polygonGr.drawByClick(g);
         }
         firstTime = false;

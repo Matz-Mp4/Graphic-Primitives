@@ -33,9 +33,8 @@ public class Window extends JFrame {
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     add(getTitleP(), BorderLayout.PAGE_START);
     add(getMenuP(), BorderLayout.PAGE_END);
-    add(getDrawP(), BorderLayout.CENTER);
     list = new PrimitiveList();
-    getDrawP().setList(list);
+    add(getDrawP(), BorderLayout.CENTER);
     setVisible(true);
   }
 
@@ -43,7 +42,7 @@ public class Window extends JFrame {
 
   public DrawPanel getDrawP() {
     if (drawP == null) {
-      drawP = new DrawPanel(menuP);
+      drawP = new DrawPanel(menuP, list);
     }
     return drawP;
   }
