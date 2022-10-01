@@ -12,6 +12,10 @@ import Primitives2D.Point2D.Point;
 
 import java.awt.Color;
 
+  /**
+   * Class that handles the polygon Graphical
+   */
+ 
 public class Polygon implements PrimitiveGr2D {
   private DoublyLinkedList data;
 
@@ -37,6 +41,10 @@ public class Polygon implements PrimitiveGr2D {
     }
   }
 
+  /**
+   * change the color of  polygon 
+   * @param Color color
+   */
   public void changeColor(Color newColor) {
     setColorPolygon(newColor);
   }
@@ -45,6 +53,11 @@ public class Polygon implements PrimitiveGr2D {
     return thickness;
   }
 
+  /**
+   * move the polygon to a point  
+   * @param Point p
+   */
+ 
   public void translation(Point p) {
     Node aux = data.getBegin();
     LineGr line = (LineGr) aux.getItem();
@@ -60,6 +73,10 @@ public class Polygon implements PrimitiveGr2D {
     }
   }
 
+  /**
+   * change the size of the polygon  
+   * @param double k, Point p, 
+   */
   public void scale(double k, Point p) {
     Node aux = data.getBegin();
     LineGr line = (LineGr) aux.getItem();
@@ -72,6 +89,10 @@ public class Polygon implements PrimitiveGr2D {
 
   }
 
+  /**
+   * rotate the polygon from reference point  
+   * @param double k, Point p, 
+   */
   public void rotation(Point p, double angule) {
     Node aux = data.getBegin();
     LineGr line = (LineGr) aux.getItem();
@@ -97,6 +118,10 @@ public class Polygon implements PrimitiveGr2D {
     iniatilize();
   }
 
+  /**
+   * Verify wether a point belongs to this figure 
+   * @param Point p
+  */
   public boolean belongs(Point p) {
     boolean veri = false;
     Node aux = data.getBegin();
@@ -110,12 +135,19 @@ public class Polygon implements PrimitiveGr2D {
     return veri;
   }
 
+  /**
+   * Inicialize the application with default parameters
+   */
   private void iniatilize() {
     data = new DoublyLinkedList();
     thickness = 2;
     colorPolygon = Color.black;
   }
 
+  /**
+   * Draw a line from the polygon
+   * @param g
+   */
   public void drawByClick(Graphics g) {
     if (g != null) {
       LineGr lineGr = new LineGr(aux, ep);
@@ -126,6 +158,10 @@ public class Polygon implements PrimitiveGr2D {
     }
   }
 
+  /**
+   * Erase the polygon from the screen
+   * @param Graphics
+   */
   public void erase(Graphics g) {
     Node aux = data.getBegin();
     while (aux != null) {
@@ -137,6 +173,10 @@ public class Polygon implements PrimitiveGr2D {
     }
   }
 
+  /**
+   * change the thickness of  polygon 
+   * @param int value
+   */
   public void changeThickness(int value) {
     setThickness(value);
   }
@@ -150,6 +190,7 @@ public class Polygon implements PrimitiveGr2D {
     }
   }
 
+
   public void draw(Graphics g) {
     Node aux = data.getBegin();
     while (aux != null) {
@@ -160,6 +201,7 @@ public class Polygon implements PrimitiveGr2D {
     }
   }
 
+  //Auxiliar function tha changes the last point of polygon to be able to draw
   private void lastPoint() {
     aux = ep;
   }

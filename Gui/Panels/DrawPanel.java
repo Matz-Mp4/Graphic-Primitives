@@ -87,6 +87,11 @@ public class DrawPanel extends JPanel implements MouseListener {
     firstTime = true;
   }
 
+  /**
+   * Method that handles the transformations events
+   * @param xMouse
+   * @param yMouse
+   */
   private void setTransformations(int xMouse, int yMouse) {
     String optionTrans = menuP.getSelectTrans().getSelectedItem().toString();
     if (menuP.getSelector().getSelectedItem().equals("Select") && nodeSelected != null) {
@@ -326,6 +331,12 @@ public class DrawPanel extends JPanel implements MouseListener {
     }
   }
 
+  /**
+   * Method that closes a polygon or change the state of application to start a new polygonal line
+   * @param amountClicks
+   * @param x
+   * @param y
+   */
   private void doubleClick(int amountClicks, int x, int y) {
     if (amountClicks == 2) {
       String option = menuP.getSelector().getSelectedItem().toString();
@@ -348,7 +359,6 @@ public class DrawPanel extends JPanel implements MouseListener {
 
   @Override
   public void mousePressed(MouseEvent e) {
-
   }
 
   @Override

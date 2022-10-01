@@ -8,6 +8,7 @@ import Primitives2D.Circle2D.Circle;
 import Primitives2D.Circle2D.CircleGr;
 import Primitives2D.Line2D.LineGr;
 import Primitives2D.Point2D.Point;
+import Primitives2D.Point2D.PointGr;
 import Primitives2D.Polygon2D.Polygon;
 import Primitives2D.Polygon2D.PolygonalLineGr;
 import Primitives2D.Rectangle2D.RectangleGr;
@@ -25,18 +26,28 @@ import java.io.IOException;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
+/**
+ * Class that creates JSON files
+ * @version 1.0.0
+ */
 public class JsonFile {
 
   private PrimitiveList list;
   private JSONObject mainJson;
   private String primitives[];
   private final String PATH = "Save/";
+  private double screen;
 
   public JsonFile(PrimitiveList list) {
     this.list = list;
     primitives = list.getTypes();
   }
 
+  /**
+   * Given a file name, creates a JSON based on the primitive list that handles the data 
+   * of primitive 2D
+   * @param fileName
+   */
   public void createJSON(String fileName) {
     mainJson = new JSONObject();
 
@@ -76,12 +87,19 @@ public class JsonFile {
     createFile(fileName, mainJson);
   }
 
+  /**
+   * Method that recovers a JSON file given a file name. With this JSON.
+   * It adds the JSON primitives to the application
+   * For every primitive in the JSON array it iterates over and retrieves the primitives
+   * @param file
+   * @param list
+   */
   public void getJson(File file, PrimitiveList list) {
     BufferedReader br = null;
     FileReader fr = null;
 
-    // caminho do arquivo
-    if (!file.exists()) { // testa para ver se o arquivo existe
+    // file locale
+    if (!file.exists()) { // tests if the file is archived
       JOptionPane.showInputDialog("File does not exist");
     }
     String jsonString = "";
@@ -131,6 +149,7 @@ public class JsonFile {
         list.add(lineGr, "Line");
       }
 
+      //Iteracting over array of circles
       JSONArray circles = jsonObj.getJSONArray("Circle");
       for (int i = 0; i < circles.length(); i++) {
         JSONObject circle = circles.getJSONObject(i);
@@ -151,26 +170,27 @@ public class JsonFile {
         list.add(circleGr, "Circle");
       }
 
+      //Iteracting over array of rectangles
       JSONArray retangles = jsonObj.getJSONArray("Rectangle");
       for (int i = 0; i < retangles.length(); i++) {
         JSONObject retangle = retangles.getJSONObject(i);
 
         JSONObject p1 = retangle.getJSONObject("p1");
-        int x1 = p1.getInt("x");
-        int y1 = p1.getInt("y");
+        int x1 = (int) p1.getDouble("x");
+        int y1 = (int) p1.getDouble("y");
 
         JSONObject p2 = retangle.getJSONObject("p2");
-        int x2 = p2.getInt("x");
-        int y2 = p2.getInt("y");
-        /*
-         * JSONObject p3 = retangle.getJSONObject("p3");
-         * int x3 = p1.getInt("x");
-         * int y3 = p1.getInt("y");
-         * 
-         * JSONObject p4 = retangle.getJSONObject("p4");
-         * int x4 = p2.getInt("x");
-         * int y4 = p2.getInt("y");
-         */
+        int x2 = (int) p2.getDouble("x");
+        int y2 = (int) p2.getDouble("y");
+
+        JSONObject p3 = retangle.getJSONObject("p3");
+        int x3 = (int) p3.getDouble("x");
+        int y3 = (int) p3.getDouble("y");
+
+        JSONObject p4 = retangle.getJSONObject("p4");
+        int x4 = (int) p4.getDouble("x");
+        int y4 = (int) p4.getDouble("y");
+
 
         JSONObject color = retangle.getJSONObject("color");
         int r = color.getInt("r");
@@ -179,14 +199,15 @@ public class JsonFile {
 
         RectangleGr rectangle = new RectangleGr(new Point(1, 1), new Point(1, 1));
         rectangle.setRectangelColor(new Color(r, g, b));
-        rectangle.convertToRectangle(x1, y1, x2, y2);
+        rectangle.createRectangle(new PointGr(x1,y1), new PointGr(x3,y3), new PointGr(x4,y4), new PointGr(x2,y2));
         list.add(rectangle, "Rectangle");
       }
 
+      //Iteracting over array of polygons
       JSONArray polygons = jsonObj.getJSONArray("Polygon");
       for (int i = 0; i < polygons.length(); i++) {
         JSONObject polygon = polygons.getJSONObject(i);
-        JSONArray pointsArray = polygon.getJSONArray("ponto");
+        JSONArray pointsArray = polygon.getJSONArray("point");
 
         Polygon polygonGr = new Polygon();
 
@@ -195,7 +216,7 @@ public class JsonFile {
         double yAnt = firstPoint.getDouble("y");
 
         for (int j = 1; j < pointsArray.length(); j++) {
-          JSONObject point = pointsArray.getJSONObject(i);
+          JSONObject point = pointsArray.getJSONObject(j);
           double x = point.getDouble("x");
           double y = point.getDouble("y");
 
@@ -213,6 +234,7 @@ public class JsonFile {
         list.add(polygonGr, "Polygon");
       }
 
+      //Iteracting over array of polygonal line
       JSONArray polygonalLine = jsonObj.getJSONArray("Polygonal Line");
       for (int i = 0; i < polygonalLine.length(); i++) {
         JSONObject polygonal = polygonalLine.getJSONObject(i);
@@ -225,7 +247,7 @@ public class JsonFile {
         double yAnt = firstPoint.getDouble("y");
 
         for (int j = 1; j < pointsArray.length(); j++) {
-          JSONObject point = pointsArray.getJSONObject(i);
+          JSONObject point = pointsArray.getJSONObject(j);
           double x = point.getDouble("x");
           double y = point.getDouble("y");
 
@@ -245,6 +267,11 @@ public class JsonFile {
     }
   }
 
+  /**
+   * Adds to JSON array every polygon
+   * @param polygonArray
+   * @param aux
+   */
   private void polygonToJson(JSONArray polygonArray, Node aux) {
     while (aux != null) {
       JSONObject polygon = new JSONObject();
@@ -264,9 +291,9 @@ public class JsonFile {
         node = node.getNext();
       }
 
-      // Adicionando ultimo ponto
-      if (line != null) { // Precisa deixar pois capta sempre o primeiro ponto. No final do loop teremos o
-                          // ultimo ponto
+      // Placing the last point
+      if (line != null) { // Need to leave it because it always captures the first point. At the end of the loop we will have the 
+                          // last point
         JSONObject p = new JSONObject();
         p.put("x", line.getP2().getX());
         p.put("y", line.getP2().getY());
@@ -286,6 +313,11 @@ public class JsonFile {
     }
   }
 
+  /**
+   * Adds to JSONarray every polygonal line
+   * @param polygonLineArray
+   * @param aux
+   */
   private void polygonLineToJson(JSONArray polygonLineArray, Node aux) {
     while (aux != null) {
       JSONObject polygon = new JSONObject();
@@ -305,9 +337,9 @@ public class JsonFile {
         node = node.getNext();
       }
 
-      // Adicionando ultimo ponto
-      if (line != null) { // Precisa deixar pois capta sempre o primeiro ponto. No final do loop teremos o
-                          // ultimo ponto
+      // Placing the last point
+      if (line != null) { // Need to leave it because it always captures the first point. At the end of the loop we will have the 
+                          // last point
         JSONObject p = new JSONObject();
         p.put("x", line.getP2().getX());
         p.put("y", line.getP2().getY());
@@ -327,26 +359,31 @@ public class JsonFile {
     }
   }
 
+  /**
+   * Adds to JSONarray every rectangle
+   * @param rectangleArray
+   * @param aux
+   */
   private void rectangleToJson(JSONArray rectangleArray, Node aux) {
     while (aux != null) {
       JSONObject rectangle = new JSONObject();
       RectangleGr rectangleAux = (RectangleGr) aux.getItem();
 
       JSONObject p1 = new JSONObject();
-      p1.put("x", rectangleAux.getDiagonal().getP1().getX());
-      p1.put("y", rectangleAux.getDiagonal().getP1().getY());
+      p1.put("x", rectangleAux.getLineGr(1).getP1().getX());
+      p1.put("y", rectangleAux.getLineGr(1).getP1().getY());
 
       JSONObject p2 = new JSONObject();
-      p2.put("x", rectangleAux.getDiagonal().getP2().getX());
-      p2.put("y", rectangleAux.getDiagonal().getP2().getY());
+      p2.put("x", rectangleAux.getLineGr(2).getP2().getX());
+      p2.put("y", rectangleAux.getLineGr(2).getP2().getY());
 
       JSONObject p3 = new JSONObject();
-      p3.put("x", rectangleAux.getDiagonal().getP1().getX());
-      p3.put("y", rectangleAux.getDiagonal().getP2().getY());
+      p3.put("x", rectangleAux.getLineGr(1).getP2().getX());
+      p3.put("y", rectangleAux.getLineGr(1).getP2().getY());
 
       JSONObject p4 = new JSONObject();
-      p4.put("x", rectangleAux.getDiagonal().getP2().getX());
-      p4.put("y", rectangleAux.getDiagonal().getP1().getY());
+      p4.put("x", rectangleAux.getLineGr(0).getP1().getX());
+      p4.put("y", rectangleAux.getLineGr(0).getP1().getY());
 
       JSONObject color = new JSONObject();
       color.put("r", rectangleAux.getRectangelColor().getRed());
@@ -364,6 +401,11 @@ public class JsonFile {
     }
   }
 
+  /**
+   * Adds to JSONarray every circle
+   * @param circleArray
+   * @param aux
+   */
   private void circleToJson(JSONArray circleArray, Node aux) {
     while (aux != null) {
       JSONObject circle = new JSONObject();
@@ -387,7 +429,11 @@ public class JsonFile {
       aux = aux.getNext();
     }
   }
-
+/**
+ * Adds to JSoNarray every line
+ * @param lineArray
+ * @param aux
+ */
   private void lineToJson(JSONArray lineArray, Node aux) {
     while (aux != null) {
       JSONObject line = new JSONObject();
@@ -413,11 +459,16 @@ public class JsonFile {
       line.put("p1", p1);
       line.put("p2", p2);
       line.put("color", color);
-      lineArray.put(line);
+      lineArray.put(line);// Placing the last point
       aux = aux.getNext();
     }
   }
 
+  /**
+ * Creates a JSON file
+ * @param fileName
+ * @param json
+ */
   private void createFile(String fileName, JSONObject json) {
     FileWriter writeFile;
     System.out.println(PATH + fileName + ".json");

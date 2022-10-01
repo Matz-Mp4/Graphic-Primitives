@@ -3,14 +3,14 @@ package Primitives2D.Line2D;
 import Primitives2D.Point2D.Point;
 
 /**
- * REta matematica.
+ * Math line
  *
  * @author Julio
  * @version 12/08/2020
  */
 public class Line {
 
-  // Atributos da reta
+  // Line attributes
   private Point p1, p2;
   private int thickness = 2;
 
@@ -86,7 +86,10 @@ public class Line {
     double b = getP1().getY() - calculateInclination() * getP1().getX();
     return b;
   }
-
+/**
+   * Verify wether a point belongs to this figure 
+   * @param Point p
+  */
   public boolean belongs(Point p){
     boolean veri = false;
     // y = a * x + b => a *x + b - y = 0
@@ -101,7 +104,7 @@ public class Line {
         veri = true;
       }
     }else{
-      // x = k, where k is constant
+      // x = k, where k is a constant
       //So p1.x = p2.x
 
       if(p.getX() == getP1().getX()){
@@ -116,22 +119,27 @@ public class Line {
     return veri;
   }
 
-public void rotationLine(Point p, double angule){
 
-    double radian = angule * (Math.PI / 180);
+  /**
+   * rotate the line from reference point  
+   * @param double k, Point p, 
+   */
+public void rotationLine(Point p, double angle){
+
+    double radian = angle * (Math.PI / 180);
     double cos = Math.cos(radian);
     double sin = Math.cos(radian);
 
     /*
-    Formula original
-    x’= xcos(angule) -ysen(angule)
-    y’= xsen(angule)+ ycos(angule)
+    Original formula
+    x’= xcos(angle) -ysen(angue)
+    y’= xsen(angle)+ ycos(angle)
 
     x’= Rcos (+)=Rcos .cos -R sen .sen y’= Rsen (+)=Rsen .cos -R sen .cos 
     
  --------------------------------
-    Como a formula original se refere a um ponto, nós precisamos somar o ponto original que estamos
-    mudando. Também, multiplicamos o disX pois na formula original tem o 'R' que é o  raio
+    As the original formula refers to a point, we need to add the original point that we are
+    changing. Also, we multiply the disX because in the original formula there is the 'R' which is the radius
     */
     double disX = (p.getX() - getP1().getX()); //Raio da circuferencia
     double disY = (p.getY() - getP1().getY());
@@ -144,6 +152,11 @@ public void rotationLine(Point p, double angule){
   }
 
 
+  /**
+   * move the line to a point  
+   * @param Point p
+   */
+ 
   public void translationLine(Point p){
     
     int dx =(int)( p.getX() - getP1().getX());
@@ -155,6 +168,10 @@ public void rotationLine(Point p, double angule){
     
   }
 
+  /**
+   * change the size of the line  
+   * @param double k, Point p, 
+   */
   public void scaleLine(double k, Point p) {
     setP1(new Point(getP1().getX() * k + p.getX()*(1 - k), getP1().getY() * k + p.getY()*(1 - k)));
     setP2(new Point(getP2().getX() * k + p.getX()*(1 - k), getP2().getY() * k+ p.getY()*(1 - k)));

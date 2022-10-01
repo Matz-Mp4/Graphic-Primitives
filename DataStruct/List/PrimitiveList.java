@@ -11,6 +11,12 @@ import Primitives2D.Polygon2D.PolygonalLineGr;
 import Primitives2D.Rectangle2D.RectangleGr;
 import java.awt.Graphics;
 
+/**
+ * Class that holds the data throught the application
+ * For each primitive type, there is an linked list. 
+ * The linked list is reached through an array of types
+ * @version 1.0.3
+ */
 public class PrimitiveList {
   private final int MAX = 5;
   private DoublyLinkedList[] array;
@@ -21,12 +27,19 @@ public class PrimitiveList {
     initialize();
   }
 
+  /**
+   * Draw every primitive in the list
+   * @param g
+   */
   public void drawEverything(Graphics g) {
     for (int i = 0; i < MAX; i++) {
       drawLinkedList(array[i], array[i].getType(), g);
     }
   }
 
+  /**
+   * Delete all the data in the list
+   */
   public void deleteAll(){
     for (int i = 0; i < MAX; i++) {
       array[i] = new DoublyLinkedList();
@@ -34,6 +47,11 @@ public class PrimitiveList {
     }
   }
 
+  /**
+   * Delete a primitive graphic from the list and from the screen
+   * @param item
+   * @param g
+   */
   public void delete(Node item, Graphics g) {
     boolean find = false;
     int i = 0;
@@ -55,6 +73,12 @@ public class PrimitiveList {
     }
   }
 
+  /**
+   * Draw every primitive from the list
+   * @param list
+   * @param type
+   * @param g
+   */
   private void drawLinkedList(DoublyLinkedList list, String type, Graphics g) {
     Node aux = list.getBegin();
     Object item;
@@ -89,14 +113,25 @@ public class PrimitiveList {
 
   }
 
+  /**
+   * Returns the primitives of the list in String form
+   * @return String[]
+   */
   public String[] getTypes(){
     return types;
   }
 
+  /**
+   * Return the array of linked list
+   * @return DoublyLinkedList[]
+   */
   public DoublyLinkedList[] getLinkedList(){
     return array;
   }
 
+  /**
+   * Start the primitive list 
+   */
   private void initialize() {
     array = new DoublyLinkedList[MAX];
     for (int i = 0; i < MAX; i++) {
@@ -105,6 +140,11 @@ public class PrimitiveList {
     }
   }
 
+  /**
+   * Adds a primitive in the list
+   * @param item
+   * @param type
+   */
   public void add(Object item, String type) {
     int i = 0;
     while (i < MAX && type.equals(array[i].getType()) == false) {
@@ -113,6 +153,11 @@ public class PrimitiveList {
     array[i].add(item, type);
   }
 
+  /**
+   * Find the primitive given a point
+   * @param p
+   * @return
+   */
   public Node select(Point p) {
 
     double i = -2, j = -2;
@@ -133,6 +178,11 @@ public class PrimitiveList {
     return item;
   }
 
+  /**
+   * Find the primitive through an array around the point
+   * @param P
+   * @return
+   */
   public Node findObject(Point P) {
 
     int i = 0;

@@ -9,6 +9,9 @@ import Primitives2D.Point2D.*;
 
 public class CircleGr extends SuperCircleGr implements PrimitiveGr2D {
 
+  /**
+   * Class that handles the Circle Graphical
+   */
   public CircleGr(SuperCircleGr circle) {
     super(circle);
   }
@@ -21,7 +24,10 @@ public class CircleGr extends SuperCircleGr implements PrimitiveGr2D {
     super(x, y, radius, name);
   }
 
-
+  /**
+   * draw a circle 
+   * @param Graphics g
+   */
   public void draw(Graphics g) {
     double angule, rowEnd;
 
@@ -35,26 +41,49 @@ public class CircleGr extends SuperCircleGr implements PrimitiveGr2D {
     }
   }
 
+  /**
+   * erase a circle 
+   * @param Graphics g
+   */
   public void erase(Graphics g) {
     setCircleColor(GuiUtils.getBackground());
     draw(g);
     setCircleColor(GuiUtils.getForeground());
   }
 
+  /**
+   * change the thickness of  circle 
+   * @param int value
+   */
   public void changeThickness(int value) {
     setThickness(value);
   }
 
+
+  /**
+   * change the color of  circle 
+   * @param Color color
+   */
+ 
   public void changeColor(Color newColor) {
     setCircleColor(newColor);
   }
 
+  /**
+   * move the circle to a point  
+   * @param Point p
+   */
+ 
   public void translation(Point p) {
 
     setX(p.getX());
     setY(p.getY());
   }
 
+  /**
+   * change the size of the circle  
+   * @param double k, Point p, 
+   */
   public void scale(double k, Point p) {
     setX(getX() * k + p.getX() * (1 - k));
     setY(getY() * k + p.getY() * (1 - k));
@@ -62,6 +91,11 @@ public class CircleGr extends SuperCircleGr implements PrimitiveGr2D {
 
   }
 
+
+  /**
+   * rotate the circle from reference point  
+   * @param double k, Point p, 
+   */
   public void rotation(Point p, double angule) {
 
     double radian = angule * (Math.PI / 180);

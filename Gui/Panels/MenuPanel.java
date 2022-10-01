@@ -10,6 +10,9 @@ import javax.swing.border.Border;
 
 import Gui.GuiUtils;
 
+/**
+ * Class that holds every panel from the menu. Most of it functions are getters and setters
+ */
 public class MenuPanel extends JPanel {
   private JComboBox<String> selector;
   private JComboBox<String> selectTrans;

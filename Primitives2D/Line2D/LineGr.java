@@ -7,6 +7,11 @@ import Primitives2D.PrimitiveGr2D;
 import Primitives2D.Point2D.Point;
 import Primitives2D.Point2D.PointGr;
 
+
+  /**
+   * Class that handles the line Graphical
+   */
+ 
 public class LineGr extends SuperLineGr implements PrimitiveGr2D {
 
   public LineGr(SuperLineGr line) {
@@ -25,8 +30,10 @@ public class LineGr extends SuperLineGr implements PrimitiveGr2D {
     super(l.getP1(), l.getP2());
   }
 
-/**
-   * @param g
+
+  /**
+   * draw a line 
+   * @param Graphics g
    */
   public void draw(Graphics g) {
     // y = a * x + b, a = line inclination
@@ -106,6 +113,11 @@ public class LineGr extends SuperLineGr implements PrimitiveGr2D {
     }
   }
 
+  /**
+   * erase a line 
+   * @param Graphics g
+   */
+ 
   public void erase(Graphics g) {
     setLineColor(GuiUtils.getBackground());
     draw(g);
@@ -113,27 +125,47 @@ public class LineGr extends SuperLineGr implements PrimitiveGr2D {
 
   }
 
+  /**
+   * change the thickness of  line 
+   * @param int value
+   */
   public void changeThickness(int value){
     setThickness(value);
   }
 
-
+  /**
+   * change the color of  line 
+   * @param Color color
+   */
+ 
   public void changeColor(Color newColor){
     setLineColor(newColor);
   }
 
+  /**
+   * move the line to a point  
+   * @param Point p
+   */
   public void translation(Point p){
     translationLine(p);
     
   }
 
+  /**
+   * change the size of the line  
+   * @param double k, Point p, 
+   */
   public void scale(double k, Point p) {
     scaleLine(k, p);
   }
 
 
-  public void rotation(Point p, double angule){
-    rotationLine(p, angule);
+  /**
+   * rotate the line from reference point  
+   * @param double k, Point p, 
+   */
+  public void rotation(Point p, double angle){
+    rotationLine(p, angle);
   }
 
 

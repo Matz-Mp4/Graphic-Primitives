@@ -111,7 +111,6 @@ public class SuperCircleGr extends Circle {
 
   /**
    * Gets the circle color
-   * 
    * @return
    */
   public Color getCircleNameColor() {
@@ -173,7 +172,6 @@ public class SuperCircleGr extends Circle {
     double dY = p2.getY() - p1.getY();
     double dX = p2.getX() - p1.getX();
     double d = Math.sqrt(Math.pow(dY, 2) + Math.pow(dX, 2));
-    System.out.println("Radius = " + d);
 
     setRadius(d);
   }

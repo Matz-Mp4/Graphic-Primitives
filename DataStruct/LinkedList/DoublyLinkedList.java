@@ -2,6 +2,10 @@ package DataStruct.LinkedList;
 
 import java.util.Random;
 
+/**
+ * Class that holds the data throught the application
+ * @version 1.0.1
+ */
 public class DoublyLinkedList {
   private int length;
   private Node begin, end;
@@ -14,6 +18,11 @@ public class DoublyLinkedList {
     setLength(0);
   }
 
+  /**
+   * Adds a item (primitive 2D) with a string relating it type
+   * @param item
+   * @param type
+   */
   public void add(Object item, String type) {
     Node temp = new Node(item, randomId.nextLong());
     temp.setType(type);
@@ -74,6 +83,11 @@ public class DoublyLinkedList {
     return s;
   }
 
+  /**
+   * Find a Node given and id
+   * @param id
+   * @return
+   */
   public Node find(long id) {
     Node ap = null;
 
@@ -91,6 +105,9 @@ public class DoublyLinkedList {
     return ap;
   }
 
+  /**
+   * Removes from the list the first Node
+   */
   public void removeBegin() {
     Node begin = getBegin(), next;
     if (getLength() != 0) {
@@ -106,6 +123,9 @@ public class DoublyLinkedList {
     }
   }
 
+  /**
+   * Removes from the list the last Node
+   */
   public void removeEnd() {
     Node end = getEnd(), pre;
     if (getLength() != 0) {
@@ -123,6 +143,10 @@ public class DoublyLinkedList {
     }
   }
 
+  /**
+   * Remove from the list given an id
+   * @param id
+   */
   public void remove(long id) {
     Node ap, pre, next;
 

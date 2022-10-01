@@ -18,12 +18,20 @@ import Gui.GuiUtils;
  * @version 15/08/2021
  */
 
+/**
+   * Class that handles the rectangle Graphical
+   */
 public class RectangleGr extends SuperRectangleGr implements PrimitiveGr2D {
 
   public RectangleGr(Point p1, Point p2) {
     super(p1, p2);
   }
 
+  /**
+   * draw a rectangle 
+   * @param Graphics g
+   */
+ 
   public void draw(Graphics g) {
     for (int i = 0; i < MAX; i++) {
       lines[i].setThickness(getThickness());
@@ -31,6 +39,11 @@ public class RectangleGr extends SuperRectangleGr implements PrimitiveGr2D {
     }
   }
 
+  /**
+   * erase a rectangle from the screen
+   * @param Graphics g
+   */
+ 
   public void erase(Graphics g) {
     for (int i = 0; i < MAX; i++) {
       lines[i].setLineColor(GuiUtils.getBackground());
@@ -39,14 +52,28 @@ public class RectangleGr extends SuperRectangleGr implements PrimitiveGr2D {
     }
   }
 
+  /**
+   * change the thickness of  rectangle 
+   * @param int value
+   */
+ 
   public void changeThickness(int value) {
     setThickness(value);
   }
 
+  /**
+   * change the color of  rectangle 
+   * @param Color color
+   */
+ 
   public void changeColor(Color newColor) {
     setRectangelColor(newColor);
   }
-
+  /**
+   * move the rectangle to a point  
+   * @param Point p
+   */
+ 
   public void translation(Point p) {
     
     getDiagonal().translationLine(p);
@@ -59,8 +86,13 @@ public class RectangleGr extends SuperRectangleGr implements PrimitiveGr2D {
       lines[i] = new LineGr(getLine(i));
       lines[i].setLineColor(rectangelColor);
     }
+    updateLines(this);
   }
 
+  /**
+   * change the size of the rectangle  
+   * @param double k, Point p, 
+   */
   public void scale(double k, Point p) {
     getDiagonal().scaleLine(k, p);
 
@@ -73,14 +105,14 @@ public class RectangleGr extends SuperRectangleGr implements PrimitiveGr2D {
       lines[i] = new LineGr(getLine(i));
       lines[i].setLineColor(rectangelColor);
     }
+    updateLines(this);
   }
 
 
+
   /**
-   * p1 ja tenho
-   * p2 ja tenho
-   * p1.x p2.y
-   * p1.y p2.x
+   * rotate the rectangle from reference point  
+   * @param double k, Point p, 
    */
   public void rotation(Point p, double angule) {
 
@@ -94,6 +126,6 @@ public class RectangleGr extends SuperRectangleGr implements PrimitiveGr2D {
     for (int i = 0; i < MAX; i++) {
       lines[i].rotationLine(p, angule);
     }
-
+    updateLines(this);
   }
 }

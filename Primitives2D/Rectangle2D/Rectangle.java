@@ -4,7 +4,7 @@ import Primitives2D.Line2D.Line;
 import Primitives2D.Point2D.Point;
 
 /**
- * Retângulo matemático.
+ * Math rectangle
  *
  * @author Gabriel Cavalcanti
  * @version 15/08/2021
@@ -47,16 +47,13 @@ public class Rectangle {
     return diagonal;
   }
 
-  public void convertToRectangle(double x1, double y1, double x2, double y2) {
-    // Vertical
-    lines[3] = new Line(x1, y1, x1, y2);
-    // Vertical
-    lines[2] = new Line(x2, y1, x2, y2);
-    // Horizonal
-    lines[1] = new Line(x1, y1, x2, y1);
-    // Horizontal
-    lines[0] = new Line(x1, y2, x2, y2);
+public void updateLines(RectangleGr rectangle){
+    lines[0] = rectangle.getLine(0);
+    lines[1] = rectangle.getLine(1);
+    lines[2] = rectangle.getLine(2);
+    lines[3] = rectangle.getLine(3);
   }
+
 
   public boolean belongs(Point p) {
     boolean veri = false;
@@ -81,5 +78,18 @@ public class Rectangle {
   public Line getLine(int i) {
     return lines[i];
   }
+
+  public void convertToRectangle(double x1, double y1, double x2, double y2) {
+    // Vertical
+    lines[3] = new Line(x1, y1, x1, y2);
+    // Vertical
+    lines[2] = new Line(x2, y1, x2, y2);
+    // Horizonal
+    lines[1] = new Line(x1, y1, x2, y1);
+    // Horizontal
+    lines[0] = new Line(x1, y2, x2, y2);
+  }
+
+
 
 }

@@ -4,6 +4,11 @@ import java.awt.Graphics;
 import java.awt.Color;
 import Primitives2D.Point2D.*;
 
+
+  /**
+   * Class that help to generalize operations in all primitives2D  
+   */
+ 
 public interface PrimitiveGr2D {
 
   public void draw(Graphics g);
