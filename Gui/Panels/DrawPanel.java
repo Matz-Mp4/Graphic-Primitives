@@ -193,7 +193,7 @@ public class DrawPanel extends JPanel implements MouseListener {
       public void actionPerformed(ActionEvent e) {
         if (json != null) {
 
-          JFileChooser winFile = new JFileChooser();
+          JFileChooser winFile = new JFileChooser("Save/.path.txt");
 
           FileNameExtensionFilter filter = new FileNameExtensionFilter("Only  json file", "json"); // txtFiltro = new
           winFile.setAcceptAllFileFilterUsed(false);
