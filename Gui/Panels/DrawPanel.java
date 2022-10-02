@@ -1,6 +1,7 @@
 package Gui.Panels;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -68,9 +69,11 @@ public class DrawPanel extends JPanel implements MouseListener {
   private Color newColor;
   private JsonFile json;
 
-  public DrawPanel(MenuPanel menuP, PrimitiveList list) {
+
+  public DrawPanel(MenuPanel menuP, PrimitiveList list, JsonFile json) {
     this.menuP = menuP;
     this.list = list;
+    this.json = json;
     initialize();
     setEvent();
   }
@@ -79,8 +82,8 @@ public class DrawPanel extends JPanel implements MouseListener {
     setBackground(GuiUtils.getBackground());
     setForeground(GuiUtils.getForeground());
     addMouseListener(this);
-    json = new JsonFile(list);
   }
+
 
   private void resetVariables() {
     needPoint = true;
@@ -192,7 +195,6 @@ public class DrawPanel extends JPanel implements MouseListener {
           veri = false;
         }
         if (veri == true) {
-          json = new JsonFile(list);
           json.createJSON(fileName);
         }
       }

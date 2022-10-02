@@ -24,6 +24,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,10 +37,11 @@ public class JsonFile {
   private JSONObject mainJson;
   private String primitives[];
   private final String PATH = "Save/";
-  private double screen;
+  private Dimension screen;
 
-  public JsonFile(PrimitiveList list) {
+  public JsonFile(PrimitiveList list, Dimension screen) {
     this.list = list;
+    this.screen = screen;
     primitives = list.getTypes();
   }
 
@@ -132,19 +134,19 @@ public class JsonFile {
         JSONObject line = lines.getJSONObject(i);
 
         JSONObject p1 = line.getJSONObject("p1");
-        int x1 = p1.getInt("x");
-        int y1 = p1.getInt("y");
+        double x1 = p1.getDouble("x")*screen.getWidth();
+        double y1 = p1.getDouble("y")*screen.getHeight();
 
         JSONObject p2 = line.getJSONObject("p2");
-        int x2 = p2.getInt("x");
-        int y2 = p2.getInt("y");
+        double x2 = p2.getDouble("x")*screen.getWidth();
+        double y2 = p2.getDouble("y")*screen.getHeight();
 
         JSONObject color = line.getJSONObject("color");
         int r = color.getInt("r");
         int g = color.getInt("g");
         int b = color.getInt("b");
 
-        LineGr lineGr = new LineGr(x1, y1, x2, y2);
+        LineGr lineGr = new LineGr((int)x1,(int) y1,(int) x2,(int) y2);
         lineGr.setLineColor(new Color(r, g, b));
         list.add(lineGr, "Line");
       }
@@ -155,8 +157,8 @@ public class JsonFile {
         JSONObject circle = circles.getJSONObject(i);
 
         JSONObject point = circle.getJSONObject("point");
-        double x = point.getDouble("x");
-        double y = point.getDouble("y");
+        double x = point.getDouble("x")*screen.getWidth();
+        double y = point.getDouble("y")*screen.getHeight();
 
         double radius = circle.getDouble("radius");
 
@@ -176,20 +178,20 @@ public class JsonFile {
         JSONObject retangle = retangles.getJSONObject(i);
 
         JSONObject p1 = retangle.getJSONObject("p1");
-        int x1 = (int) p1.getDouble("x");
-        int y1 = (int) p1.getDouble("y");
+        int x1 = (int) (p1.getDouble("x")*screen.getWidth());
+        int y1 = (int) (p1.getDouble("y")*screen.getHeight());
 
         JSONObject p2 = retangle.getJSONObject("p2");
-        int x2 = (int) p2.getDouble("x");
-        int y2 = (int) p2.getDouble("y");
+        int x2 = (int) (p2.getDouble("x")*screen.getWidth());
+        int y2 = (int) (p2.getDouble("y")*screen.getHeight());
 
         JSONObject p3 = retangle.getJSONObject("p3");
-        int x3 = (int) p3.getDouble("x");
-        int y3 = (int) p3.getDouble("y");
+        int x3 = (int) (p3.getDouble("x")*screen.getWidth());
+        int y3 = (int) (p3.getDouble("y")*screen.getHeight());
 
         JSONObject p4 = retangle.getJSONObject("p4");
-        int x4 = (int) p4.getDouble("x");
-        int y4 = (int) p4.getDouble("y");
+        int x4 = (int) (p4.getDouble("x")*screen.getWidth());
+        int y4 = (int) (p4.getDouble("y")*screen.getHeight());
 
 
         JSONObject color = retangle.getJSONObject("color");
@@ -220,7 +222,9 @@ public class JsonFile {
           double x = point.getDouble("x");
           double y = point.getDouble("y");
 
-          polygonGr.getList().add(new LineGr((int) xAnt, (int) yAnt, (int) x, (int) y), "Polygon");
+          polygonGr.getList().add(new LineGr((int) (xAnt*screen.getWidth()),
+           (int) (yAnt*screen.getHeight()), (int) (x*screen.getWidth()),
+            (int) (y*screen.getHeight())), "Polygon");
           xAnt = x;
           yAnt = y;
         }
@@ -251,7 +255,9 @@ public class JsonFile {
           double x = point.getDouble("x");
           double y = point.getDouble("y");
 
-          polygonGr.getList().add(new LineGr((int) xAnt, (int) yAnt, (int) x, (int) y), "Polygonal Line");
+          polygonGr.getList().add(new LineGr((int) (xAnt*screen.getWidth()),
+          (int) (yAnt*screen.getHeight()), (int) (x*screen.getWidth()),
+           (int) (y*screen.getHeight())), "Polygonal Line");
           xAnt = x;
           yAnt = y;
         }
@@ -284,8 +290,8 @@ public class JsonFile {
       while (node != null) {
         line = (LineGr) node.getItem();
         JSONObject p = new JSONObject();
-        p.put("x", line.getP1().getX());
-        p.put("y", line.getP1().getY());
+        p.put("x", line.getP1().getX()/screen.getWidth());
+        p.put("y", line.getP1().getY()/screen.getHeight());
 
         polygonPoints.put(p);
         node = node.getNext();
@@ -295,8 +301,8 @@ public class JsonFile {
       if (line != null) { // Need to leave it because it always captures the first point. At the end of the loop we will have the 
                           // last point
         JSONObject p = new JSONObject();
-        p.put("x", line.getP2().getX());
-        p.put("y", line.getP2().getY());
+        p.put("x", line.getP2().getX()/screen.getWidth());
+        p.put("y", line.getP2().getY()/screen.getHeight());
         polygonPoints.put(p);
       }
 
@@ -330,8 +336,8 @@ public class JsonFile {
       while (node != null) {
         line = (LineGr) node.getItem();
         JSONObject p = new JSONObject();
-        p.put("x", line.getP1().getX());
-        p.put("y", line.getP1().getY());
+        p.put("x", line.getP1().getX()/screen.getWidth());
+        p.put("y", line.getP1().getY()/screen.getHeight());
 
         polygonPoints.put(p);
         node = node.getNext();
@@ -341,8 +347,8 @@ public class JsonFile {
       if (line != null) { // Need to leave it because it always captures the first point. At the end of the loop we will have the 
                           // last point
         JSONObject p = new JSONObject();
-        p.put("x", line.getP2().getX());
-        p.put("y", line.getP2().getY());
+        p.put("x", line.getP2().getX()/screen.getWidth());
+        p.put("y", line.getP2().getY()/screen.getHeight());
         polygonPoints.put(p);
       }
 
@@ -370,20 +376,20 @@ public class JsonFile {
       RectangleGr rectangleAux = (RectangleGr) aux.getItem();
 
       JSONObject p1 = new JSONObject();
-      p1.put("x", rectangleAux.getLineGr(1).getP1().getX());
-      p1.put("y", rectangleAux.getLineGr(1).getP1().getY());
+      p1.put("x", rectangleAux.getLineGr(1).getP1().getX()/screen.getWidth());
+      p1.put("y", rectangleAux.getLineGr(1).getP1().getY()/screen.getHeight());
 
       JSONObject p2 = new JSONObject();
-      p2.put("x", rectangleAux.getLineGr(2).getP2().getX());
-      p2.put("y", rectangleAux.getLineGr(2).getP2().getY());
+      p2.put("x", rectangleAux.getLineGr(2).getP2().getX()/screen.getWidth());
+      p2.put("y", rectangleAux.getLineGr(2).getP2().getY()/screen.getHeight());
 
       JSONObject p3 = new JSONObject();
-      p3.put("x", rectangleAux.getLineGr(1).getP2().getX());
-      p3.put("y", rectangleAux.getLineGr(1).getP2().getY());
+      p3.put("x", rectangleAux.getLineGr(1).getP2().getX()/screen.getWidth());
+      p3.put("y", rectangleAux.getLineGr(1).getP2().getY()/screen.getHeight());
 
       JSONObject p4 = new JSONObject();
-      p4.put("x", rectangleAux.getLineGr(0).getP1().getX());
-      p4.put("y", rectangleAux.getLineGr(0).getP1().getY());
+      p4.put("x", rectangleAux.getLineGr(0).getP1().getX()/screen.getWidth());
+      p4.put("y", rectangleAux.getLineGr(0).getP1().getY()/screen.getHeight());
 
       JSONObject color = new JSONObject();
       color.put("r", rectangleAux.getRectangelColor().getRed());
@@ -412,8 +418,8 @@ public class JsonFile {
       CircleGr circleAux = (CircleGr) aux.getItem();
 
       JSONObject point = new JSONObject();
-      point.put("x", circleAux.getX());
-      point.put("y", circleAux.getY());
+      point.put("x", circleAux.getX()/screen.getWidth());
+      point.put("y", circleAux.getY()/screen.getHeight());
 
       JSONObject color = new JSONObject();
       color.put("r", circleAux.getCircleColor().getRed());
@@ -442,14 +448,14 @@ public class JsonFile {
       double x = lineAux.getP1().getX();
       double y = lineAux.getP1().getY();
       JSONObject p1 = new JSONObject();
-      p1.put("x", x);
-      p1.put("y", y);
+      p1.put("x", x/screen.getWidth());
+      p1.put("y", y/screen.getHeight());
 
       x = lineAux.getP2().getX();
       y = lineAux.getP2().getY();
       JSONObject p2 = new JSONObject();
-      p2.put("x", x);
-      p2.put("y", y);
+      p2.put("x", x/screen.getWidth());
+      p2.put("y", y/screen.getHeight());
 
       JSONObject color = new JSONObject();
       color.put("r", lineAux.getLineColor().getRed());

@@ -15,6 +15,7 @@ public class GuiUtils {
 
   // Gets the screen size
   private static Dimension dimScreen = Toolkit.getDefaultToolkit().getScreenSize();
+  
 
   private static Color background = Color.white;
   private static Color foreground = Color.black;
