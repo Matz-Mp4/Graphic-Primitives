@@ -50,7 +50,6 @@ public class PolygonalLineGr implements PrimitiveGr2D {
     }
   }
 
-
   public void scale(double k, Point p) {
     Node aux = data.getBegin();
     LineGr line = (LineGr) aux.getItem();
@@ -120,11 +119,13 @@ public class PolygonalLineGr implements PrimitiveGr2D {
 
   public void erase(Graphics g) {
     Node aux = data.getBegin();
+
+    Color polygonColor = getColorPolygonalLine();
     while (aux != null) {
       LineGr line = (LineGr) aux.getItem();
       line.setLineColor(GuiUtils.getBackground());
       line.draw(g);
-      line.setLineColor(GuiUtils.getForeground());
+      line.setLineColor(polygonColor);
       aux = aux.getNext();
     }
   }
@@ -157,7 +158,7 @@ public class PolygonalLineGr implements PrimitiveGr2D {
     return veri;
   }
 
-  public DoublyLinkedList getList(){
+  public DoublyLinkedList getList() {
     return data;
   }
 

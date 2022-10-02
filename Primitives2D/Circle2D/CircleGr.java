@@ -46,9 +46,10 @@ public class CircleGr extends SuperCircleGr implements PrimitiveGr2D {
    * @param Graphics g
    */
   public void erase(Graphics g) {
+    Color circleColor = getCircleColor();
     setCircleColor(GuiUtils.getBackground());
     draw(g);
-    setCircleColor(GuiUtils.getForeground());
+    setCircleColor(circleColor);
   }
 
   /**

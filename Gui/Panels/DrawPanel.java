@@ -89,6 +89,7 @@ public class DrawPanel extends JPanel implements MouseListener {
 
   /**
    * Method that handles the transformations events
+   * 
    * @param xMouse
    * @param yMouse
    */
@@ -117,6 +118,9 @@ public class DrawPanel extends JPanel implements MouseListener {
 
           itemGr.scale(0.9, p);
           break;
+
+        case "Reflection":
+        break;
 
       }
 
@@ -332,7 +336,9 @@ public class DrawPanel extends JPanel implements MouseListener {
   }
 
   /**
-   * Method that closes a polygon or change the state of application to start a new polygonal line
+   * Method that closes a polygon or change the state of application to start a
+   * new polygonal line
+   * 
    * @param amountClicks
    * @param x
    * @param y

@@ -46,9 +46,10 @@ public class RectangleGr extends SuperRectangleGr implements PrimitiveGr2D {
  
   public void erase(Graphics g) {
     for (int i = 0; i < MAX; i++) {
+      Color recColor =  getRectangelColor() ;
       lines[i].setLineColor(GuiUtils.getBackground());
       lines[i].draw(g);
-      lines[i].setLineColor(GuiUtils.getForeground());
+      lines[i].setLineColor(recColor);
     }
   }
 

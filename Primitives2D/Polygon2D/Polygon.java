@@ -164,11 +164,13 @@ public class Polygon implements PrimitiveGr2D {
    */
   public void erase(Graphics g) {
     Node aux = data.getBegin();
+
+    Color polygonColor = getColorPolygon();
     while (aux != null) {
       LineGr line = (LineGr) aux.getItem();
       line.setLineColor(GuiUtils.getBackground());
       line.draw(g);
-      line.setLineColor(GuiUtils.getForeground());
+      line.setLineColor(polygonColor);
       aux = aux.getNext();
     }
   }

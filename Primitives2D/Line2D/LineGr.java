@@ -119,9 +119,10 @@ public class LineGr extends SuperLineGr implements PrimitiveGr2D {
    */
  
   public void erase(Graphics g) {
+    Color lineColor = getLineColor();
     setLineColor(GuiUtils.getBackground());
     draw(g);
-    setLineColor(GuiUtils.getForeground());
+    setLineColor(lineColor);
 
   }
 
